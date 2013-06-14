@@ -1,0 +1,142 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package br.edu.ifnmg.ltp3.trabalhoFinal.domainModel;
+
+import java.util.Objects;
+
+/**
+ *
+ * @author emerson
+ */
+public class Orientador extends Pessoa {
+    private int idOrientador;
+    private int matriculaSiape;
+    private String localPermanencia;
+    private String formacaoAcademica;
+    private String tituloAcademico;
+    private int statusOrientador;
+    
+    //Construtores
+
+    public Orientador(int idOrientador, int matriculaSiape, String localPermanencia, String formacaoAcademica, String tituloAcademico, int statusOrientador) {
+        this.idOrientador = idOrientador;
+        this.matriculaSiape = matriculaSiape;
+        this.localPermanencia = localPermanencia;
+        this.formacaoAcademica = formacaoAcademica;
+        this.tituloAcademico = tituloAcademico;
+        this.statusOrientador = statusOrientador;
+    }
+    
+    public Orientador() {
+        this.idOrientador = 0;
+        this.matriculaSiape = 0;
+        this.localPermanencia = "vazio";
+        this.formacaoAcademica = "vazio";
+        this.tituloAcademico = "vazio";
+        this.statusOrientador = 1;
+    }
+    
+    //Metodos
+
+    public int getIdOrientador() {
+        return idOrientador;
+    }
+
+    public void setIdOrientador(int idOrientador) {
+        this.idOrientador = idOrientador;
+    }
+
+    public int getMatriculaSiape() {
+        return matriculaSiape;
+    }
+
+    public void setMatriculaSiape(int matriculaSiape) {
+        this.matriculaSiape = matriculaSiape;
+    }
+
+    public String getLocalPermanencia() {
+        return localPermanencia;
+    }
+
+    public void setLocalPermanencia(String localPermanencia) {
+        this.localPermanencia = localPermanencia;
+    }
+
+    public String getFormacaoAcademica() {
+        return formacaoAcademica;
+    }
+
+    public void setFormacaoAcademica(String formacaoAcademica) {
+        this.formacaoAcademica = formacaoAcademica;
+    }
+
+    public String getTituloAcademico() {
+        return tituloAcademico;
+    }
+
+    public void setTituloAcademico(String tituloAcademico) {
+        this.tituloAcademico = tituloAcademico;
+    }
+
+    public int getStatusOrientador() {
+        return statusOrientador;
+    }
+
+    public void setStatusOrientador(int statusOrientador) {
+        this.statusOrientador = statusOrientador;
+    }
+    
+    //HaschCodes
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 59 * hash + this.idOrientador;
+        hash = 59 * hash + this.matriculaSiape;
+        hash = 59 * hash + Objects.hashCode(this.localPermanencia);
+        hash = 59 * hash + Objects.hashCode(this.formacaoAcademica);
+        hash = 59 * hash + Objects.hashCode(this.tituloAcademico);
+        hash = 59 * hash + this.statusOrientador;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Orientador other = (Orientador) obj;
+        if (this.idOrientador != other.idOrientador) {
+            return false;
+        }
+        if (this.matriculaSiape != other.matriculaSiape) {
+            return false;
+        }
+        if (!Objects.equals(this.localPermanencia, other.localPermanencia)) {
+            return false;
+        }
+        if (!Objects.equals(this.formacaoAcademica, other.formacaoAcademica)) {
+            return false;
+        }
+        if (!Objects.equals(this.tituloAcademico, other.tituloAcademico)) {
+            return false;
+        }
+        if (this.statusOrientador != other.statusOrientador) {
+            return false;
+        }
+        return true;
+    }
+    
+    //toString
+
+    @Override
+    public String toString() {
+        return "Orientador{" + "idOrientador=" + idOrientador + ", matriculaSiape=" + matriculaSiape + ", localPermanencia=" + localPermanencia + ", formacaoAcademica=" + formacaoAcademica + ", tituloAcademico=" + tituloAcademico + ", statusOrientador=" + statusOrientador + '}';
+    }
+    
+}

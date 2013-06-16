@@ -13,20 +13,20 @@ import java.util.Objects;
 public class Campus {
     private int idCampus;
     private String nome;
-    private int statusCampus;
+    private boolean status;
     
     //Construtores
 
-    public Campus(int idCampus, String nome, int statusCampus) {
+    public Campus(int idCampus, String nome, boolean status) {
         this.idCampus = idCampus;
         this.nome = nome;
-        this.statusCampus = statusCampus;
+        this.status = status;
     }
     
     public Campus() {
         this.idCampus = 0;
         this.nome = "vazio";
-        this.statusCampus = 1;
+        this.status = true;
     }
     
     //Metodos
@@ -47,22 +47,22 @@ public class Campus {
         this.nome = nome;
     }
 
-    public int getStatusCampus() {
-        return statusCampus;
+    public boolean getStatus() {
+        return status;
     }
 
-    public void setStatusCampus(int statusCampus) {
-        this.statusCampus = statusCampus;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     //HashCodes
-    
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 83 * hash + this.idCampus;
-        hash = 83 * hash + Objects.hashCode(this.nome);
-        hash = 83 * hash + this.statusCampus;
+        int hash = 3;
+        hash = 89 * hash + this.idCampus;
+        hash = 89 * hash + Objects.hashCode(this.nome);
+        hash = 89 * hash + (this.status ? 1 : 0);
         return hash;
     }
 
@@ -81,17 +81,18 @@ public class Campus {
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
-        if (this.statusCampus != other.statusCampus) {
+        if (this.status != other.status) {
             return false;
         }
         return true;
     }
     
+   
     //toString
 
     @Override
     public String toString() {
-        return "Campus{" + "idCampus=" + idCampus + ", nome=" + nome + ", statusCampus=" + statusCampus + '}';
+        return "Campus{" + "idCampus=" + idCampus + ", nome=" + nome + ", status=" + status + '}';
     }
     
 }

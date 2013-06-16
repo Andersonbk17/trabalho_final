@@ -4,6 +4,8 @@
  */
 package br.edu.ifnmg.ltp3.trabalhoFinal.domainModel;
 
+import java.util.Objects;
+
 /**
  *
  * @author emerson
@@ -11,11 +13,11 @@ package br.edu.ifnmg.ltp3.trabalhoFinal.domainModel;
 public class Email {
     private int idEmail;
     private String enderecoEmail;
-    private int status;
+    private boolean status;
     
     //Construtores
 
-    public Email(int idEmail, String enderecoEmail, int status) {
+    public Email(int idEmail, String enderecoEmail, boolean status) {
         this.idEmail = idEmail;
         this.enderecoEmail = enderecoEmail;
         this.status = status;
@@ -24,7 +26,7 @@ public class Email {
     public Email() {
         this.idEmail = 0;
         this.enderecoEmail = "vazio";
-        this.status = 1;
+        this.status = true;
     }
     
     //Metodos
@@ -45,13 +47,46 @@ public class Email {
         this.enderecoEmail = enderecoEmail;
     }
 
-    public int getStatus() {
+    public boolean getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
+    
+    //Hashcodes
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 17 * hash + this.idEmail;
+        hash = 17 * hash + Objects.hashCode(this.enderecoEmail);
+        hash = 17 * hash + (this.status ? 1 : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Email other = (Email) obj;
+        if (this.idEmail != other.idEmail) {
+            return false;
+        }
+        if (!Objects.equals(this.enderecoEmail, other.enderecoEmail)) {
+            return false;
+        }
+        if (this.status != other.status) {
+            return false;
+        }
+        return true;
+    }
+    
     
     //toString
 

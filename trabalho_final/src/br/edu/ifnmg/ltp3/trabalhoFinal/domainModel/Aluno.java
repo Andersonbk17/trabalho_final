@@ -18,12 +18,13 @@ public class Aluno extends Pessoa {
     private String zonaEleitoral;
     private String cituacaoMilitar;
     private String certidaoMilitar;
+    private boolean status;
+    
     private Responsavel responsavel;
-    private int statusAluno;
     
     //Construtores
 
-    public Aluno(int idAluno, String matricula, String tituloEleitoral, String secaoEleitoral, String cituacaoMilitar, String certidaoMilitar, Responsavel responsavel, int statusAluno) {
+    public Aluno(int idAluno, String matricula, String tituloEleitoral, String secaoEleitoral, String cituacaoMilitar, String certidaoMilitar, Responsavel responsavel, boolean status) {
         this.idAluno = idAluno;
         this.matricula = matricula;
         this.tituloEleitoral = tituloEleitoral;
@@ -31,7 +32,7 @@ public class Aluno extends Pessoa {
         this.cituacaoMilitar = cituacaoMilitar;
         this.certidaoMilitar = certidaoMilitar;
         this.responsavel = responsavel;
-        this.statusAluno = statusAluno;
+        this.status = status;
     }
     
      public Aluno() {
@@ -42,7 +43,7 @@ public class Aluno extends Pessoa {
         this.cituacaoMilitar = "vazio";
         this.certidaoMilitar = "vazio";
         this.responsavel = new Responsavel();
-        this.statusAluno = 1;
+        this.status = true;
     }
     
     //Metodos
@@ -111,28 +112,28 @@ public class Aluno extends Pessoa {
         this.responsavel = responsavel;
     }
 
-    public int getStatusAluno() {
-        return statusAluno;
+    public boolean isStatus() {
+        return status;
     }
 
-    public void setStatusAluno(int statusAluno) {
-        this.statusAluno = statusAluno;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
      
     //Hashcodes
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 47 * hash + this.idAluno;
-        hash = 47 * hash + Objects.hashCode(this.matricula);
-        hash = 47 * hash + Objects.hashCode(this.tituloEleitoral);
-        hash = 47 * hash + Objects.hashCode(this.secaoEleitoral);
-        hash = 47 * hash + Objects.hashCode(this.zonaEleitoral);
-        hash = 47 * hash + Objects.hashCode(this.cituacaoMilitar);
-        hash = 47 * hash + Objects.hashCode(this.certidaoMilitar);
-        hash = 47 * hash + Objects.hashCode(this.responsavel);
-        hash = 47 * hash + this.statusAluno;
+        int hash = 7;
+        hash = 37 * hash + this.idAluno;
+        hash = 37 * hash + Objects.hashCode(this.matricula);
+        hash = 37 * hash + Objects.hashCode(this.tituloEleitoral);
+        hash = 37 * hash + Objects.hashCode(this.secaoEleitoral);
+        hash = 37 * hash + Objects.hashCode(this.zonaEleitoral);
+        hash = 37 * hash + Objects.hashCode(this.cituacaoMilitar);
+        hash = 37 * hash + Objects.hashCode(this.certidaoMilitar);
+        hash = 37 * hash + (this.status ? 1 : 0);
+        hash = 37 * hash + Objects.hashCode(this.responsavel);
         return hash;
     }
 
@@ -166,10 +167,10 @@ public class Aluno extends Pessoa {
         if (!Objects.equals(this.certidaoMilitar, other.certidaoMilitar)) {
             return false;
         }
-        if (!Objects.equals(this.responsavel, other.responsavel)) {
+        if (this.status != other.status) {
             return false;
         }
-        if (this.statusAluno != other.statusAluno) {
+        if (!Objects.equals(this.responsavel, other.responsavel)) {
             return false;
         }
         return true;
@@ -179,7 +180,7 @@ public class Aluno extends Pessoa {
 
     @Override
     public String toString() {
-        return "Aluno{" + "idAluno=" + idAluno + ", matricula=" + matricula + ", tituloEleitoral=" + tituloEleitoral + ", secaoEleitoral=" + secaoEleitoral + ", zonaEleitoral=" + zonaEleitoral + ", cituacaoMilitar=" + cituacaoMilitar + ", certidaoMilitar=" + certidaoMilitar + ", responsavel=" + responsavel + ", statusAluno=" + statusAluno + '}';
+        return "Aluno{" + "idAluno=" + idAluno + ", matricula=" + matricula + ", tituloEleitoral=" + tituloEleitoral + ", secaoEleitoral=" + secaoEleitoral + ", zonaEleitoral=" + zonaEleitoral + ", cituacaoMilitar=" + cituacaoMilitar + ", certidaoMilitar=" + certidaoMilitar + ", responsavel=" + responsavel + ", status=" + status + '}';
     }
     
 }

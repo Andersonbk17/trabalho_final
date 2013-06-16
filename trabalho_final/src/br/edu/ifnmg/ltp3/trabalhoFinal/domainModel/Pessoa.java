@@ -21,14 +21,18 @@ public class Pessoa {
    private String naturalidade;
    private String nacionalidade;
    private Date dataNascimento;
+   private boolean status;
+    
    private List<Endereco> endereco;
    private List<Telefone> telefone;
    private List<Email> email;
-   private int status;
+   private Estado estado;
+   
+  
    
    //Construtores
 
-    public Pessoa(int idPessoa, String nome, String rg, String cpf, String naturalidade, String nacionalidade, Date dataNascimento, List<Endereco> endereco, List<Telefone> telefone, List<Email> email, int status) {
+    public Pessoa(int idPessoa, String nome, String rg, String cpf, String naturalidade, String nacionalidade, Date dataNascimento, List<Endereco> endereco, List<Telefone> telefone, List<Email> email, boolean status, Estado estado) {
         this.idPessoa = idPessoa;
         this.nome = nome;
         this.rg = rg;
@@ -40,6 +44,7 @@ public class Pessoa {
         this.telefone = telefone;
         this.email = email;
         this.status = status;
+        this.estado = estado;
     }
 
     public Pessoa() {
@@ -53,7 +58,8 @@ public class Pessoa {
         this.endereco = new LinkedList<Endereco>();
         this.telefone = new LinkedList<Telefone>();
         this.email = new LinkedList<Email>();
-        this.status = 1;
+        this.status = true;
+        this.estado = new Estado();
     }
     
     //Metodos
@@ -138,11 +144,11 @@ public class Pessoa {
         this.email = email;
     }
 
-    public int getStatus() {
+    public boolean getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
     
@@ -181,12 +187,20 @@ public class Pessoa {
             email.remove(em);
         }
     }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
    
     //hashCodes
 
     @Override
     public int hashCode() {
-        int hash = 3;
+        int hash = 5;
         hash = 37 * hash + this.idPessoa;
         hash = 37 * hash + Objects.hashCode(this.nome);
         hash = 37 * hash + Objects.hashCode(this.rg);
@@ -194,7 +208,7 @@ public class Pessoa {
         hash = 37 * hash + Objects.hashCode(this.naturalidade);
         hash = 37 * hash + Objects.hashCode(this.nacionalidade);
         hash = 37 * hash + Objects.hashCode(this.dataNascimento);
-        hash = 37 * hash + this.status;
+        hash = 37 * hash + (this.status ? 1 : 0);
         return hash;
     }
 

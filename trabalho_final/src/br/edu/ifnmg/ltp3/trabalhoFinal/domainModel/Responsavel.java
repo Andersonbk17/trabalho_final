@@ -20,11 +20,11 @@ public class Responsavel {
     private String rgMae;
     private String orgaoExpedidorMae;
     private int cpfMae;
-    private int statusResponsavelAluno;
+    private boolean status;
     
     //Construtores
 
-    public Responsavel(int idResponsavelAluno, String nomePai, String rgPai, String orgaoExpedidorPai, int cpfPai, String nomeMae, String rgMae, String orgaoExpedidorMae, int cpfMae, int statusResponsavelAluno) {
+    public Responsavel(int idResponsavelAluno, String nomePai, String rgPai, String orgaoExpedidorPai, int cpfPai, String nomeMae, String rgMae, String orgaoExpedidorMae, int cpfMae, boolean status) {
         this.idResponsavelAluno = idResponsavelAluno;
         this.nomePai = nomePai;
         this.rgPai = rgPai;
@@ -34,7 +34,7 @@ public class Responsavel {
         this.rgMae = rgMae;
         this.orgaoExpedidorMae = orgaoExpedidorMae;
         this.cpfMae = cpfMae;
-        this.statusResponsavelAluno = statusResponsavelAluno;
+        this.status = status;
     }
     
     public Responsavel() {
@@ -47,7 +47,7 @@ public class Responsavel {
         this.rgMae = "vazio";
         this.orgaoExpedidorMae = "vazio";
         this.cpfMae = 0;
-        this.statusResponsavelAluno = 1;
+        this.status = true;
     }
     
     //Metodos
@@ -124,29 +124,29 @@ public class Responsavel {
         this.cpfMae = cpfMae;
     }
 
-    public int getStatusResponsavelAluno() {
-        return statusResponsavelAluno;
+    public boolean getStatus() {
+        return status;
     }
 
-    public void setStatusResponsavelAluno(int statusResponsavelAluno) {
-        this.statusResponsavelAluno = statusResponsavelAluno;
+    public void setStatusResponsavelAluno(boolean status) {
+        this.status = status;
     }
     
     //HashCodes
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 79 * hash + this.idResponsavelAluno;
-        hash = 79 * hash + Objects.hashCode(this.nomePai);
-        hash = 79 * hash + Objects.hashCode(this.rgPai);
-        hash = 79 * hash + Objects.hashCode(this.orgaoExpedidorPai);
-        hash = 79 * hash + this.cpfPai;
-        hash = 79 * hash + Objects.hashCode(this.nomeMae);
-        hash = 79 * hash + Objects.hashCode(this.rgMae);
-        hash = 79 * hash + Objects.hashCode(this.orgaoExpedidorMae);
-        hash = 79 * hash + this.cpfMae;
-        hash = 79 * hash + this.statusResponsavelAluno;
+        int hash = 5;
+        hash = 83 * hash + this.idResponsavelAluno;
+        hash = 83 * hash + Objects.hashCode(this.nomePai);
+        hash = 83 * hash + Objects.hashCode(this.rgPai);
+        hash = 83 * hash + Objects.hashCode(this.orgaoExpedidorPai);
+        hash = 83 * hash + this.cpfPai;
+        hash = 83 * hash + Objects.hashCode(this.nomeMae);
+        hash = 83 * hash + Objects.hashCode(this.rgMae);
+        hash = 83 * hash + Objects.hashCode(this.orgaoExpedidorMae);
+        hash = 83 * hash + this.cpfMae;
+        hash = 83 * hash + (this.status ? 1 : 0);
         return hash;
     }
 
@@ -186,17 +186,17 @@ public class Responsavel {
         if (this.cpfMae != other.cpfMae) {
             return false;
         }
-        if (this.statusResponsavelAluno != other.statusResponsavelAluno) {
+        if (this.status != other.status) {
             return false;
         }
         return true;
     }
-    
+
     //toString
 
     @Override
     public String toString() {
-        return "Responsavel{" + "idResponsavelAluno=" + idResponsavelAluno + ", nomePai=" + nomePai + ", rgPai=" + rgPai + ", orgaoExpedidorPai=" + orgaoExpedidorPai + ", cpfPai=" + cpfPai + ", nomeMae=" + nomeMae + ", rgMae=" + rgMae + ", orgaoExpedidorMae=" + orgaoExpedidorMae + ", cpfMae=" + cpfMae + ", statusResponsavelAluno=" + statusResponsavelAluno + '}';
+        return "Responsavel{" + "idResponsavelAluno=" + idResponsavelAluno + ", nomePai=" + nomePai + ", rgPai=" + rgPai + ", orgaoExpedidorPai=" + orgaoExpedidorPai + ", cpfPai=" + cpfPai + ", nomeMae=" + nomeMae + ", rgMae=" + rgMae + ", orgaoExpedidorMae=" + orgaoExpedidorMae + ", cpfMae=" + cpfMae + ", status=" + status + '}';
     }
    
 }

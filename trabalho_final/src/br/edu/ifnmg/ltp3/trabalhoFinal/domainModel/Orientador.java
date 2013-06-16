@@ -16,17 +16,17 @@ public class Orientador extends Pessoa {
     private String localPermanencia;
     private String formacaoAcademica;
     private String tituloAcademico;
-    private int statusOrientador;
+    private boolean status;
     
     //Construtores
 
-    public Orientador(int idOrientador, int matriculaSiape, String localPermanencia, String formacaoAcademica, String tituloAcademico, int statusOrientador) {
+    public Orientador(int idOrientador, int matriculaSiape, String localPermanencia, String formacaoAcademica, String tituloAcademico, boolean status) {
         this.idOrientador = idOrientador;
         this.matriculaSiape = matriculaSiape;
         this.localPermanencia = localPermanencia;
         this.formacaoAcademica = formacaoAcademica;
         this.tituloAcademico = tituloAcademico;
-        this.statusOrientador = statusOrientador;
+        this.status = status;
     }
     
     public Orientador() {
@@ -35,7 +35,7 @@ public class Orientador extends Pessoa {
         this.localPermanencia = "vazio";
         this.formacaoAcademica = "vazio";
         this.tituloAcademico = "vazio";
-        this.statusOrientador = 1;
+        this.status = true;
     }
     
     //Metodos
@@ -80,25 +80,25 @@ public class Orientador extends Pessoa {
         this.tituloAcademico = tituloAcademico;
     }
 
-    public int getStatusOrientador() {
-        return statusOrientador;
+    public boolean isStatus() {
+        return status;
     }
 
-    public void setStatusOrientador(int statusOrientador) {
-        this.statusOrientador = statusOrientador;
+    public void setStatusOrientador(boolean status) {
+        this.status = status;
     }
     
     //HaschCodes
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 59 * hash + this.idOrientador;
-        hash = 59 * hash + this.matriculaSiape;
-        hash = 59 * hash + Objects.hashCode(this.localPermanencia);
-        hash = 59 * hash + Objects.hashCode(this.formacaoAcademica);
-        hash = 59 * hash + Objects.hashCode(this.tituloAcademico);
-        hash = 59 * hash + this.statusOrientador;
+        int hash = 5;
+        hash = 89 * hash + this.idOrientador;
+        hash = 89 * hash + this.matriculaSiape;
+        hash = 89 * hash + Objects.hashCode(this.localPermanencia);
+        hash = 89 * hash + Objects.hashCode(this.formacaoAcademica);
+        hash = 89 * hash + Objects.hashCode(this.tituloAcademico);
+        hash = 89 * hash + (this.status ? 1 : 0);
         return hash;
     }
 
@@ -126,17 +126,18 @@ public class Orientador extends Pessoa {
         if (!Objects.equals(this.tituloAcademico, other.tituloAcademico)) {
             return false;
         }
-        if (this.statusOrientador != other.statusOrientador) {
+        if (this.status != other.status) {
             return false;
         }
         return true;
     }
+
     
     //toString
 
     @Override
     public String toString() {
-        return "Orientador{" + "idOrientador=" + idOrientador + ", matriculaSiape=" + matriculaSiape + ", localPermanencia=" + localPermanencia + ", formacaoAcademica=" + formacaoAcademica + ", tituloAcademico=" + tituloAcademico + ", statusOrientador=" + statusOrientador + '}';
+        return "Orientador{" + "idOrientador=" + idOrientador + ", matriculaSiape=" + matriculaSiape + ", localPermanencia=" + localPermanencia + ", formacaoAcademica=" + formacaoAcademica + ", tituloAcademico=" + tituloAcademico + ", status=" + status + '}';
     }
     
 }

@@ -4,6 +4,8 @@
  */
 package br.edu.ifnmg.ltp3.trabalhoFinal.domainModel;
 
+import java.util.Objects;
+
 /**
  *
  * @author emerson
@@ -12,34 +14,35 @@ public class Endereco {
     private int idEndereco;
     private int numero;
     private String bairro;
-    private String cidade;
     private String cep;
-    private String estado;
-    private int status;
-   
+    private boolean status;
+    
+    private Cidade cidade;
+    private Estado estado;
+    
     //Construtores
 
-    public Endereco(int idEndereco, int numero, String bairro, String cidade, String cep, String estado, int status) {
+    public Endereco(int idEndereco, int numero, String bairro, String cep, boolean status, Cidade cidade, Estado estado) {
         this.idEndereco = idEndereco;
         this.numero = numero;
         this.bairro = bairro;
-        this.cidade = cidade;
         this.cep = cep;
-        this.estado = estado;
         this.status = status;
+        this.cidade = cidade;
+        this.estado = estado;
     }
     
     public Endereco() {
         this.idEndereco = 0;
         this.numero = 0;
         this.bairro = "vazio";
-        this.cidade = "vazio";
         this.cep = "vazio";
-        this.estado = "vazio";
-        this.status = 1;
+        this.status = true;
+        this.cidade = new Cidade();
+        this.estado = new Estado();
     }
     
-    //Metodos
+    //Medodos
 
     public int getIdEndereco() {
         return idEndereco;
@@ -65,14 +68,6 @@ public class Endereco {
         this.bairro = bairro;
     }
 
-    public String getCidade() {
-        return cidade;
-    }
-
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
-
     public String getCep() {
         return cep;
     }
@@ -81,27 +76,84 @@ public class Endereco {
         this.cep = cep;
     }
 
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public int getStatus() {
+    public boolean isStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public Cidade getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
+    }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+    
+    //HashCodes
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 29 * hash + this.idEndereco;
+        hash = 29 * hash + this.numero;
+        hash = 29 * hash + Objects.hashCode(this.bairro);
+        hash = 29 * hash + Objects.hashCode(this.cep);
+        hash = 29 * hash + (this.status ? 1 : 0);
+        hash = 29 * hash + Objects.hashCode(this.cidade);
+        hash = 29 * hash + Objects.hashCode(this.estado);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Endereco other = (Endereco) obj;
+        if (this.idEndereco != other.idEndereco) {
+            return false;
+        }
+        if (this.numero != other.numero) {
+            return false;
+        }
+        if (!Objects.equals(this.bairro, other.bairro)) {
+            return false;
+        }
+        if (!Objects.equals(this.cep, other.cep)) {
+            return false;
+        }
+        if (this.status != other.status) {
+            return false;
+        }
+        if (!Objects.equals(this.cidade, other.cidade)) {
+            return false;
+        }
+        if (!Objects.equals(this.estado, other.estado)) {
+            return false;
+        }
+        return true;
     }
     
     //toString
 
     @Override
     public String toString() {
-        return "Endereco{" + "idEndereco=" + idEndereco + ", numero=" + numero + ", bairro=" + bairro + ", cidade=" + cidade + ", cep=" + cep + ", estado=" + estado + ", status=" + status + '}';
+        return "Endereco{" + "idEndereco=" + idEndereco + ", numero=" + numero + ", bairro=" + bairro + ", cep=" + cep + ", status=" + status + ", cidade=" + cidade + ", estado=" + estado + '}';
     }
-
+    
+    
 }

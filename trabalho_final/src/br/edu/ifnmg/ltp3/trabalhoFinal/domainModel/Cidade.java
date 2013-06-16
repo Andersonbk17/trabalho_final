@@ -15,22 +15,18 @@ public class Cidade {
     private String nome;
     private boolean status;
     
-    private Estado estado;
-    
     //Construtores
 
-    public Cidade(int idCidade, String nome, boolean status, Estado estado) {
+    public Cidade(int idCidade, String nome, boolean status) {
         this.idCidade = idCidade;
         this.nome = nome;
         this.status = status;
-        this.estado = estado;
     }
     
     public Cidade() {
         this.idCidade = 0;
         this.nome = "vazio";
         this.status = true;
-        this.estado = new Estado();
     }
     
     //Metodos
@@ -58,14 +54,6 @@ public class Cidade {
     public void setStatus(boolean status) {
         this.status = status;
     }
-
-    public Estado getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Estado estado) {
-        this.estado = estado;
-    }
     
     //HashCodes
 
@@ -75,7 +63,6 @@ public class Cidade {
         hash = 89 * hash + this.idCidade;
         hash = 89 * hash + Objects.hashCode(this.nome);
         hash = 89 * hash + (this.status ? 1 : 0);
-        hash = 89 * hash + Objects.hashCode(this.estado);
         return hash;
     }
 
@@ -97,9 +84,6 @@ public class Cidade {
         if (this.status != other.status) {
             return false;
         }
-        if (!Objects.equals(this.estado, other.estado)) {
-            return false;
-        }
         return true;
     }
     
@@ -107,7 +91,8 @@ public class Cidade {
 
     @Override
     public String toString() {
-        return "Cidade{" + "idCidade=" + idCidade + ", nome=" + nome + ", status=" + status + ", estado=" + estado + '}';
+        return "Cidade{" + "idCidade=" + idCidade + ", nome=" + nome + ", status=" + status + '}';
     }
+
      
 }

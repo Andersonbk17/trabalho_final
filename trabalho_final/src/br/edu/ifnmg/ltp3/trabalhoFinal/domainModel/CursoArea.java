@@ -14,22 +14,22 @@ public class CursoArea {
     private int idCursoArea;
     private String nome;
     private String sigla;
-    private int statusCursoArea;
+    private boolean status;
     
     //Construtores
 
-    public CursoArea(int idCursoArea, String nome, String sigla, int statusCursoArea) {
+    public CursoArea(int idCursoArea, String nome, String sigla, boolean status) {
         this.idCursoArea = idCursoArea;
         this.nome = nome;
         this.sigla = sigla;
-        this.statusCursoArea = statusCursoArea;
+        this.status = status;
     }
     
     public CursoArea() {
         this.idCursoArea = 0;
         this.nome = "vazio";
         this.sigla = "vazio";
-        this.statusCursoArea = 1;
+        this.status = true;
     }
    
     //Metodos
@@ -58,23 +58,23 @@ public class CursoArea {
         this.sigla = sigla;
     }
 
-    public int getStatusCursoArea() {
-        return statusCursoArea;
+    public boolean getStatus() {
+        return status;
     }
 
-    public void setStatusCursoArea(int statusCursoArea) {
-        this.statusCursoArea = statusCursoArea;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
     
     //HashCodes
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 97 * hash + this.idCursoArea;
-        hash = 97 * hash + Objects.hashCode(this.nome);
-        hash = 97 * hash + Objects.hashCode(this.sigla);
-        hash = 97 * hash + this.statusCursoArea;
+        int hash = 7;
+        hash = 71 * hash + this.idCursoArea;
+        hash = 71 * hash + Objects.hashCode(this.nome);
+        hash = 71 * hash + Objects.hashCode(this.sigla);
+        hash = 71 * hash + (this.status ? 1 : 0);
         return hash;
     }
 
@@ -96,17 +96,18 @@ public class CursoArea {
         if (!Objects.equals(this.sigla, other.sigla)) {
             return false;
         }
-        if (this.statusCursoArea != other.statusCursoArea) {
+        if (this.status != other.status) {
             return false;
         }
         return true;
     }
+
     
     //toString
 
     @Override
     public String toString() {
-        return "CursoArea{" + "idCursoArea=" + idCursoArea + ", nome=" + nome + ", sigla=" + sigla + ", statusCursoArea=" + statusCursoArea + '}';
+        return "CursoArea{" + "idCursoArea=" + idCursoArea + ", nome=" + nome + ", sigla=" + sigla + ", status=" + status + '}';
     }
     
 }

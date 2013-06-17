@@ -4,7 +4,7 @@
  */
 package br.edu.ifnmg.ltp3.trabalhoFinal.dataAccess;
 
-import br.edu.ifnmg.ltp3.trabalhoFinal.domainModel.Email;
+import br.edu.ifnmg.ltp3.trabalhoFinal.domainModel.Telefone;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,27 +16,28 @@ import java.util.List;
  *
  * @author lewandowsky
  */
-public class EmailDAO {
+public class TelefoneDAO {
     private ConexaoBanco conexao;
     
-    public EmailDAO(){
+    public TelefoneDAO(){
         conexao = new ConexaoBanco();
     }
     
     
-    public boolean Salvar(Email obj, int idPessoa ) throws SQLException{
+    public boolean Salvar(Telefone obj, int idPessoa ) throws SQLException{
         try{
-            if(obj.getIdEmail() == 0){
-                CallableStatement comando = conexao.getConexao().prepareCall("CALL sp_Email(?,?)");
-                comando.setString(1, obj.getEnderecoEmail());
-                comando.setInt(2, idPessoa);
+            if(obj.getIdTelefone()== 0){
+                CallableStatement comando = conexao.getConexao().prepareCall("CALL sp_Telefone(?,?,?)");
+                comando.setInt(1, obj.getDdd());
+                comando.setInt(2, obj.getNumero());
+                comando.setInt(3, idPessoa);
                 comando.execute();
             }else{
                 CallableStatement comando1 = conexao.getConexao().prepareCall(""
-                        + "CALL sp_EmailAtualiza(?,?,?)");
-                comando1.setString(1, obj.getEnderecoEmail());
-                comando1.setBoolean(2, obj.getStatus());
-                comando1.setInt(3, obj.getIdEmail());
+                        + "CALL sp_TelefoneAtualiza(?,?,?)");
+                comando1.setInt(1, obj.getDdd());
+                comando1.setInt(2, obj.getNumero());
+                comando1.setInt(3, obj.getIdTelefone());
                 comando1.executeUpdate();
            }
             return true;
@@ -49,18 +50,18 @@ public class EmailDAO {
     
     }
     
-    public List<Email> ListarTodos(int idPessoa) throws SQLException{
+    public List<Telefone> ListarTodos(int idPessoa) throws SQLException{
         try{
             PreparedStatement comando = conexao.getConexao().prepareStatement(""
-                    + "SELECT * FROM vw_EMAIL WHERE idPessoa = ? AND status = 1 ");
+                    + "SELECT * FROM vw_Telefone WHERE idPessoa = ? AND status = 1 ");
             comando.setInt(1, idPessoa);
             ResultSet consulta = comando.executeQuery();
-            List<Email> lista = new LinkedList<>();
+            List<Telefone> lista = new LinkedList<>();
             while(consulta.next()){
-                Email novo = new Email();
-                novo.setEnderecoEmail(consulta.getString("endereco"));
-                novo.setIdEmail(consulta.getInt("idEmail"));
-                
+                Telefone novo = new Telefone();
+                novo.setDdd(consulta.getInt("ddd"));
+                novo.setNumero(consulta.getInt("numero"));
+                novo.setIdTelefone(consulta.getInt("idTelefone"));
                 lista.add(novo);
             }
             return lista;
@@ -75,7 +76,7 @@ public class EmailDAO {
     public boolean Apagar(int idEmail ) throws SQLException{
         try{
             PreparedStatement comando = conexao.getConexao().prepareStatement(""
-                    + "UPDATE Email SET status = 0 WHERE idEmail = ?");
+                    + "UPDATE Telefone SET status = 0 WHERE idTelefone = ?");
             comando.setInt(1, idEmail);
             comando.executeUpdate();
             return true;

@@ -14,32 +14,39 @@ public class Endereco {
     private int idEndereco;
     private int numero;
     private String bairro;
-    private String cep;
+    private String rua;
+    private int cep;
+    private String complemento;
     private boolean status;
     
     private Cidade cidade;
-    private Estado estado;
+    
     
     //Construtores
 
-    public Endereco(int idEndereco, int numero, String bairro, String cep, boolean status, Cidade cidade, Estado estado) {
+    public Endereco(int idEndereco, int numero, String bairro, int cep, boolean status,
+            Cidade cidade, String rua, String complemento) {
         this.idEndereco = idEndereco;
         this.numero = numero;
         this.bairro = bairro;
         this.cep = cep;
         this.status = status;
         this.cidade = cidade;
-        this.estado = estado;
+        
+        this.rua = rua;
+        this.complemento =  complemento;
     }
     
     public Endereco() {
         this.idEndereco = 0;
         this.numero = 0;
         this.bairro = "vazio";
-        this.cep = "vazio";
+        this.cep = 0;
         this.status = true;
         this.cidade = new Cidade();
-        this.estado = new Estado();
+        this.rua = "vazio";
+        this.complemento = "vazio";
+                
     }
     
     //Medodos
@@ -68,11 +75,11 @@ public class Endereco {
         this.bairro = bairro;
     }
 
-    public String getCep() {
+    public int getCep() {
         return cep;
     }
 
-    public void setCep(String cep) {
+    public void setCep(int cep) {
         this.cep = cep;
     }
 
@@ -92,12 +99,20 @@ public class Endereco {
         this.cidade = cidade;
     }
 
-    public Estado getEstado() {
-        return estado;
+    public void setRua(String rua) {
+        this.rua = rua;
     }
 
-    public void setEstado(Estado estado) {
-        this.estado = estado;
+    public String getRua() {
+        return rua;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
     }
     
     //HashCodes
@@ -111,7 +126,7 @@ public class Endereco {
         hash = 29 * hash + Objects.hashCode(this.cep);
         hash = 29 * hash + (this.status ? 1 : 0);
         hash = 29 * hash + Objects.hashCode(this.cidade);
-        hash = 29 * hash + Objects.hashCode(this.estado);
+       
         return hash;
     }
 
@@ -142,9 +157,7 @@ public class Endereco {
         if (!Objects.equals(this.cidade, other.cidade)) {
             return false;
         }
-        if (!Objects.equals(this.estado, other.estado)) {
-            return false;
-        }
+    
         return true;
     }
     
@@ -152,7 +165,7 @@ public class Endereco {
 
     @Override
     public String toString() {
-        return "Endereco{" + "idEndereco=" + idEndereco + ", numero=" + numero + ", bairro=" + bairro + ", cep=" + cep + ", status=" + status + ", cidade=" + cidade + ", estado=" + estado + '}';
+        return "Endereco{" + "idEndereco=" + idEndereco + ", numero=" + numero + ", bairro=" + bairro + ", cep=" + cep + ", status=" + status + ", cidade=" + cidade + '}';
     }
     
     

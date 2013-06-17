@@ -14,6 +14,7 @@ public class Cidade {
     private int idCidade;
     private String nome;
     private boolean status;
+    private Estado estado;
     
     //Construtores
 
@@ -27,6 +28,7 @@ public class Cidade {
         this.idCidade = 0;
         this.nome = "vazio";
         this.status = true;
+        this.estado = new Estado();
     }
     
     //Metodos
@@ -54,6 +56,15 @@ public class Cidade {
     public void setStatus(boolean status) {
         this.status = status;
     }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+    
     
     //HashCodes
 

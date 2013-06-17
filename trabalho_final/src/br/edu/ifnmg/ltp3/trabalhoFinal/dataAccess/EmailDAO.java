@@ -35,7 +35,7 @@ public class EmailDAO {
                 CallableStatement comando1 = conexao.getConexao().prepareCall(""
                         + "CALL sp_EmailAtualiza(?,?,?)");
                 comando1.setString(1, obj.getEnderecoEmail());
-                comando1.setInt(2, obj.getStatus());
+                comando1.setBoolean(2, obj.getStatus());
                 comando1.setInt(3, obj.getIdEmail());
                 comando1.executeUpdate();
            }

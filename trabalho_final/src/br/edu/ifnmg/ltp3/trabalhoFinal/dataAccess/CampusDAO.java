@@ -47,6 +47,37 @@ public class CampusDAO {
     
     }
     
+    
+    public Campus Abrir(int idCampus) throws SQLException{
+        try{
+            PreparedStatement comando = conexao.getConexao().prepareStatement("SELECT * "
+                    + "FROM Campus WHERE idCampus = ? AND status = 1");
+            comando.setInt(1, idCampus);
+            ResultSet consulta = comando.executeQuery();
+            
+            if(consulta.first()){
+                Campus novo = new Campus();
+                
+                novo.setIdCampus(idCampus);
+                novo.setNome(consulta.getString("nome"));
+                
+                return novo;
+           
+            }else return null;
+            
+        
+        }catch(SQLException ex){
+            ex.printStackTrace();
+            return null;
+        }finally{
+        
+            conexao.getConexao().close();
+        
+        }
+   
+    }
+    
+    
     public List<Campus> ListarTodos(int idCampos) throws SQLException{
         try{
             PreparedStatement comando = conexao.getConexao().prepareStatement(""

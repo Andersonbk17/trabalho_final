@@ -61,6 +61,53 @@ public class ResponsavelDAO {
     
     }
     
+    
+    public Responsavel Abrir(int idResponsavel) throws SQLException{
+        try{
+            PreparedStatement comando = conexao.getConexao().prepareStatement("SELECT * "
+                    + "FROM Responsavel WHERE idResponsavel = ?");
+            comando.setInt(1, idResponsavel);
+            
+            ResultSet consulta = comando.executeQuery();
+            
+            
+            if(consulta.first()){
+                Responsavel novo = new Responsavel();
+                novo.setCpfMae(consulta.getInt("cpfMae"));
+                novo.setCpfPai(consulta.getInt("cpfResponsavel"));
+                novo.setIdResponsavelAluno(consulta.getInt("idResponsavel"));
+                novo.setNomeMae(consulta.getString("nomeMae"));
+                novo.setNomePai(consulta.getString("nomeResponsavel"));
+                novo.setOrgaoExpedidorMae(consulta.getString("orgaoExpeditorMae"));
+                novo.setOrgaoExpedidorPai(consulta.getString("orgaoExpeditorResponsavel"));
+                novo.setRgMae(consulta.getString("rgMae"));
+                novo.setRgPai(consulta.getString("rgResponsavel"));
+                
+                return novo;
+                
+            
+            
+            }else return null;
+        
+        
+        }catch(SQLException ex){
+            ex.printStackTrace();
+            return null;
+        
+        
+        
+        }finally{
+        
+            conexao.getConexao().close();
+        }
+    
+    
+    
+    
+    }
+    
+    
+ 
     public List<Responsavel> ListarTodos() throws SQLException{
         try{
             PreparedStatement comando = conexao.getConexao().prepareStatement(""

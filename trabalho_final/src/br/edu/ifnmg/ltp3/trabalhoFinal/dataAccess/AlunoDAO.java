@@ -5,7 +5,6 @@
 package br.edu.ifnmg.ltp3.trabalhoFinal.dataAccess;
 
 import br.edu.ifnmg.ltp3.trabalhoFinal.domainModel.Aluno;
-import br.edu.ifnmg.ltp3.trabalhoFinal.domainModel.Email;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -94,6 +93,57 @@ public class AlunoDAO {
         }
     
     }
+    
+    public Aluno Abrir(int idAluno){
+        try{
+            PreparedStatement comando = conexao.getConexao().prepareStatement("SELECT * "
+                    + "FROM Aluno WHERE idAluno = ?"); //criar a view com inner join de pessoa com aluno
+            comando.setInt(1, idAluno);
+            ResultSet consulta = comando.executeQuery();
+            
+            if(consulta.first()){
+                EmailDAO emails = new EmailDAO();
+                TelefoneDAO telefones = new TelefoneDAO();
+                EnderecoDAO enderecos = new EnderecoDAO();
+                CampusDAO campus = new CampusDAO();
+                
+                Aluno novo = new Aluno();
+                
+                novo.setIdAluno(consulta.getInt("idAluno"));
+                novo.setIdPessoa(consulta.getInt("idPessoa"));
+                
+                novo.setEmail(emails.ListarTodos(novo.getIdPessoa()));
+                novo.setEndereco(enderecos.ListarTodos(novo.getIdPessoa()));
+                novo.setTelefone(telefones.ListarTodos(novo.getIdPessoa()));
+                novo.setCampus(campus.Abrir(consulta.getInt("idCampus")));
+                
+                
+                /* -------------- CONTINUAR --------------------------*/
+                
+                
+            
+            
+            
+            }
+        
+        
+        }catch(SQLException ex){
+            ex.printStackTrace();
+            return null;
+        
+        }finally{
+        
+            conexao.getConexao().close();
+                    
+        
+        }
+    
+    
+    
+    
+    }
+    
+    
     
     public List<Aluno> ListarTodos() throws SQLException{
         try{

@@ -4,6 +4,7 @@
  */
 package br.edu.ifnmg.ltp3.trabalhoFinal.dataAccess;
 
+import br.edu.ifnmg.ltp3.trabalhoFinal.domainModel.Campus;
 import br.edu.ifnmg.ltp3.trabalhoFinal.domainModel.Email;
 import br.edu.ifnmg.ltp3.trabalhoFinal.domainModel.Pessoa;
 import java.sql.CallableStatement;
@@ -67,29 +68,39 @@ public class PessoaDAO {
         }
     
     }
-    
-    /*public List<Pessoa> ListarTodos() throws SQLException{
+    /*
+    public Pessoa Abrir(int idPessoa){
         try{
-            PreparedStatement comando = conexao.getConexao().prepareStatement(""
-                    + "SELECT * FROM vw_Pessoa  ");
+            PreparedStatement comando = conexao.getConexao().prepareStatement("SELECT * "
+                    + "FROM Pessoa WHERE idPessoa = ?");
+            comando.setInt(1, idPessoa);
             
             ResultSet consulta = comando.executeQuery();
-            List<Email> lista = new LinkedList<>();
-            while(consulta.next()){
-                Email novo = new Email();
-                novo.setEnderecoEmail(consulta.getString("endereco"));
-                novo.setIdEmail(consulta.getInt("idEmail"));
+            
+            if(consulta.first()){
+                Pessoa novo = new Pessoa();
+                CampusDAO campusDAO = new CampusDAO();
+                Campus campus = new Campus();
                 
-                lista.add(novo);
+                
+            
+            
             }
-            return lista;
-         }catch(SQLException ex){
-               ex.printStackTrace();
-               return null;
+            
+        
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        
         }finally{
             conexao.getConexao().close();
+        
         }
-     }
+    
+    
+    
+    
+    
+    }
     */
     public boolean Apagar(int idPessoa ) throws SQLException{
         try{

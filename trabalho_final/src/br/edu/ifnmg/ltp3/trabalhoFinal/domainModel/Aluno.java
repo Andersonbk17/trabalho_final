@@ -16,7 +16,7 @@ public class Aluno extends Pessoa {
     private String tituloEleitoral;
     private String secaoEleitoral;
     private String zonaEleitoral;
-    private String cituacaoMilitar;
+    private String situacaoMilitar;
     private String certidaoMilitar;
     private boolean status;
     
@@ -24,12 +24,13 @@ public class Aluno extends Pessoa {
     
     //Construtores
 
-    public Aluno(int idAluno, String matricula, String tituloEleitoral, String secaoEleitoral, String cituacaoMilitar, String certidaoMilitar, Responsavel responsavel, boolean status) {
+    public Aluno(int idAluno, String matricula, String tituloEleitoral, String secaoEleitoral, 
+            String situacaoMilitar, String certidaoMilitar, Responsavel responsavel, boolean status) {
         this.idAluno = idAluno;
         this.matricula = matricula;
         this.tituloEleitoral = tituloEleitoral;
         this.secaoEleitoral = secaoEleitoral;
-        this.cituacaoMilitar = cituacaoMilitar;
+        this.situacaoMilitar = situacaoMilitar;
         this.certidaoMilitar = certidaoMilitar;
         this.responsavel = responsavel;
         this.status = status;
@@ -40,7 +41,7 @@ public class Aluno extends Pessoa {
         this.matricula = "vazio";
         this.tituloEleitoral = "vazio";
         this.secaoEleitoral = "vazio";
-        this.cituacaoMilitar = "vazio";
+        this.situacaoMilitar = "vazio";
         this.certidaoMilitar = "vazio";
         this.responsavel = new Responsavel();
         this.status = true;
@@ -88,12 +89,12 @@ public class Aluno extends Pessoa {
         this.zonaEleitoral = zonaEleitoral;
     }
 
-    public String getCituacaoMilitar() {
-        return cituacaoMilitar;
+    public String getSituacaoMilitar() {
+        return situacaoMilitar;
     }
 
-    public void setCituacaoMilitar(String cituacaoMilitar) {
-        this.cituacaoMilitar = cituacaoMilitar;
+    public void setSituacaoMilitar(String cituacaoMilitar) {
+        this.situacaoMilitar = cituacaoMilitar;
     }
 
     public String getCertidaoMilitar() {
@@ -130,7 +131,7 @@ public class Aluno extends Pessoa {
         hash = 37 * hash + Objects.hashCode(this.tituloEleitoral);
         hash = 37 * hash + Objects.hashCode(this.secaoEleitoral);
         hash = 37 * hash + Objects.hashCode(this.zonaEleitoral);
-        hash = 37 * hash + Objects.hashCode(this.cituacaoMilitar);
+        hash = 37 * hash + Objects.hashCode(this.situacaoMilitar);
         hash = 37 * hash + Objects.hashCode(this.certidaoMilitar);
         hash = 37 * hash + (this.status ? 1 : 0);
         hash = 37 * hash + Objects.hashCode(this.responsavel);
@@ -161,7 +162,7 @@ public class Aluno extends Pessoa {
         if (!Objects.equals(this.zonaEleitoral, other.zonaEleitoral)) {
             return false;
         }
-        if (!Objects.equals(this.cituacaoMilitar, other.cituacaoMilitar)) {
+        if (!Objects.equals(this.situacaoMilitar, other.situacaoMilitar)) {
             return false;
         }
         if (!Objects.equals(this.certidaoMilitar, other.certidaoMilitar)) {
@@ -180,7 +181,10 @@ public class Aluno extends Pessoa {
 
     @Override
     public String toString() {
-        return "Aluno{" + "idAluno=" + idAluno + ", matricula=" + matricula + ", tituloEleitoral=" + tituloEleitoral + ", secaoEleitoral=" + secaoEleitoral + ", zonaEleitoral=" + zonaEleitoral + ", cituacaoMilitar=" + cituacaoMilitar + ", certidaoMilitar=" + certidaoMilitar + ", responsavel=" + responsavel + ", status=" + status + '}';
+        return "Aluno{" + "idAluno=" + idAluno + ", matricula=" + matricula + ", tituloEleitoral=" +
+                tituloEleitoral + ", secaoEleitoral=" + secaoEleitoral + ", zonaEleitoral=" + 
+                zonaEleitoral + ", cituacaoMilitar=" + situacaoMilitar + ", certidaoMilitar=" + 
+                certidaoMilitar + ", responsavel=" + responsavel + ", status=" + status + '}';
     }
     
 }

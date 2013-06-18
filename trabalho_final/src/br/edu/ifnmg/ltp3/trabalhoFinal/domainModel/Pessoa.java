@@ -17,49 +17,67 @@ public class Pessoa {
    private int idPessoa;
    private String nome;
    private String rg;
-   private String cpf;
+   private int cpf;
    private String naturalidade;
-   private String nacionalidade;
    private Date dataNascimento;
+   private String orgaoExpeditor;
+   private Date dataExpedicao;
    private boolean status;
     
    private List<Endereco> endereco;
    private List<Telefone> telefone;
    private List<Email> email;
    private Estado estado;
+   private Campus campus;
+   private Nacionalidade nacionalidade;
+   private CursoArea cursoArea;
+   
+   
    
   
    
    //Construtores
 
-    public Pessoa(int idPessoa, String nome, String rg, String cpf, String naturalidade, String nacionalidade, Date dataNascimento, List<Endereco> endereco, List<Telefone> telefone, List<Email> email, boolean status, Estado estado) {
+  
+
+    public Pessoa(int idPessoa, String nome, String rg, int cpf, String naturalidade, Date dataNascimento, String orgaoExpeditor, Date dataExpedicao, boolean status, List<Endereco> endereco, List<Telefone> telefone, List<Email> email, Estado estado, Campus campus, Nacionalidade nacionalidade, CursoArea cursoArea) {
         this.idPessoa = idPessoa;
         this.nome = nome;
         this.rg = rg;
         this.cpf = cpf;
         this.naturalidade = naturalidade;
-        this.nacionalidade = nacionalidade;
         this.dataNascimento = dataNascimento;
+        this.orgaoExpeditor = orgaoExpeditor;
+        this.dataExpedicao = dataExpedicao;
+        this.status = status;
         this.endereco = endereco;
         this.telefone = telefone;
         this.email = email;
-        this.status = status;
         this.estado = estado;
+        this.campus = campus;
+        this.nacionalidade = nacionalidade;
+        this.cursoArea = cursoArea;
     }
+
+  
 
     public Pessoa() {
         this.idPessoa = 0;
         this.nome = "vazio";
         this.rg = "vazio";
-        this.cpf = "vazio";
+        this.cpf = 0;
         this.naturalidade = "vazio";
-        this.nacionalidade = "vazio";
         this.dataNascimento = new Date();
         this.endereco = new LinkedList<Endereco>();
         this.telefone = new LinkedList<Telefone>();
         this.email = new LinkedList<Email>();
         this.status = true;
         this.estado = new Estado();
+        this.orgaoExpeditor = "vazio";
+        this.dataExpedicao = new Date();
+        this.campus = new Campus();
+        this.nacionalidade = new Nacionalidade();
+        this.cursoArea = new CursoArea();
     }
     
     //Metodos
@@ -88,11 +106,11 @@ public class Pessoa {
         this.rg = rg;
     }
 
-    public String getCpf() {
+    public int getCpf() {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
+    public void setCpf(int cpf) {
         this.cpf = cpf;
     }
 
@@ -102,14 +120,6 @@ public class Pessoa {
 
     public void setNaturalidade(String naturalidade) {
         this.naturalidade = naturalidade;
-    }
-
-    public String getNacionalidade() {
-        return nacionalidade;
-    }
-
-    public void setNacionalidade(String nacionalidade) {
-        this.nacionalidade = nacionalidade;
     }
 
     public Date getDataNascimento() {
@@ -195,20 +205,65 @@ public class Pessoa {
     public void setEstado(Estado estado) {
         this.estado = estado;
     }
+
+    public String getOrgaoExpeditor() {
+        return orgaoExpeditor;
+    }
+
+    public void setOrgaoExpeditor(String orgaoExpeditor) {
+        this.orgaoExpeditor = orgaoExpeditor;
+    }
+
+    public Date getDataExpedicao() {
+        return dataExpedicao;
+    }
+
+    public void setDataExpedicao(Date dataExpedicao) {
+        this.dataExpedicao = dataExpedicao;
+    }
+
+    public Campus getCampus() {
+        return campus;
+    }
+
+    public void setCampus(Campus campus) {
+        this.campus = campus;
+    }
+
+    public Nacionalidade getNacionalidade() {
+        return nacionalidade;
+    }
+
+    public void setNacionalidade(Nacionalidade nacionalidade) {
+        this.nacionalidade = nacionalidade;
+    }
+
+    public CursoArea getCursoArea() {
+        return cursoArea;
+    }
+
+    public void setCursoArea(CursoArea cursoArea) {
+        this.cursoArea = cursoArea;
+    }
+    
+    
    
+    
     //hashCodes
+
+  
 
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 37 * hash + this.idPessoa;
-        hash = 37 * hash + Objects.hashCode(this.nome);
-        hash = 37 * hash + Objects.hashCode(this.rg);
-        hash = 37 * hash + Objects.hashCode(this.cpf);
-        hash = 37 * hash + Objects.hashCode(this.naturalidade);
-        hash = 37 * hash + Objects.hashCode(this.nacionalidade);
-        hash = 37 * hash + Objects.hashCode(this.dataNascimento);
-        hash = 37 * hash + (this.status ? 1 : 0);
+        hash = 79 * hash + this.idPessoa;
+        hash = 79 * hash + Objects.hashCode(this.nome);
+        hash = 79 * hash + Objects.hashCode(this.rg);
+        hash = 79 * hash + this.cpf;
+        hash = 79 * hash + Objects.hashCode(this.naturalidade);
+        hash = 79 * hash + Objects.hashCode(this.dataNascimento);
+        hash = 79 * hash + (this.status ? 1 : 0);
+        hash = 79 * hash + Objects.hashCode(this.nacionalidade);
         return hash;
     }
 
@@ -221,22 +276,16 @@ public class Pessoa {
             return false;
         }
         final Pessoa other = (Pessoa) obj;
-        if (this.idPessoa != other.idPessoa) {
-            return false;
-        }
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
         if (!Objects.equals(this.rg, other.rg)) {
             return false;
         }
-        if (!Objects.equals(this.cpf, other.cpf)) {
+        if (this.cpf != other.cpf) {
             return false;
         }
         if (!Objects.equals(this.naturalidade, other.naturalidade)) {
-            return false;
-        }
-        if (!Objects.equals(this.nacionalidade, other.nacionalidade)) {
             return false;
         }
         if (!Objects.equals(this.dataNascimento, other.dataNascimento)) {
@@ -245,14 +294,18 @@ public class Pessoa {
         if (this.status != other.status) {
             return false;
         }
+        if (!Objects.equals(this.nacionalidade, other.nacionalidade)) {
+            return false;
+        }
         return true;
     }
-    
-    //toString
 
+    //toString
     @Override
     public String toString() {
-        return "Pessoa{" + "idPessoa=" + idPessoa + ", nome=" + nome + ", rg=" + rg + ", cpf=" + cpf + ", naturalidade=" + naturalidade + ", nacionalidade=" + nacionalidade + ", dataNascimento=" + dataNascimento + ", endereco=" + endereco + ", telefone=" + telefone + ", email=" + email + ", status=" + status + '}';
+        return "Pessoa{" + "nome=" + nome + ", rg=" + rg + ", cpf=" + cpf + ", naturalidade=" + naturalidade + ", dataNascimento=" + dataNascimento + ", orgaoExpeditor=" + orgaoExpeditor + ", dataExpedicao=" + dataExpedicao + ", status=" + status + ", campus=" + campus + '}';
     }
+
+    
     
 }

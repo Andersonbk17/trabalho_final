@@ -4,7 +4,6 @@
  */
 package br.edu.ifnmg.ltp3.trabalhoFinal.dataAccess;
 
-import br.edu.ifnmg.ltp3.trabalhoFinal.domainModel.Email;
 import br.edu.ifnmg.ltp3.trabalhoFinal.domainModel.Responsavel;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;

@@ -9,6 +9,7 @@ import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -27,7 +28,8 @@ public class AlunoDAO {
     public boolean Salvar(Aluno obj) throws SQLException{
         try{
             if(obj.getIdAluno() == 0){
-                CallableStatement comando = conexao.getConexao().prepareCall("CALL sp_Aluno(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                CallableStatement comando = conexao.getConexao().prepareCall("CALL sp_Aluno(?,?,?,?,?,?,?,"
+                        + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                 comando.setString(1, obj.getNome());
                 comando.setInt(2, obj.getCpf());
                 comando.setString(3, obj.getRg());
@@ -51,7 +53,7 @@ public class AlunoDAO {
                 comando.setString(21, obj.getResponsavel().getRgMae());
                 comando.setString(22, obj.getResponsavel().getOrgaoExpedidorMae());
                 comando.setInt(23, obj.getResponsavel().getCpfMae());
-                
+                //verificar a procedure de matricula
                 
                 
                 
@@ -106,11 +108,20 @@ public class AlunoDAO {
                 TelefoneDAO telefones = new TelefoneDAO();
                 EnderecoDAO enderecos = new EnderecoDAO();
                 CampusDAO campus = new CampusDAO();
-                
+                CursoAreaDAO cursoArea = new CursoAreaDAO();
+                NacionalidadeDAO nacionalidade = new NacionalidadeDAO();
                 Aluno novo = new Aluno();
                 
                 novo.setIdAluno(consulta.getInt("idAluno"));
                 novo.setIdPessoa(consulta.getInt("idPessoa"));
+                novo.setCertidaoMilitar(consulta.getString("certidaoMilitar"));
+                novo.setCpf(consulta.getInt("cpf"));
+                //novo.setDataExpedicao(null);
+                novo.setCursoArea(cursoArea.Abrir(consulta.getInt("idCursoArea")));
+                //novo.setDataNascimento(null);
+                novo.setMatricula(consulta.getInt("matricula"));
+                novo.setNacionalidade(nacionalidade.Abrir(consulta.getInt("idNacionalidade")));
+                novo.setNaturalidade(null);
                 
                 novo.setEmail(emails.ListarTodos(novo.getIdPessoa()));
                 novo.setEndereco(enderecos.ListarTodos(novo.getIdPessoa()));
@@ -145,34 +156,16 @@ public class AlunoDAO {
     
     
     
-    public List<Aluno> ListarTodos() throws SQLException{
+    public List<String> ListarTodos() throws SQLException{
         try{
             PreparedStatement comando = conexao.getConexao().prepareStatement(""
-                    + "SELECT * FROM vw_Aluno ");
+                    + "SELECT * FROM vw_Aluno");
            
             ResultSet consulta = comando.executeQuery();
-            List<Aluno> lista = new LinkedList<>();
+            List<String> lista = new ArrayList<>();
             while(consulta.next()){
-                EmailDAO emails = new EmailDAO();
-                TelefoneDAO telefones = new TelefoneDAO();
-                EnderecoDAO enderecos = new EnderecoDAO();
-                
-                Aluno novo = new Aluno();
-                
-                novo.setIdAluno(consulta.getInt("idAluno"));
-                novo.setIdPessoa(consulta.getInt("idPessoa"));
-                
-                novo.setEmail(emails.ListarTodos(novo.getIdPessoa()));
-                novo.setEndereco(enderecos.ListarTodos(novo.getIdPessoa()));
-                novo.setTelefone(telefones.ListarTodos(novo.getIdPessoa()));
-                
-                novo.set
-                        
-                        /* ------------------ TEM QUE CONTINUAR -----------------*/
-                
-                
-                novo.set
-                lista.add(novo);
+                                
+                lista.add(consulta.getString("nome"));
             }
             return lista;
          }catch(SQLException ex){

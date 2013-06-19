@@ -12,7 +12,7 @@ import java.util.Objects;
  */
 public class Aluno extends Pessoa {
     private int idAluno;
-    private String matricula;
+    private int matricula;
     private String tituloEleitoral;
     private String secaoEleitoral;
     private String zonaEleitoral;
@@ -24,7 +24,7 @@ public class Aluno extends Pessoa {
     
     //Construtores
 
-    public Aluno(int idAluno, String matricula, String tituloEleitoral, String secaoEleitoral, 
+    public Aluno(int idAluno, int matricula, String tituloEleitoral, String secaoEleitoral, 
             String situacaoMilitar, String certidaoMilitar, Responsavel responsavel, boolean status) {
         this.idAluno = idAluno;
         this.matricula = matricula;
@@ -38,7 +38,7 @@ public class Aluno extends Pessoa {
     
      public Aluno() {
         this.idAluno = 0;
-        this.matricula = "vazio";
+        this.matricula = 0;
         this.tituloEleitoral = "vazio";
         this.secaoEleitoral = "vazio";
         this.situacaoMilitar = "vazio";
@@ -57,11 +57,11 @@ public class Aluno extends Pessoa {
         this.idAluno = idAluno;
     }
 
-    public String getMatricula() {
+    public int getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(String matricula) {
+    public void setMatricula(int matricula) {
         this.matricula = matricula;
     }
 

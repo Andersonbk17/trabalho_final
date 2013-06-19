@@ -122,7 +122,8 @@ public class LocalTrabalho {
 
     @Override
     public String toString() {
-        return "LocalTrabalho{" + "idlocalTrabalho=" + idlocalTrabalho + ", nome=" + nome + ", status=" + status + ", aluno=" + aluno + ", telefone=" + telefone + '}';
+        return "LocalTrabalho{" + "idlocalTrabalho=" + idlocalTrabalho + ", nome="
+                + nome + ", status=" + status + ", aluno=" + aluno + ", telefone=" + telefone + '}';
     }
     
     

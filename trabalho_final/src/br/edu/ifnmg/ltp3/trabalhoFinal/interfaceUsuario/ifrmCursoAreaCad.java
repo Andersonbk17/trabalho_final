@@ -6,7 +6,7 @@ package br.edu.ifnmg.ltp3.trabalhoFinal.interfaceUsuario;
 
 /**
  *
- * @author emerson
+ * @author thaisaContijo
  */
 public class ifrmCursoAreaCad extends javax.swing.JInternalFrame {
 

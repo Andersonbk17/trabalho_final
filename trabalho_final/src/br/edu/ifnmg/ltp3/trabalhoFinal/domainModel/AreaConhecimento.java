@@ -11,20 +11,20 @@ import java.util.Objects;
  * @author emerson
  */
 public class AreaConhecimento {
-    private int AreaConhecimento;
+    private int idAreaConhecimento;
     private String nome;
     private boolean status;
     
     //Construtores
 
     public AreaConhecimento(int AreaConhecimento, String nome, boolean status) {
-        this.AreaConhecimento = AreaConhecimento;
+        this.idAreaConhecimento = AreaConhecimento;
         this.nome = nome;
         this.status = status;
     }
     
     public AreaConhecimento() {
-        this.AreaConhecimento = 0;
+        this.idAreaConhecimento = 0;
         this.nome = "vazio";
         this.status = true;
     }
@@ -32,11 +32,11 @@ public class AreaConhecimento {
     //Metodos
     
     public int getAreaConhecimento() {
-        return AreaConhecimento;
+        return idAreaConhecimento;
     }
 
     public void setAreaConhecimento(int AreaConhecimento) {
-        this.AreaConhecimento = AreaConhecimento;
+        this.idAreaConhecimento = AreaConhecimento;
     }
 
     public String getNome() {
@@ -60,7 +60,7 @@ public class AreaConhecimento {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 97 * hash + this.AreaConhecimento;
+        hash = 97 * hash + this.idAreaConhecimento;
         hash = 97 * hash + Objects.hashCode(this.nome);
         hash = 97 * hash + (this.status ? 1 : 0);
         return hash;
@@ -75,7 +75,7 @@ public class AreaConhecimento {
             return false;
         }
         final AreaConhecimento other = (AreaConhecimento) obj;
-        if (this.AreaConhecimento != other.AreaConhecimento) {
+        if (this.idAreaConhecimento != other.idAreaConhecimento) {
             return false;
         }
         if (!Objects.equals(this.nome, other.nome)) {
@@ -91,7 +91,7 @@ public class AreaConhecimento {
 
     @Override
     public String toString() {
-        return "AreaConhecimento{" + "AreaConhecimento=" + AreaConhecimento + ", nome=" + nome + ", status=" + status + '}';
+        return "AreaConhecimento{" + "AreaConhecimento=" + idAreaConhecimento + ", nome=" + nome + ", status=" + status + '}';
     } 
     
 }

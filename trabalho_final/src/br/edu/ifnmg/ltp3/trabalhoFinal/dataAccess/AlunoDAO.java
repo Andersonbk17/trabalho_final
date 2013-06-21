@@ -29,7 +29,7 @@ public class AlunoDAO {
         try{
             if(obj.getIdAluno() == 0){
                 CallableStatement comando = conexao.getConexao().prepareCall("CALL sp_Aluno(?,?,?,?,?,?,?,"
-                        + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                        + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                 comando.setString(1, obj.getNome());
                 comando.setInt(2, obj.getCpf());
                 comando.setString(3, obj.getRg());
@@ -53,14 +53,15 @@ public class AlunoDAO {
                 comando.setString(21, obj.getResponsavel().getRgMae());
                 comando.setString(22, obj.getResponsavel().getOrgaoExpedidorMae());
                 comando.setInt(23, obj.getResponsavel().getCpfMae());
-                //verificar a procedure de matricula
+                comando.setInt(24, obj.getMatricula());
+               
                 
                 
                 
                 comando.execute();
             }else{
                 CallableStatement comando1 = conexao.getConexao().prepareCall(""
-                        + "CALL sp_AlunoAtualiza(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                        + "CALL sp_AlunoAtualiza(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                 comando1.setString(1, obj.getNome());
                 comando1.setInt(2, obj.getCpf());
                 comando1.setString(3, obj.getRg());
@@ -85,6 +86,7 @@ public class AlunoDAO {
                 comando1.setString(22, obj.getResponsavel().getOrgaoExpedidorMae());
                 comando1.setInt(23, obj.getResponsavel().getCpfMae());
                 comando1.setInt(24, obj.getIdAluno());
+                comando1.setInt(25, obj.getMatricula());
            }
             return true;
         }catch(SQLException ex){
@@ -96,7 +98,7 @@ public class AlunoDAO {
     
     }
     
-    public Aluno Abrir(int idAluno){
+    public Aluno Abrir(int idAluno) throws SQLException{
         try{
             PreparedStatement comando = conexao.getConexao().prepareStatement("SELECT * "
                     + "FROM Aluno WHERE idAluno = ?"); //criar a view com inner join de pessoa com aluno

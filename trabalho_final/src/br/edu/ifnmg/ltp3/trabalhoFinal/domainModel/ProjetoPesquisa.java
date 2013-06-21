@@ -5,6 +5,8 @@
 package br.edu.ifnmg.ltp3.trabalhoFinal.domainModel;
 
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -32,10 +34,15 @@ public class ProjetoPesquisa {
     private Orientador orientador;
     private Campus campus;
     private AreaConhecimento areConhecimento;
+    private  List<ParticipanteProjeto> listaParticipantes;
     
     //Construtores
 
-    public ProjetoPesquisa(int idProjetoPesquisa, String titulo, Date dataInicio, Date dataTermino, String grupoPesquisa, String resumo, int financiamento, int bolsa, int convenio, double valorFinanciamento, Date dataFinanciamento, int numeroBolsa, String agenciaFinanciadora, String nomeConvenio, int projetoMultiCampi, boolean status, Orientador orientador, Campus campus, AreaConhecimento areConhecimento) {
+    public ProjetoPesquisa(int idProjetoPesquisa, String titulo, Date dataInicio, Date dataTermino, 
+           String grupoPesquisa, String resumo, int financiamento, int bolsa, int convenio, double 
+                   valorFinanciamento, Date dataFinanciamento, int numeroBolsa, String agenciaFinanciadora, 
+                   String nomeConvenio, int projetoMultiCampi, boolean status, Orientador orientador, 
+                   Campus campus, AreaConhecimento areConhecimento, List<ParticipanteProjeto> participantes) {
         this.idProjetoPesquisa = idProjetoPesquisa;
         this.titulo = titulo;
         this.dataInicio = dataInicio;
@@ -55,6 +62,7 @@ public class ProjetoPesquisa {
         this.orientador = orientador;
         this.campus = campus;
         this.areConhecimento = areConhecimento;
+        this.listaParticipantes = participantes;
     }
     
     public ProjetoPesquisa() {
@@ -77,6 +85,7 @@ public class ProjetoPesquisa {
         this.orientador = new Orientador();
         this.campus = new Campus();
         this.areConhecimento = new AreaConhecimento();
+        this.listaParticipantes = new LinkedList<>();
     }
     
     //Metodos
@@ -232,6 +241,28 @@ public class ProjetoPesquisa {
     public void setAreConhecimento(AreaConhecimento areConhecimento) {
         this.areConhecimento = areConhecimento;
     }
+    
+    public void addParticipantesProjeto(ParticipanteProjeto p){
+        if(!listaParticipantes.equals(p)){
+            this.listaParticipantes.add(p);
+        }
+    }
+    
+    public void removeParticipantesProjeto(ParticipanteProjeto p){
+        if(listaParticipantes.equals(p)){
+            this.listaParticipantes.remove(p);
+        }
+    }
+
+    public List<ParticipanteProjeto> getListaParticipantes() {
+        return listaParticipantes;
+    }
+
+    public void setListaParticipantes(List<ParticipanteProjeto> listaParticipantes) {
+        this.listaParticipantes = listaParticipantes;
+    }
+    
+    
     
     //HashCodes
 

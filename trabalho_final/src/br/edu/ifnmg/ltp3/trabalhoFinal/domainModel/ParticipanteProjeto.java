@@ -10,47 +10,46 @@ import java.util.Objects;
  *
  * @author emerson
  */
-public class ParticipantesProjeto {
-    private int idParticaProjeto;
+public class ParticipanteProjeto {
+    private int idParticipanteProjeto;
     private String nome;
-    private String titulocao;
+    private String titulacao;
     private String observacao;
     private boolean status;
     
     private Campus campus;
-    private ProjetoPesquisa projetoPesquisa;
+
     
     //Constutores
 
-    public ParticipantesProjeto(int idParticaProjeto, String nome, String titulocao, String observacao, boolean status, 
-            Campus campus, ProjetoPesquisa projetoPesquisa) {
-        this.idParticaProjeto = idParticaProjeto;
+    public ParticipanteProjeto(int idParticaProjeto, String nome, String titulacao, String observacao, boolean status, 
+            Campus campus) {
+        this.idParticipanteProjeto = idParticaProjeto;
         this.nome = nome;
-        this.titulocao = titulocao;
+        this.titulacao = titulacao;
         this.observacao = observacao;
         this.status = status;
         this.campus = campus;
-        this.projetoPesquisa = projetoPesquisa;
+     
     }
     
-    public ParticipantesProjeto() {
-        this.idParticaProjeto = 0;
+    public ParticipanteProjeto() {
+        this.idParticipanteProjeto = 0;
         this.nome = "vazio";
-        this.titulocao = "vazio";
+        this.titulacao = "vazio";
         this.observacao = "vazio";
         this.status = true;
         this.campus = new Campus();
-        this.projetoPesquisa = new ProjetoPesquisa();
     }
     
     //Metodos
 
-    public int getIdParticaProjeto() {
-        return idParticaProjeto;
+    public int getIdParticipanteProjeto() {
+        return idParticipanteProjeto;
     }
 
-    public void setIdParticaProjeto(int idParticaProjeto) {
-        this.idParticaProjeto = idParticaProjeto;
+    public void setIdParticipanteProjeto(int idParticaProjeto) {
+        this.idParticipanteProjeto = idParticaProjeto;
     }
 
     public String getNome() {
@@ -61,12 +60,12 @@ public class ParticipantesProjeto {
         this.nome = nome;
     }
 
-    public String getTitulocao() {
-        return titulocao;
+    public String getTitulacao() {
+        return titulacao;
     }
 
-    public void setTitulocao(String titulocao) {
-        this.titulocao = titulocao;
+    public void setTitulacao(String titulocao) {
+        this.titulacao = titulocao;
     }
 
     public String getObservacao() {
@@ -92,27 +91,17 @@ public class ParticipantesProjeto {
     public void setCampus(Campus campus) {
         this.campus = campus;
     }
-
-    public ProjetoPesquisa getProjetoPesquisa() {
-        return projetoPesquisa;
-    }
-
-    public void setProjetoPesquisa(ProjetoPesquisa projetoPesquisa) {
-        this.projetoPesquisa = projetoPesquisa;
-    }
-    
     //HashCodes
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 97 * hash + this.idParticaProjeto;
+        hash = 97 * hash + this.idParticipanteProjeto;
         hash = 97 * hash + Objects.hashCode(this.nome);
-        hash = 97 * hash + Objects.hashCode(this.titulocao);
+        hash = 97 * hash + Objects.hashCode(this.titulacao);
         hash = 97 * hash + Objects.hashCode(this.observacao);
         hash = 97 * hash + (this.status ? 1 : 0);
         hash = 97 * hash + Objects.hashCode(this.campus);
-        hash = 97 * hash + Objects.hashCode(this.projetoPesquisa);
         return hash;
     }
 
@@ -124,14 +113,14 @@ public class ParticipantesProjeto {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final ParticipantesProjeto other = (ParticipantesProjeto) obj;
-        if (this.idParticaProjeto != other.idParticaProjeto) {
+        final ParticipanteProjeto other = (ParticipanteProjeto) obj;
+        if (this.idParticipanteProjeto != other.idParticipanteProjeto) {
             return false;
         }
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
-        if (!Objects.equals(this.titulocao, other.titulocao)) {
+        if (!Objects.equals(this.titulacao, other.titulacao)) {
             return false;
         }
         if (!Objects.equals(this.observacao, other.observacao)) {
@@ -143,9 +132,7 @@ public class ParticipantesProjeto {
         if (!Objects.equals(this.campus, other.campus)) {
             return false;
         }
-        if (!Objects.equals(this.projetoPesquisa, other.projetoPesquisa)) {
-            return false;
-        }
+  
         return true;
     }
     
@@ -153,7 +140,10 @@ public class ParticipantesProjeto {
 
     @Override
     public String toString() {
-        return "ParticipaProjeto{" + "idParticaProjeto=" + idParticaProjeto + ", nome=" + nome + ", titulocao=" + titulocao + ", observacao=" + observacao + ", status=" + status + ", campus=" + campus + ", projetoPesquisa=" + projetoPesquisa + '}';
+        return "ParticipanteProjeto{" + "idParticipanteProjeto=" + idParticipanteProjeto +
+                ", nome=" + nome + ", titulocao=" + titulacao + ", observacao=" + observacao + 
+                ", status=" + status + ", campus=" + campus + '}';
     }
-       
+
+    
 }

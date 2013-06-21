@@ -4,6 +4,8 @@
  */
 package br.edu.ifnmg.ltp3.trabalhoFinal.domainModel;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -21,11 +23,12 @@ public class Aluno extends Pessoa {
     private boolean status;
     
     private Responsavel responsavel;
+    private List<LocalTrabalho> listaLocalTrabalho;        
     
     //Construtores
 
     public Aluno(int idAluno, int matricula, String tituloEleitoral, String secaoEleitoral, 
-            String situacaoMilitar, String certidaoMilitar, Responsavel responsavel, boolean status) {
+            String situacaoMilitar, String certidaoMilitar, Responsavel responsavel, boolean status, List<LocalTrabalho> listaLocalTrabalho) {
         this.idAluno = idAluno;
         this.matricula = matricula;
         this.tituloEleitoral = tituloEleitoral;
@@ -34,6 +37,8 @@ public class Aluno extends Pessoa {
         this.certidaoMilitar = certidaoMilitar;
         this.responsavel = responsavel;
         this.status = status;
+        this.listaLocalTrabalho = listaLocalTrabalho;
+                
     }
     
      public Aluno() {
@@ -45,6 +50,7 @@ public class Aluno extends Pessoa {
         this.certidaoMilitar = "vazio";
         this.responsavel = new Responsavel();
         this.status = true;
+        this.listaLocalTrabalho = new LinkedList<>();
     }
     
     //Metodos
@@ -119,6 +125,18 @@ public class Aluno extends Pessoa {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+    
+    public void addLocalTrabalho(LocalTrabalho l){
+        if(!listaLocalTrabalho.equals(l)){
+            this.listaLocalTrabalho.add(l);
+        }
+    }
+    
+    public void removeLocalTrabalho(LocalTrabalho l){
+        if(listaLocalTrabalho.equals(l)){
+            this.listaLocalTrabalho.remove(l);
+        }
     }
      
     //Hashcodes

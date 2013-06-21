@@ -69,7 +69,7 @@ public class ProjetoPesquisaDAO {
     
     }
     
-    public List<ProjetoPesquisa> ListarTodos() throws SQLException{
+    public List<CursoArea> ListarTodos() throws SQLException{
         try{
             PreparedStatement comando = conexao.getConexao().prepareStatement("SELECT * FROM vw_ProjetoPesquisa WHERE status = 1");
             ResultSet consuta = comando.executeQuery();

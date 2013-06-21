@@ -31,11 +31,11 @@ public class AreaConhecimento {
 
     //Metodos
     
-    public int getAreaConhecimento() {
+    public int getIdAreaConhecimento() {
         return idAreaConhecimento;
     }
 
-    public void setAreaConhecimento(int AreaConhecimento) {
+    public void setIdAreaConhecimento(int AreaConhecimento) {
         this.idAreaConhecimento = AreaConhecimento;
     }
 

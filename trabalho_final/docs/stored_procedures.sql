@@ -8,7 +8,7 @@ DELIMITER //
 		END;
 //
 DELIMITER //	
-	CREATE PROCEDURE sp_CursoAreaAtualiza(_nome varchar(100),_sigla(20), _idCursoArea int)
+	CREATE PROCEDURE sp_CursoAreaAtualiza(_nome varchar(100),_sigla varchar(20), _idCursoArea int)
 		BEGIN
 			DECLARE exit HANDLER FOR SQLEXCEPTION ROLLBACK;
 			START TRANSACTION;
@@ -388,3 +388,52 @@ DELIMITER //
 			COMMIT;
 		END;
 //
+
+DELIMITER //
+	CREATE PROCEDURE sp_LocalDeTrabalhoApaga(_idLocalTrabalho int)
+		BEGIN
+			DECLARE exit HANDLER FOR SQLEXCEPTION ROLLBACK;
+			START TRANSACTION;
+			UPDATE LocalTrabalho set status = 0 WHERE idLocalTrabalho = _idLocalTrabalho;
+			COMMIT;
+		END;
+//
+
+
+DELIMITER //
+	CREATE PROCEDURE sp_ParticipanteProjeto(_nome varchar(100),_titulacao varchar(100),_observacao varchar(500),_idCampus int,
+	_idProjetoPesquisa int)
+		BEGIN
+			DECLARE exit HANDLER FOR SQLEXCEPTION ROLLBACK;
+			START TRANSACTION;
+			INSERT INTO ParticipanteProjeto(nome,titulacao,idCampus,observacao,idProjetoPesquisa,status) values(_nome,_titulacao,
+			_observacao,_idCampus,_idProjetoPesquisa,1);
+			COMMIT;
+		END;
+//
+
+DELIMITER //
+	CREATE PROCEDURE sp_ParticipanteProjetoAtualiza(_nome varchar(100),_titulacao varchar(100),_observacao varchar(500),_idCampus int,
+	_idProjetoPesquisa int,_idParticipanteProjeto int)
+		BEGIN
+			DECLARE exit HANDLER FOR SQLEXCEPTION ROLLBACK;
+			START TRANSACTION;
+			UPDATE  ParticipantesProjeto SET nome = _nome,titulacao = _titulacao,idCampus = _idCampus,observacao = _observacao,
+			idProjetoPesquisa = _idProjetoPesquisa WHERE idParticipanteProjeto = _idParticipanteProjeto;
+			
+			COMMIT;
+		END;
+//
+
+
+DELIMITER //
+	CREATE PROCEDURE sp_ParticipanteProjetoApaga(_idParticipanteProjeto int)
+		BEGIN
+			DECLARE exit HANDLER FOR SQLEXCEPTION ROLLBACK;
+			START TRANSACTION;
+			UPDATE  ParticipantesProjeto SET status = 0 WHERE idParticipanteProjeto = _idParticipanteProjeto;
+			
+			COMMIT;
+		END;
+//
+

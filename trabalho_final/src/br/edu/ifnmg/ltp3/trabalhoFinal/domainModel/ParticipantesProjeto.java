@@ -10,7 +10,7 @@ import java.util.Objects;
  *
  * @author emerson
  */
-public class ParticipaProjeto {
+public class ParticipantesProjeto {
     private int idParticaProjeto;
     private String nome;
     private String titulocao;
@@ -22,7 +22,8 @@ public class ParticipaProjeto {
     
     //Constutores
 
-    public ParticipaProjeto(int idParticaProjeto, String nome, String titulocao, String observacao, boolean status, Campus campus, ProjetoPesquisa projetoPesquisa) {
+    public ParticipantesProjeto(int idParticaProjeto, String nome, String titulocao, String observacao, boolean status, 
+            Campus campus, ProjetoPesquisa projetoPesquisa) {
         this.idParticaProjeto = idParticaProjeto;
         this.nome = nome;
         this.titulocao = titulocao;
@@ -32,7 +33,7 @@ public class ParticipaProjeto {
         this.projetoPesquisa = projetoPesquisa;
     }
     
-    public ParticipaProjeto() {
+    public ParticipantesProjeto() {
         this.idParticaProjeto = 0;
         this.nome = "vazio";
         this.titulocao = "vazio";
@@ -123,7 +124,7 @@ public class ParticipaProjeto {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final ParticipaProjeto other = (ParticipaProjeto) obj;
+        final ParticipantesProjeto other = (ParticipantesProjeto) obj;
         if (this.idParticaProjeto != other.idParticaProjeto) {
             return false;
         }

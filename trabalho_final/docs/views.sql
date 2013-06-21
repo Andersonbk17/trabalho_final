@@ -30,5 +30,9 @@
 	
 	CREATE VIEW vw_CursoArea AS
 		SELECT * FROM CursoArea WHERE status = 1;
+		
+		
+	CREATE VIEW vw_LocalTrabalho AS
+		SELECT * FROM LocalTrabalho WHERE status = 1;
 
 

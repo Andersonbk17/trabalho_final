@@ -50,6 +50,31 @@ public class TelefoneDAO {
     
     }
     
+    
+    public Telefone Abrir(int idTelefone) throws SQLException{
+        try{
+            PreparedStatement comando = conexao.getConexao().prepareStatement("SELECT * FROM vw_Telefone WHERE idTelefone = ?");
+            comando.setInt(1, idTelefone);
+            ResultSet consulta = comando.executeQuery();
+            Telefone novo = null;
+            if(consulta.first()){
+                novo = new Telefone();
+                novo.setDdd(consulta.getInt("ddd"));
+                novo.setIdTelefone(idTelefone);
+                novo.setNumero(consulta.getInt("numero"));
+            }
+            return novo;
+        }catch(SQLException ex){
+            ex.printStackTrace();
+            return null;
+        
+        }finally{
+            conexao.getConexao().close();
+        }
+    
+    
+    }
+    
     public List<Telefone> ListarTodos(int idPessoa) throws SQLException{
         try{
             PreparedStatement comando = conexao.getConexao().prepareStatement(""

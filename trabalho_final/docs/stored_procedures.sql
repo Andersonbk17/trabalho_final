@@ -378,3 +378,13 @@ DELIMITER //
 			COMMIT;
 		END;
 //
+
+DELIMITER //
+	CREATE PROCEDURE sp_LocalDeTrabalhoAtualiza(_nome varchar(100),_idTelefone int,_idAluno int,_idLocalTrabalho int)
+		BEGIN
+			DECLARE exit HANDLER FOR SQLEXCEPTION ROLLBACK;
+			START TRANSACTION;
+			UPDATE LocalTrabalho SET nome = _nome,idTelefone = _idTelefone,idAluno = _idAluno WHERE idLocalTrabalho = _idLocalTrabalho;
+			COMMIT;
+		END;
+//

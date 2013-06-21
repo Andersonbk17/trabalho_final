@@ -37,6 +37,7 @@ public class ifrmNacionalidadeCad extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setClosable(true);
 
         lblNacionalidade.setText("Nome");
 

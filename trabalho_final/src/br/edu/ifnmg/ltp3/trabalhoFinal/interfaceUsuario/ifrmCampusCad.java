@@ -34,6 +34,7 @@ public class ifrmCampusCad extends javax.swing.JInternalFrame {
         jtbListarCampus = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -70,6 +71,8 @@ public class ifrmCampusCad extends javax.swing.JInternalFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/ifl.png"))); // NOI18N
 
+        jLabel4.setText("Clique sobre o campus para Editar ou Excluir");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -90,6 +93,10 @@ public class ifrmCampusCad extends javax.swing.JInternalFrame {
                         .addGap(176, 176, 176)
                         .addComponent(jLabel2)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(106, 106, 106))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,7 +114,9 @@ public class ifrmCampusCad extends javax.swing.JInternalFrame {
                     .addComponent(btnCampusCadSalvar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -117,6 +126,7 @@ public class ifrmCampusCad extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtbListarCampus;

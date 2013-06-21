@@ -78,7 +78,7 @@ public class TelefoneDAO {
     public List<Telefone> ListarTodos(int idPessoa) throws SQLException{
         try{
             PreparedStatement comando = conexao.getConexao().prepareStatement(""
-                    + "SELECT * FROM vw_Telefone WHERE idPessoa = ? AND status = 1 ");
+                    + "SELECT * FROM vw_Telefone WHERE idPessoa = ? ");
             comando.setInt(1, idPessoa);
             ResultSet consulta = comando.executeQuery();
             List<Telefone> lista = new LinkedList<>();
@@ -98,11 +98,10 @@ public class TelefoneDAO {
         }
      }
     
-    public boolean Apagar(int idEmail ) throws SQLException{
+    public boolean Apagar(int idTelefone ) throws SQLException{
         try{
-            PreparedStatement comando = conexao.getConexao().prepareStatement(""
-                    + "UPDATE Telefone SET status = 0 WHERE idTelefone = ?");
-            comando.setInt(1, idEmail);
+            PreparedStatement comando = conexao.getConexao().prepareStatement("CALL sp_TelefoneApaga(?)");
+            comando.setInt(1, idTelefone);
             comando.executeUpdate();
             return true;
         }catch(SQLException ex){

@@ -52,7 +52,7 @@ public class EmailDAO {
     public List<Email> ListarTodos(int idPessoa) throws SQLException{
         try{
             PreparedStatement comando = conexao.getConexao().prepareStatement(""
-                    + "SELECT * FROM vw_EMAIL WHERE idPessoa = ? AND status = 1 ");
+                    + "SELECT * FROM vw_EMAIL WHERE idPessoa = ?");
             comando.setInt(1, idPessoa);
             ResultSet consulta = comando.executeQuery();
             List<Email> lista = new LinkedList<>();
@@ -74,8 +74,7 @@ public class EmailDAO {
     
     public boolean Apagar(int idEmail ) throws SQLException{
         try{
-            PreparedStatement comando = conexao.getConexao().prepareStatement(""
-                    + "UPDATE Email SET status = 0 WHERE idEmail = ?");
+            PreparedStatement comando = conexao.getConexao().prepareStatement("CALL sp_EmailApaga(?)");
             comando.setInt(1, idEmail);
             comando.executeUpdate();
             return true;

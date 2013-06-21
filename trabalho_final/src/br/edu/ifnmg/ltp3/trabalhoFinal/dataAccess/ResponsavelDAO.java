@@ -65,7 +65,7 @@ public class ResponsavelDAO {
     public Responsavel Abrir(int idResponsavel) throws SQLException{
         try{
             PreparedStatement comando = conexao.getConexao().prepareStatement("SELECT * "
-                    + "FROM Responsavel WHERE idResponsavel = ?");
+                    + "FROM vw_Responsavel WHERE idResponsavel = ?");
             comando.setInt(1, idResponsavel);
             
             ResultSet consulta = comando.executeQuery();
@@ -84,8 +84,6 @@ public class ResponsavelDAO {
                 novo.setRgPai(consulta.getString("rgResponsavel"));
                 
                 return novo;
-                
-            
             
             }else return null;
         
@@ -93,18 +91,10 @@ public class ResponsavelDAO {
         }catch(SQLException ex){
             ex.printStackTrace();
             return null;
-        
-        
-        
         }finally{
-        
             conexao.getConexao().close();
         }
-    
-    
-    
-    
-    }
+   }
     
     
  
@@ -140,8 +130,7 @@ public class ResponsavelDAO {
     
     public boolean Apagar(int idResponsavel ) throws SQLException{
         try{
-            PreparedStatement comando = conexao.getConexao().prepareStatement(""
-                    + "UPDATE Responsavel SET status = 0 WHERE idResponsavel = ?");
+            PreparedStatement comando = conexao.getConexao().prepareStatement("CALL sp_ResponsavelApaga(?)");
             comando.setInt(1, idResponsavel);
             comando.executeUpdate();
             return true;
@@ -151,8 +140,7 @@ public class ResponsavelDAO {
         }finally{
             conexao.getConexao().close();
         }
-    
-    
+       
     }
 }
 

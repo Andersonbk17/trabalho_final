@@ -37,5 +37,7 @@
 
 	CREATE VIEW vw_ParticipanteProjeto AS
 		SELECT * FROM LocalTrabalho WHERE status = 1;
+		
+	
 
 

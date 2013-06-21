@@ -25,7 +25,7 @@ public class CursoAreaDAO {
     
     public CursoArea Abrir(int idCursoArea) throws SQLException{
         try{
-            PreparedStatement comando = conexao.getConexao().prepareStatement("SELECT * FROM CursoArea WHERE idCursoArea = ? AND status = 1");
+            PreparedStatement comando = conexao.getConexao().prepareStatement("SELECT * FROM vw_CursoArea WHERE idCursoArea = ?");
             comando.setInt(1, idCursoArea);
             ResultSet consulta = comando.executeQuery();
             CursoArea novo = null;
@@ -49,7 +49,7 @@ public class CursoAreaDAO {
     
     public List<CursoArea> ListarTodos() throws SQLException{
         try{
-            PreparedStatement comando = conexao.getConexao().prepareStatement("SELECT * FROM CursoArea WHERE status = 1");
+            PreparedStatement comando = conexao.getConexao().prepareStatement("SELECT * FROM vw_CursoArea ");
             ResultSet consuta = comando.executeQuery();
             List<CursoArea> lista = new LinkedList<>();
             while(consuta.next()){

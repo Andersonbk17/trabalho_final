@@ -7,7 +7,6 @@ package br.edu.ifnmg.ltp3.trabalhoFinal.dataAccess;
 import br.edu.ifnmg.ltp3.trabalhoFinal.domainModel.Cidade;
 import br.edu.ifnmg.ltp3.trabalhoFinal.domainModel.Endereco;
 import br.edu.ifnmg.ltp3.trabalhoFinal.domainModel.Estado;
-import br.edu.ifnmg.ltp3.trabalhoFinal.domainModel.Telefone;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -64,7 +63,7 @@ public class EnderecoDAO {
     public List<Endereco> ListarTodos(int idPessoa) throws SQLException{
         try{
             PreparedStatement comando = conexao.getConexao().prepareStatement(""
-                    + "SELECT * FROM vw_Endereco WHERE idPessoa = ? AND status = 1 ");
+                    + "SELECT * FROM vw_Endereco WHERE idPessoa = ?  ");
             comando.setInt(1, idPessoa);
             ResultSet consulta = comando.executeQuery();
             List<Endereco> lista = new LinkedList<>();
@@ -104,8 +103,7 @@ public class EnderecoDAO {
     
     public boolean Apagar(int idEndereco ) throws SQLException{
         try{
-            PreparedStatement comando = conexao.getConexao().prepareStatement(""
-                    + "UPDATE Endereco SET status = 0 WHERE idEndereco = ?");
+            PreparedStatement comando = conexao.getConexao().prepareStatement("CALL sp_EnderecoApaga(?)");
             comando.setInt(1, idEndereco);
             comando.executeUpdate();
             return true;

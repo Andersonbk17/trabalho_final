@@ -128,13 +128,13 @@ public class Aluno extends Pessoa {
     }
     
     public void addLocalTrabalho(LocalTrabalho l){
-        if(!listaLocalTrabalho.equals(l)){
+        if(!listaLocalTrabalho.contains(l)){
             this.listaLocalTrabalho.add(l);
         }
     }
     
     public void removeLocalTrabalho(LocalTrabalho l){
-        if(listaLocalTrabalho.equals(l)){
+        if(listaLocalTrabalho.contains(l)){
             this.listaLocalTrabalho.remove(l);
         }
     }

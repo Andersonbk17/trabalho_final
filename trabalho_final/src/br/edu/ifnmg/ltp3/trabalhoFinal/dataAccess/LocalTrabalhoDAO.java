@@ -24,7 +24,7 @@ public class LocalTrabalhoDAO {
     }
     
     
-    public boolean Salvar(Telefone obj, int idPessoa ) throws SQLException{
+    public boolean Salvar(LocalTrabalho obj, int idAluno ) throws SQLException{
         try{
             if(obj.getIdlocalTrabalho()== 0){
                 CallableStatement comando = conexao.getConexao().prepareCall("CALL sp_LocalDeTrabalho(?,?,?)");
@@ -77,11 +77,10 @@ public class LocalTrabalhoDAO {
         }
      }
     
-    public boolean Apagar(int idEmail ) throws SQLException{
+    public boolean Apagar(int idLocalTrabalho ) throws SQLException{
         try{
-            PreparedStatement comando = conexao.getConexao().prepareStatement(""
-                    + "UPDATE Telefone SET status = 0 WHERE idTelefone = ?");
-            comando.setInt(1, idEmail);
+            PreparedStatement comando = conexao.getConexao().prepareStatement("CALL sp_LocalTrabalhoApaga(?)");
+            comando.setInt(1, idLocalTrabalho);
             comando.executeUpdate();
             return true;
         }catch(SQLException ex){

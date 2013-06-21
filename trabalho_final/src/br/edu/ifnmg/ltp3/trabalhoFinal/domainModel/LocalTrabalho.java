@@ -15,16 +15,15 @@ public class LocalTrabalho {
     private String nome;
     private boolean status;
     
-    private Aluno aluno;
+
     private Telefone telefone;
     
     //Construtores
 
-    public LocalTrabalho(int idlocalTrabalho, String nome, boolean status, Aluno aluno, Telefone telefone) {
+    public LocalTrabalho(int idlocalTrabalho, String nome, boolean status, Telefone telefone) {
         this.idlocalTrabalho = idlocalTrabalho;
         this.nome = nome;
         this.status = status;
-        this.aluno = aluno;
         this.telefone = telefone;
     }
     
@@ -32,7 +31,6 @@ public class LocalTrabalho {
         this.idlocalTrabalho = 0;
         this.nome = "vazio";
         this.status = true;
-        this.aluno = new Aluno();
         this.telefone = new Telefone();
     }
     
@@ -62,14 +60,6 @@ public class LocalTrabalho {
         this.status = status;
     }
 
-    public Aluno getAluno() {
-        return aluno;
-    }
-
-    public void setAluno(Aluno aluno) {
-        this.aluno = aluno;
-    }
-
     public Telefone getTelefone() {
         return telefone;
     }
@@ -86,7 +76,6 @@ public class LocalTrabalho {
         hash = 53 * hash + this.idlocalTrabalho;
         hash = 53 * hash + Objects.hashCode(this.nome);
         hash = 53 * hash + (this.status ? 1 : 0);
-        hash = 53 * hash + Objects.hashCode(this.aluno);
         hash = 53 * hash + Objects.hashCode(this.telefone);
         return hash;
     }
@@ -109,9 +98,6 @@ public class LocalTrabalho {
         if (this.status != other.status) {
             return false;
         }
-        if (!Objects.equals(this.aluno, other.aluno)) {
-            return false;
-        }
         if (!Objects.equals(this.telefone, other.telefone)) {
             return false;
         }
@@ -123,7 +109,7 @@ public class LocalTrabalho {
     @Override
     public String toString() {
         return "LocalTrabalho{" + "idlocalTrabalho=" + idlocalTrabalho + ", nome="
-                + nome + ", status=" + status + ", aluno=" + aluno + ", telefone=" + telefone + '}';
+                + nome + ", status=" + status + ", telefone=" + telefone + '}';
     }
     
     

@@ -13,20 +13,23 @@ import java.util.Objects;
 public class Estado {
     private int idEstado;
     private String nome;
+    private String uf;
     private boolean status;
     
     //Construtores
 
-    public Estado(int idEstado, String nome, boolean status) {
+    public Estado(int idEstado, String nome, boolean status,String uf) {
         this.idEstado = idEstado;
         this.nome = nome;
         this.status = status;
+        this.uf = uf;
     }
     
     public Estado() {
         this.idEstado = 0;
         this.nome = "vazio";
         this.status = true;
+        this.uf = "vazio";
     }
     
     //Metodos
@@ -54,6 +57,16 @@ public class Estado {
     public void setStatus(boolean status) {
         this.status = status;
     }
+
+    public String getUf() {
+        return uf;
+    }
+
+    public void setUf(String uf) {
+        this.uf = uf;
+    }
+    
+    
     
     //Hashcodes
 
@@ -91,7 +104,8 @@ public class Estado {
 
     @Override
     public String toString() {
-        return "Estado{" + "idEstado=" + idEstado + ", nome=" + nome + ", status=" + status + '}';
+        return "Estado{" + "nome=" + nome + ", uf=" + uf + '}';
     }
+
     
 }

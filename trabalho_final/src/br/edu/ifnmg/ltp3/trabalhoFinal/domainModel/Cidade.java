@@ -13,21 +13,19 @@ import java.util.Objects;
 public class Cidade {
     private int idCidade;
     private String nome;
-    private boolean status;
     private Estado estado;
     
     //Construtores
 
-    public Cidade(int idCidade, String nome, boolean status) {
+    public Cidade(int idCidade, String nome) {
         this.idCidade = idCidade;
         this.nome = nome;
-        this.status = status;
+
     }
     
     public Cidade() {
         this.idCidade = 0;
         this.nome = "vazio";
-        this.status = true;
         this.estado = new Estado();
     }
     
@@ -49,14 +47,6 @@ public class Cidade {
         this.nome = nome;
     }
 
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
     public Estado getEstado() {
         return estado;
     }
@@ -73,7 +63,6 @@ public class Cidade {
         int hash = 5;
         hash = 89 * hash + this.idCidade;
         hash = 89 * hash + Objects.hashCode(this.nome);
-        hash = 89 * hash + (this.status ? 1 : 0);
         return hash;
     }
 
@@ -92,9 +81,7 @@ public class Cidade {
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
-        if (this.status != other.status) {
-            return false;
-        }
+
         return true;
     }
     
@@ -102,8 +89,10 @@ public class Cidade {
 
     @Override
     public String toString() {
-        return "Cidade{" + "idCidade=" + idCidade + ", nome=" + nome + ", status=" + status + '}';
+        return "Cidade{" + "nome=" + nome + ", estado=" + estado + '}';
     }
+
+    
 
      
 }

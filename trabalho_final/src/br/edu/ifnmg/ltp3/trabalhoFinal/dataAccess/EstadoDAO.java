@@ -33,6 +33,7 @@ public class EstadoDAO {
                 novo = new Estado();
                 novo.setIdEstado(idEstado);
                 novo.setNome(consulta.getString("nome"));
+                novo.setUf(consulta.getString("uf"));
              }
             return novo;
         }catch(SQLException ex){
@@ -48,12 +49,13 @@ public class EstadoDAO {
     public List<Estado> ListarTodos() throws SQLException{
         try{
             PreparedStatement comando = conexao.getConexao().prepareStatement("SELECT * FROM Estado ");
-            ResultSet consuta = comando.executeQuery();
+            ResultSet consulta = comando.executeQuery();
             List<Estado> lista = new LinkedList<>();
-            while(consuta.next()){
+            while(consulta.next()){
                 Estado novo = new Estado();
-                novo.setIdEstado(consuta.getInt("idEstado"));
-                novo.setNome(consuta.getString("nome"));
+                novo.setIdEstado(consulta.getInt("idEstado"));
+                novo.setNome(consulta.getString("nome"));
+                novo.setUf(consulta.getString("uf"));
                 
                 lista.add(novo);
             }

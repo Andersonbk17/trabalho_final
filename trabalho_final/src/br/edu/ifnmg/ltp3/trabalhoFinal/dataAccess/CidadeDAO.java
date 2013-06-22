@@ -23,6 +23,36 @@ public class CidadeDAO {
         conexao = new ConexaoBanco();
     }
     
+    public Cidade Abrir(int idCidade) throws SQLException{
+        try{
+            PreparedStatement comando = conexao.getConexao().prepareStatement("SELECT * FROM vw_Cidade WHERE idCidade = ?");
+            comando.setInt(1, idCidade);
+            ResultSet consulta = comando.executeQuery();
+            Cidade novo = null;
+            
+            if(consulta.first()){
+                novo = new Cidade();
+                Estado novoEstado = new Estado();
+                novo.setIdCidade(idCidade);
+                novo.setNome(consulta.getString("cidade"));
+                
+                novoEstado.setIdEstado(consulta.getInt("idEStado"));
+                novoEstado.setNome(consulta.getString("Estado"));
+                novoEstado.setUf(consulta.getString("uf"));
+                
+                novo.setEstado(novoEstado);
+            }
+            return novo;
+        
+        }catch(SQLException ex){
+            ex.printStackTrace();
+            return null;
+        }finally{
+            conexao.getConexao().close();
+        }
+    
+    }
+    
     public List<Cidade> ListarTodas() throws SQLException{
         try{
             PreparedStatement comando = conexao.getConexao().prepareStatement("SELECT * FROM "
@@ -34,10 +64,11 @@ public class CidadeDAO {
                 Estado novoEstado = new Estado();
                 
                 novo.setIdCidade(consulta.getInt("idCidade"));
-                novo.setNome(consulta.getString("Cidade"));
+                novo.setNome(consulta.getString("cidade"));
                 
                 novoEstado.setIdEstado(consulta.getInt("idEstado"));
                 novoEstado.setNome(consulta.getString("Estado"));
+                novoEstado.setUf(consulta.getString("uf"));
                         
                 novo.setEstado(novoEstado);
                 lista.add(novo);

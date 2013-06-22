@@ -20,7 +20,7 @@ public class Aluno extends Pessoa {
     private String zonaEleitoral;
     private String situacaoMilitar;
     private String certidaoMilitar;
-    private boolean status;
+   
     
     private Responsavel responsavel;
     private List<LocalTrabalho> listaLocalTrabalho;        
@@ -28,7 +28,7 @@ public class Aluno extends Pessoa {
     //Construtores
 
     public Aluno(int idAluno, int matricula, String tituloEleitoral, String secaoEleitoral, 
-            String situacaoMilitar, String certidaoMilitar, Responsavel responsavel, boolean status, List<LocalTrabalho> listaLocalTrabalho) {
+            String situacaoMilitar, String certidaoMilitar, Responsavel responsavel, List<LocalTrabalho> listaLocalTrabalho) {
         this.idAluno = idAluno;
         this.matricula = matricula;
         this.tituloEleitoral = tituloEleitoral;
@@ -36,7 +36,6 @@ public class Aluno extends Pessoa {
         this.situacaoMilitar = situacaoMilitar;
         this.certidaoMilitar = certidaoMilitar;
         this.responsavel = responsavel;
-        this.status = status;
         this.listaLocalTrabalho = listaLocalTrabalho;
                 
     }
@@ -49,7 +48,6 @@ public class Aluno extends Pessoa {
         this.situacaoMilitar = "vazio";
         this.certidaoMilitar = "vazio";
         this.responsavel = new Responsavel();
-        this.status = true;
         this.listaLocalTrabalho = new LinkedList<>();
     }
     
@@ -118,14 +116,6 @@ public class Aluno extends Pessoa {
     public void setResponsavel(Responsavel responsavel) {
         this.responsavel = responsavel;
     }
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
     
     public void addLocalTrabalho(LocalTrabalho l){
         if(!listaLocalTrabalho.contains(l)){
@@ -151,7 +141,6 @@ public class Aluno extends Pessoa {
         hash = 37 * hash + Objects.hashCode(this.zonaEleitoral);
         hash = 37 * hash + Objects.hashCode(this.situacaoMilitar);
         hash = 37 * hash + Objects.hashCode(this.certidaoMilitar);
-        hash = 37 * hash + (this.status ? 1 : 0);
         hash = 37 * hash + Objects.hashCode(this.responsavel);
         return hash;
     }
@@ -186,9 +175,7 @@ public class Aluno extends Pessoa {
         if (!Objects.equals(this.certidaoMilitar, other.certidaoMilitar)) {
             return false;
         }
-        if (this.status != other.status) {
-            return false;
-        }
+    
         if (!Objects.equals(this.responsavel, other.responsavel)) {
             return false;
         }
@@ -199,11 +186,12 @@ public class Aluno extends Pessoa {
 
     @Override
     public String toString() {
-        return "Aluno{" + "idAluno=" + idAluno + ", matricula=" + matricula + ", tituloEleitoral=" +
-                tituloEleitoral + ", secaoEleitoral=" + secaoEleitoral + ", zonaEleitoral=" + 
-                zonaEleitoral + ", cituacaoMilitar=" + situacaoMilitar + ", certidaoMilitar=" + 
-                certidaoMilitar + ", responsavel=" + responsavel + ", status=" + status + '}';
+        return "Aluno{" + "matricula=" + matricula + ", tituloEleitoral=" + tituloEleitoral + 
+                ", secaoEleitoral=" + secaoEleitoral + ", zonaEleitoral=" + zonaEleitoral + 
+                ", situacaoMilitar=" + situacaoMilitar + ", certidaoMilitar=" + certidaoMilitar + '}';
     }
+
+   
     
 }
 

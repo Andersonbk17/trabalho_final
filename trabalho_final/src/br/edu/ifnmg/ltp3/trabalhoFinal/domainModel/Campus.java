@@ -13,20 +13,19 @@ import java.util.Objects;
 public class Campus {
     private int idCampus;
     private String nome;
-    private boolean status;
+
     
     //Construtores
 
     public Campus(int idCampus, String nome, boolean status) {
         this.idCampus = idCampus;
         this.nome = nome;
-        this.status = status;
+   
     }
     
     public Campus() {
         this.idCampus = 0;
         this.nome = "vazio";
-        this.status = true;
     }
     
     //Metodos
@@ -47,14 +46,6 @@ public class Campus {
         this.nome = nome;
     }
 
-    public boolean getStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
     //HashCodes
 
     @Override
@@ -62,7 +53,6 @@ public class Campus {
         int hash = 3;
         hash = 89 * hash + this.idCampus;
         hash = 89 * hash + Objects.hashCode(this.nome);
-        hash = 89 * hash + (this.status ? 1 : 0);
         return hash;
     }
 
@@ -81,9 +71,7 @@ public class Campus {
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
-        if (this.status != other.status) {
-            return false;
-        }
+       
         return true;
     }
     
@@ -92,7 +80,9 @@ public class Campus {
 
     @Override
     public String toString() {
-        return "Campus{" + "idCampus=" + idCampus + ", nome=" + nome + ", status=" + status + '}';
+        return "Campus{" + "idCampus=" + idCampus + ", nome=" + nome + '}';
     }
+
+    
     
 }

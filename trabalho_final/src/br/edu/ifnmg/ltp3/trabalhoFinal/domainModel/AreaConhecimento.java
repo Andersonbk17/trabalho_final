@@ -13,20 +13,19 @@ import java.util.Objects;
 public class AreaConhecimento {
     private int idAreaConhecimento;
     private String nome;
-    private boolean status;
+   
     
     //Construtores
 
-    public AreaConhecimento(int AreaConhecimento, String nome, boolean status) {
+    public AreaConhecimento(int AreaConhecimento, String nome) {
         this.idAreaConhecimento = AreaConhecimento;
         this.nome = nome;
-        this.status = status;
+       
     }
     
     public AreaConhecimento() {
         this.idAreaConhecimento = 0;
         this.nome = "vazio";
-        this.status = true;
     }
 
     //Metodos
@@ -47,14 +46,6 @@ public class AreaConhecimento {
         this.nome = nome;
     }
 
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-    
     //HashCodes
 
     @Override
@@ -62,7 +53,6 @@ public class AreaConhecimento {
         int hash = 5;
         hash = 97 * hash + this.idAreaConhecimento;
         hash = 97 * hash + Objects.hashCode(this.nome);
-        hash = 97 * hash + (this.status ? 1 : 0);
         return hash;
     }
 
@@ -81,9 +71,7 @@ public class AreaConhecimento {
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
-        if (this.status != other.status) {
-            return false;
-        }
+        
         return true;
     }
     
@@ -91,7 +79,9 @@ public class AreaConhecimento {
 
     @Override
     public String toString() {
-        return "AreaConhecimento{" + "AreaConhecimento=" + idAreaConhecimento + ", nome=" + nome + ", status=" + status + '}';
-    } 
+        return "AreaConhecimento{" + "idAreaConhecimento=" + idAreaConhecimento + ", nome=" + nome + '}';
+    }
+
+    
     
 }

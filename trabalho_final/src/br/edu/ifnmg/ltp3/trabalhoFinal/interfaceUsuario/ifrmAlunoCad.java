@@ -37,8 +37,8 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         txtAlunoNome = new javax.swing.JTextField();
         txtAlunoRg = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        DataExp = new javax.swing.JTextField();
+        txtAlunoCpf = new javax.swing.JTextField();
+        txtAlunoDataExp = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtAlunoOrgaoEx = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -171,7 +171,7 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtAlunoCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addGap(8, 8, 8)
@@ -189,7 +189,7 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(DataExp)))
+                                .addComponent(txtAlunoDataExp)))
                         .addGap(104, 104, 104))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -225,10 +225,10 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
                     .addComponent(jLabel7)
                     .addComponent(txtAlunoOrgaoEx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(DataExp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtAlunoDataExp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAlunoCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -688,7 +688,6 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtAlunoComplementoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField DataExp;
     private javax.swing.JButton btnAddEmailAluno;
     private javax.swing.JButton btnCancelarAluno;
     private javax.swing.JButton btnSalvarAluno;
@@ -739,7 +738,6 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JComboBox jcbAlunoCampus;
     private javax.swing.JComboBox jcbAlunoCurso;
     private javax.swing.JComboBox jcbAlunoEstado;
@@ -752,6 +750,8 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtAlunoCep;
     private javax.swing.JTextField txtAlunoCertidaoMilitar;
     private javax.swing.JTextField txtAlunoComplemento;
+    private javax.swing.JTextField txtAlunoCpf;
+    private javax.swing.JTextField txtAlunoDataExp;
     private javax.swing.JTextField txtAlunoEmail;
     private javax.swing.JTextField txtAlunoMatricula;
     private javax.swing.JTextField txtAlunoNome;

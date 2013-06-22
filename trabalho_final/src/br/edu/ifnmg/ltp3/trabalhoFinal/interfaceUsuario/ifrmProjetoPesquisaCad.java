@@ -72,6 +72,18 @@ public class ifrmProjetoPesquisaCad extends javax.swing.JInternalFrame {
         jPanel6 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         txtProjetoPesquisaNBolsas = new javax.swing.JTextField();
+        jPanel7 = new javax.swing.JPanel();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jcbProjetoPesquisaCampusPartici = new javax.swing.JComboBox();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        txtProjetoPesquisaObs = new javax.swing.JTextArea();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jtbListaParcicipantesProjetoPesquisa = new javax.swing.JTable();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
         btnSalvarProjetoPesquisa = new javax.swing.JButton();
         btnCancelarProjetoPesquisa = new javax.swing.JButton();
 
@@ -369,6 +381,85 @@ public class ifrmProjetoPesquisaCad extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Bolsa", jPanel6);
 
+        jLabel22.setText("Titulação");
+
+        jcbProjetoPesquisaCampusPartici.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        txtProjetoPesquisaObs.setColumns(20);
+        txtProjetoPesquisaObs.setLineWrap(true);
+        txtProjetoPesquisaObs.setRows(5);
+        jScrollPane5.setViewportView(txtProjetoPesquisaObs);
+
+        jtbListaParcicipantesProjetoPesquisa.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane6.setViewportView(jtbListaParcicipantesProjetoPesquisa);
+
+        jLabel19.setText("Nome");
+
+        jLabel21.setText("Campus");
+
+        jLabel23.setText("Obs.");
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel19)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel22)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel21)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jcbProjetoPesquisaCampusPartici, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel23)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(50, 50, 50))
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel22))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel21)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel23)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jcbProjetoPesquisaCampusPartici, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Participante", jPanel7);
+
         btnSalvarProjetoPesquisa.setText("Salvar");
 
         btnCancelarProjetoPesquisa.setText("Cancelar");
@@ -431,8 +522,12 @@ public class ifrmProjetoPesquisaCad extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel4;
@@ -447,15 +542,22 @@ public class ifrmProjetoPesquisaCad extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JComboBox jcbProjetoPesquisaAreaConhecimento;
     private javax.swing.JComboBox jcbProjetoPesquisaCampus;
+    private javax.swing.JComboBox jcbProjetoPesquisaCampusPartici;
     private javax.swing.JComboBox jcbProjetoPesquisaOrientador;
     private javax.swing.JCheckBox jcxProjetoPesquisaConvenio;
     private javax.swing.JCheckBox jcxProjetoPesquisaFinan;
     private javax.swing.JCheckBox jcxProjetoPesquisaMultiCampi;
     private javax.swing.JCheckBox jcxtxtProjetoPesquisaBolsa;
+    private javax.swing.JTable jtbListaParcicipantesProjetoPesquisa;
     private javax.swing.JTextField txtProjetoPesquisaAgenciaFinan;
     private javax.swing.JTextField txtProjetoPesquisaConvenio;
     private javax.swing.JTextField txtProjetoPesquisaDataFinanciamento;
@@ -464,6 +566,7 @@ public class ifrmProjetoPesquisaCad extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtProjetoPesquisaGrupoPesquisa;
     private javax.swing.JTextField txtProjetoPesquisaNBolsas;
     private javax.swing.JTextField txtProjetoPesquisaNCadastro;
+    private javax.swing.JTextArea txtProjetoPesquisaObs;
     private javax.swing.JTextArea txtProjetoPesquisaResumo;
     private javax.swing.JTextField txtProjetoPesquisaTitulo;
     private javax.swing.JTextField txtProjetoPesquisaValorFinan;

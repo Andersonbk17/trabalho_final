@@ -16,8 +16,7 @@
 	CREATE VIEW vw_Campus AS
 		SELECT * FROM Campus WHERE status = 1;
 
-	CREATE VIEW vw_Nacionalidade AS
-		SELECT * FROM Nacionalidade;
+	
 	
 	CREATE VIEW vw_Endereco AS
 		SELECT * FROM Endereco WHERE status = 1;
@@ -38,6 +37,14 @@
 	CREATE VIEW vw_ParticipanteProjeto AS
 		SELECT * FROM LocalTrabalho WHERE status = 1;
 		
+		
+	CREATE VIEW vw_Nacionalidade AS
+		SELECT idNacionalidade, nacionalidadePt as nome FROM Nacionalidade 
+		
 	
+	CREATE VIEW vw_Cidade AS
+		SELECT c.idCidade, c.nome as cidade,e.idEstado,e.nome as Estado,e.uf as uf FROM Cidade c
+		INNER JOIN Estado e on e.idEstado = c.idEstado
 
 
+	

@@ -25,7 +25,7 @@ public class NacionalidadeDAO {
     
     public Nacionalidade Abrir(int idNacionalidade) throws SQLException{
         try{
-            PreparedStatement comando = conexao.getConexao().prepareStatement("SELECT * FROM Nacionalidade WHERE idNacionalidade = ?");
+            PreparedStatement comando = conexao.getConexao().prepareStatement("SELECT * FROM vw_Nacionalidade WHERE idNacionalidade = ?");
             comando.setInt(1, idNacionalidade);
             ResultSet consulta = comando.executeQuery();
             Nacionalidade novo = null;
@@ -47,7 +47,7 @@ public class NacionalidadeDAO {
     
     public List<Nacionalidade> ListarTodos() throws SQLException{
         try{
-            PreparedStatement comando = conexao.getConexao().prepareStatement("SELECT * FROM Nacionalidade WHERE status = 1");
+            PreparedStatement comando = conexao.getConexao().prepareStatement("SELECT * FROM vw_Nacionalidade");
             ResultSet consuta = comando.executeQuery();
             List<Nacionalidade> lista = new LinkedList<>();
             while(consuta.next()){

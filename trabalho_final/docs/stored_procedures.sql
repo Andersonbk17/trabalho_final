@@ -300,7 +300,7 @@ DELIMITER //
 	_idCampus int,_idCursoArea int,_idNacionalidade int, _idEstado int,_matriculaSiape int,_localPermanencia varchar(100),_formacaoUniversitaria varchar(100),
 	_tituloAcademico varchar(100))
 		BEGIN
-			DECLARE _idPessoaAtual;
+			DECLARE _idPessoaAtual int;
 			DECLARE exit HANDLER FOR SQLEXCEPTION ROLLBACK;
 			START TRANSACTION;
 			

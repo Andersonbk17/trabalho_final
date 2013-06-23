@@ -25,8 +25,8 @@ public class AreaConhecimentoDAO {
     
     public AreaConhecimento Abrir(int idAreaConhecimento) throws SQLException{
         try{
-            PreparedStatement comando = conexao.getConexao().prepareStatement("SELECT * FROM vw_AreaConhecimento "
-                    + "WHERE idAreaConhecimento = ? ");
+            PreparedStatement comando = conexao.getConexao().prepareStatement("SELECT * FROM AreaConhecimento_CNPq "
+                    + "WHERE idAreaConhecimento_CNPq = ? ");
             comando.setInt(1, idAreaConhecimento);
             ResultSet consulta = comando.executeQuery();
             AreaConhecimento novo = null;
@@ -34,6 +34,7 @@ public class AreaConhecimentoDAO {
                 novo = new AreaConhecimento();
                 novo.setIdAreaConhecimento(idAreaConhecimento);
                 novo.setNome(consulta.getString("nome"));
+                novo.setCodigo(consulta.getString("codigo"));
             }
             return novo;
         }catch(SQLException ex){
@@ -48,14 +49,14 @@ public class AreaConhecimentoDAO {
     
     public List<AreaConhecimento> ListarTodos() throws SQLException{
         try{
-            PreparedStatement comando = conexao.getConexao().prepareStatement("SELECT * FROM "
-                    + "vw_AreaConhecimento WHERE status = 1");
+            PreparedStatement comando = conexao.getConexao().prepareStatement("SELECT * FROM AreaConhecimento_CNPq");
             ResultSet consuta = comando.executeQuery();
             List<AreaConhecimento> lista = new LinkedList<>();
             while(consuta.next()){
                 AreaConhecimento novo = new AreaConhecimento();
                 novo.setIdAreaConhecimento(consuta.getInt("idAreaConhecimento"));
                 novo.setNome(consuta.getString("nome"));
+                novo.setCodigo(consuta.getString("codigo"));
                 
                 lista.add(novo);
             }

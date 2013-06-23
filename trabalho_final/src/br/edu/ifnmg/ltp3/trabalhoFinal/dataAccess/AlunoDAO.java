@@ -54,10 +54,11 @@ public class AlunoDAO {
                 comando.setInt(23, obj.getResponsavel().getCpfMae());
                 comando.setInt(24, obj.getMatricula());
                
-                
-                
-                
                 comando.execute();
+                
+                //comando = conexao.getConexao().prepareCall("CALL sp_");
+              
+                
             }else{
                 CallableStatement comando1 = conexao.getConexao().prepareCall(""
                         + "CALL sp_AlunoAtualiza(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");

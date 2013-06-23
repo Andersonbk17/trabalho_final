@@ -27,6 +27,9 @@ public class LocalTrabalhoDAO {
     public boolean Salvar(LocalTrabalho obj, int idAluno ) throws SQLException{
         try{
             if(obj.getIdlocalTrabalho()== 0){
+                TelefoneDAO telefonedao = new TelefoneDAO();
+                telefonedao.Salvar(obj.getTelefone());
+                
                 CallableStatement comando = conexao.getConexao().prepareCall("CALL sp_LocalDeTrabalho(?,?,?)");
                 comando.setString(1, obj.getNome());
                 comando.setInt(2, obj.getTelefone().getIdTelefone());

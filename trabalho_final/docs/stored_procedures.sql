@@ -437,3 +437,29 @@ DELIMITER //
 		END;
 //
 
+
+
+DELIMITER //
+	CREATE PROCEDURE sp_CronogramaAtividade(_descricao text,_numeroAtividade int,_data date,_idPlanoDeTrabalho int)
+		BEGIN
+			DECLARE exit HANDLER FOR SQLEXCEPTION ROLLBACK;
+			START TRANSACTION;
+			INSERT INTO CronogramaAtividade(descricao,numeroAtividade,data,idPlanoDeTrabalho,status) VALUES(_descricao,_numeroAtividade,
+			_data,_idPlanoDeTrabalho,1);
+			
+			COMMIT;
+		END;
+//
+
+DELIMITER //
+	CREATE PROCEDURE sp_CronogramaAtividadeAtualiza(_descricao text,_numeroAtividade int,_data date,_idPlanoDeTrabalho int,
+	_idCronogramaAtividade int)
+		BEGIN
+			DECLARE exit HANDLER FOR SQLEXCEPTION ROLLBACK;
+			START TRANSACTION;
+			UPDATE CronogramaAtividade SET descricao = _descricao, numeroAtividade = _numeroAtividade ,data = _data,
+			idPlanoDeTrabalho = _idPlanoDeTrabalho WHERE idCronogramaAtividade = _idCronogramaAtividade;
+			
+			COMMIT;
+		END;
+//

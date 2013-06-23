@@ -23,12 +23,14 @@ public class Aluno extends Pessoa {
    
     
     private Responsavel responsavel;
-    private List<LocalTrabalho> listaLocalTrabalho;        
+    private List<LocalTrabalho> listaLocalTrabalho;      
+    private PlanoTrabalho planoTrabalho;
     
     //Construtores
 
     public Aluno(int idAluno, int matricula, String tituloEleitoral, String secaoEleitoral, 
-            String situacaoMilitar, String certidaoMilitar, Responsavel responsavel, List<LocalTrabalho> listaLocalTrabalho) {
+            String situacaoMilitar, String certidaoMilitar, Responsavel responsavel, 
+            List<LocalTrabalho> listaLocalTrabalho, PlanoTrabalho planoTrabalho) {
         this.idAluno = idAluno;
         this.matricula = matricula;
         this.tituloEleitoral = tituloEleitoral;
@@ -37,6 +39,7 @@ public class Aluno extends Pessoa {
         this.certidaoMilitar = certidaoMilitar;
         this.responsavel = responsavel;
         this.listaLocalTrabalho = listaLocalTrabalho;
+        this.planoTrabalho = planoTrabalho;
                 
     }
     
@@ -49,6 +52,7 @@ public class Aluno extends Pessoa {
         this.certidaoMilitar = "vazio";
         this.responsavel = new Responsavel();
         this.listaLocalTrabalho = new LinkedList<>();
+        this.planoTrabalho = new PlanoTrabalho();
     }
     
     //Metodos
@@ -128,6 +132,24 @@ public class Aluno extends Pessoa {
             this.listaLocalTrabalho.remove(l);
         }
     }
+
+    public List<LocalTrabalho> getListaLocalTrabalho() {
+        return listaLocalTrabalho;
+    }
+
+    public void setListaLocalTrabalho(List<LocalTrabalho> listaLocalTrabalho) {
+        this.listaLocalTrabalho = listaLocalTrabalho;
+    }
+
+    public PlanoTrabalho getPlanoTrabalho() {
+        return planoTrabalho;
+    }
+
+    public void setPlanoTrabalho(PlanoTrabalho planoTrabalho) {
+        this.planoTrabalho = planoTrabalho;
+    }
+    
+    
      
     //Hashcodes
 

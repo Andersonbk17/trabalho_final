@@ -35,6 +35,7 @@ public class ProjetoPesquisa {
     private Campus campus;
     private AreaConhecimento areConhecimento;
     private  List<ParticipanteProjeto> listaParticipantes;
+   
     
     //Construtores
 

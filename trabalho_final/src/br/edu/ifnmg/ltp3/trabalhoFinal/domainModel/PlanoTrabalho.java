@@ -22,12 +22,15 @@ public class PlanoTrabalho {
     private String dataInicial;
     private String dataFinal;
     
-    private Aluno aluno;
-    private ProjetoPesquisa projetoPesquisa;
+   private ProjetoPesquisa projetoPesquisa;
+   private CronogramaAtividade cronogramaAtividade;
     
     //Construtores
 
-    public PlanoTrabalho(int idPlanoTrabalho, String introducao, String justificativa, String objetivo, String metodologia, String resultadoEsperado, String referenciaBibliografica, boolean status, String dataInicial, String dataFinal, Aluno aluno, ProjetoPesquisa projetoPesquisa) {
+    public PlanoTrabalho(int idPlanoTrabalho, String introducao, String justificativa, 
+            String objetivo, String metodologia, String resultadoEsperado, String 
+                    referenciaBibliografica, boolean status, String dataInicial, String 
+           dataFinal, ProjetoPesquisa projetoPesquisa, CronogramaAtividade cronogramaAtividade) {
         this.idPlanoTrabalho = idPlanoTrabalho;
         this.introducao = introducao;
         this.justificativa = justificativa;
@@ -38,7 +41,7 @@ public class PlanoTrabalho {
         this.status = status;
         this.dataInicial = dataInicial;
         this.dataFinal = dataFinal;
-        this.aluno = aluno;
+        this.cronogramaAtividade = cronogramaAtividade;
         this.projetoPesquisa = projetoPesquisa;
     }
     
@@ -53,8 +56,8 @@ public class PlanoTrabalho {
         this.status = true;
         this.dataInicial = "vazio";
         this.dataFinal = "vazio";
-        this.aluno = new Aluno();
         this.projetoPesquisa = new ProjetoPesquisa();
+        this.cronogramaAtividade = new CronogramaAtividade();
     }
     
     //Metodos
@@ -139,14 +142,6 @@ public class PlanoTrabalho {
         this.dataFinal = dataFinal;
     }
 
-    public Aluno getAluno() {
-        return aluno;
-    }
-
-    public void setAluno(Aluno aluno) {
-        this.aluno = aluno;
-    }
-
     public ProjetoPesquisa getProjetoPesquisa() {
         return projetoPesquisa;
     }
@@ -154,6 +149,15 @@ public class PlanoTrabalho {
     public void setProjetoPesquisa(ProjetoPesquisa projetoPesquisa) {
         this.projetoPesquisa = projetoPesquisa;
     }
+
+    public CronogramaAtividade getCronogramaAtividade() {
+        return cronogramaAtividade;
+    }
+
+    public void setCronogramaAtividade(CronogramaAtividade cronogramaAtividade) {
+        this.cronogramaAtividade = cronogramaAtividade;
+    }
+    
     
     //HashCodes
 
@@ -170,7 +174,6 @@ public class PlanoTrabalho {
         hash = 37 * hash + (this.status ? 1 : 0);
         hash = 37 * hash + Objects.hashCode(this.dataInicial);
         hash = 37 * hash + Objects.hashCode(this.dataFinal);
-        hash = 37 * hash + Objects.hashCode(this.aluno);
         hash = 37 * hash + Objects.hashCode(this.projetoPesquisa);
         return hash;
     }
@@ -214,9 +217,7 @@ public class PlanoTrabalho {
         if (!Objects.equals(this.dataFinal, other.dataFinal)) {
             return false;
         }
-        if (!Objects.equals(this.aluno, other.aluno)) {
-            return false;
-        }
+        
         if (!Objects.equals(this.projetoPesquisa, other.projetoPesquisa)) {
             return false;
         }
@@ -227,7 +228,10 @@ public class PlanoTrabalho {
 
     @Override
     public String toString() {
-        return "PlanoTrabalho{" + "idPlanoTrabalho=" + idPlanoTrabalho + ", introducao=" + introducao + ", justificativa=" + justificativa + ", objetivo=" + objetivo + ", metodologia=" + metodologia + ", resultadoEsperado=" + resultadoEsperado + ", referenciaBibliografica=" + referenciaBibliografica + ", status=" + status + ", dataInicial=" + dataInicial + ", dataFinal=" + dataFinal + ", aluno=" + aluno + ", projetoPesquisa=" + projetoPesquisa + '}';
+        return "PlanoTrabalho{" + "introducao=" + introducao + ", justificativa=" +
+                justificativa + ", objetivo=" + objetivo + ", metodologia=" + metodologia +
+                ", resultadoEsperado=" + resultadoEsperado + ", referenciaBibliografica=" +
+                referenciaBibliografica + ", dataInicial=" + dataInicial + ", dataFinal=" + dataFinal + '}';
     }
-      
+
 }

@@ -6,14 +6,14 @@ package br.edu.ifnmg.ltp3.trabalhoFinal.interfaceUsuario;
 
 /**
  *
- * 
+ * @author emerson
  */
-public class ifrmCidadeCad extends javax.swing.JInternalFrame {
+public class ifrmAreaConhecimentoCad extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form ifrmCampusCad
      */
-    public ifrmCidadeCad() {
+    public ifrmAreaConhecimentoCad() {
         initComponents();
     }
 
@@ -28,15 +28,13 @@ public class ifrmCidadeCad extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        txtCidadeCadNome = new javax.swing.JTextField();
-        btnCidadeCadSalvar = new javax.swing.JButton();
+        txtAreaConhecimentoCadNome = new javax.swing.JTextField();
+        btnAreaConhecimentoCadSalvar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtbListarCidade = new javax.swing.JTable();
+        jtbListarAreaConhecimento = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jcbCidadeEstado = new javax.swing.JComboBox();
-        jLabel5 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
@@ -56,10 +54,10 @@ public class ifrmCidadeCad extends javax.swing.JInternalFrame {
             .addGap(0, 10, Short.MAX_VALUE)
         );
 
-        btnCidadeCadSalvar.setText("Salvar");
+        btnAreaConhecimentoCadSalvar.setText("Salvar");
 
-        jtbListarCidade.setBackground(new java.awt.Color(102, 204, 0));
-        jtbListarCidade.setModel(new javax.swing.table.DefaultTableModel(
+        jtbListarAreaConhecimento.setBackground(new java.awt.Color(102, 204, 0));
+        jtbListarAreaConhecimento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -67,18 +65,14 @@ public class ifrmCidadeCad extends javax.swing.JInternalFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jtbListarCidade);
+        jScrollPane1.setViewportView(jtbListarAreaConhecimento);
 
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Cadastrar Cidade");
+        jLabel2.setText("Cadastrar Area Conhecimento");
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/ifl.png"))); // NOI18N
 
         jLabel4.setText("Clique sobre um item para Editar ou Excluir");
-
-        jcbCidadeEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel5.setText("Estado");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -88,24 +82,17 @@ public class ifrmCidadeCad extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCidadeCadNome, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtAreaConhecimentoCadNome, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jcbCidadeEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCidadeCadSalvar))
+                        .addComponent(btnAreaConhecimentoCadSalvar))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(176, 176, 176)
-                                .addComponent(jLabel2)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jLabel3)
+                        .addGap(130, 130, 130)
+                        .addComponent(jLabel2)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -124,10 +111,8 @@ public class ifrmCidadeCad extends javax.swing.JInternalFrame {
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtCidadeCadNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCidadeCadSalvar)
-                    .addComponent(jcbCidadeEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addComponent(txtAreaConhecimentoCadNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAreaConhecimentoCadSalvar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -138,16 +123,14 @@ public class ifrmCidadeCad extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCidadeCadSalvar;
+    private javax.swing.JButton btnAreaConhecimentoCadSalvar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JComboBox jcbCidadeEstado;
-    private javax.swing.JTable jtbListarCidade;
-    private javax.swing.JTextField txtCidadeCadNome;
+    private javax.swing.JTable jtbListarAreaConhecimento;
+    private javax.swing.JTextField txtAreaConhecimentoCadNome;
     // End of variables declaration//GEN-END:variables
 }

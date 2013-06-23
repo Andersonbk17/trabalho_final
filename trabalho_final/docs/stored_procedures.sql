@@ -475,3 +475,16 @@ DELIMITER //
 			COMMIT;
 		END;
 //
+
+
+DELIMITER //
+	CREATE PROCEDURE sp_PlanoDeTrabalho(_idAluno int,_idProjetoPesquisa int,introducao text,justificativa text,objetivos text)
+		BEGIN
+			DECLARE exit HANDLER FOR SQLEXCEPTION ROLLBACK;
+			START TRANSACTION;
+			INSERT INTO CronogramaAtividade(descricao,numeroAtividade,idPlanoDeTrabalho,status,dataInicio,dataTermino) VALUES(_descricao,_numeroAtividade,
+			_data,_idPlanoDeTrabalho,1,_dataInicio,_dataTermino);
+			
+			COMMIT;
+		END;
+//

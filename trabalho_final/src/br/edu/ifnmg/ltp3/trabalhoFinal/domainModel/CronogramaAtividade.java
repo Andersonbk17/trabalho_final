@@ -16,28 +16,28 @@ public class CronogramaAtividade {
     private String descricao;
     private int numeroAtividade;
     private int status;
-    private String dataAtividade;
     private Date dataInicio;
     private Date dataTermino;
     
       
     //Construtores
 
-    public CronogramaAtividade(int idCronogramaAtividade, String descricao, int numeroAtividade, int status, String dataAtividade) {
+    public CronogramaAtividade(int idCronogramaAtividade, String descricao, int numeroAtividade, int status, Date dataInicio, Date dataTermino) {
         this.idCronogramaAtividade = idCronogramaAtividade;
         this.descricao = descricao;
         this.numeroAtividade = numeroAtividade;
         this.status = status;
-        this.dataAtividade = dataAtividade;
-       
+        this.dataInicio = dataInicio;
+        this.dataTermino = dataTermino;
     }
+
+   
     
     public CronogramaAtividade() {
         this.idCronogramaAtividade = 0;
         this.descricao = "vazio";
         this.numeroAtividade = 0;
         this.status = 1;
-        this.dataAtividade = "vazio";
         this.dataInicio = new Date();
         this.dataTermino = new Date();
       
@@ -77,15 +77,7 @@ public class CronogramaAtividade {
         this.status = status;
     }
 
-    public String getDataAtividade() {
-        return dataAtividade;
-    }
-
-    public void setDataAtividade(String dataAtividade) {
-        this.dataAtividade = dataAtividade;
-    }
-
-    public Date getDataInicio() {
+      public Date getDataInicio() {
         return dataInicio;
     }
 
@@ -111,7 +103,6 @@ public class CronogramaAtividade {
         hash = 29 * hash + Objects.hashCode(this.descricao);
         hash = 29 * hash + this.numeroAtividade;
         hash = 29 * hash + this.status;
-        hash = 29 * hash + Objects.hashCode(this.dataAtividade);
         return hash;
     }
 
@@ -136,9 +127,7 @@ public class CronogramaAtividade {
         if (this.status != other.status) {
             return false;
         }
-        if (!Objects.equals(this.dataAtividade, other.dataAtividade)) {
-            return false;
-        }
+     
         return true;
     }
     
@@ -146,10 +135,13 @@ public class CronogramaAtividade {
 
     @Override
     public String toString() {
-        return "CronogramaAtividade{" + "idCronogramaAtividade=" + idCronogramaAtividade + 
-                ", descricao=" + descricao + ", numeroAtividade=" + numeroAtividade + ", status=" 
-                + status + ", dataAtividade=" + dataAtividade + '}';
+        return "CronogramaAtividade{" + "idCronogramaAtividade=" + idCronogramaAtividade 
+                + ", descricao=" + descricao + ", numeroAtividade=" + numeroAtividade + ", "
+                + "status=" + status + ", dataInicio=" + dataInicio + ", dataTermino=" +
+                dataTermino + '}';
     }
+
+  
 
 }
 

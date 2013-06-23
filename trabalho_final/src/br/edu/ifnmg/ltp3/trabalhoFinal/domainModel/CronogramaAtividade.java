@@ -4,6 +4,7 @@
  */
 package br.edu.ifnmg.ltp3.trabalhoFinal.domainModel;
 
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -15,28 +16,31 @@ public class CronogramaAtividade {
     private String descricao;
     private int numeroAtividade;
     private int status;
-    private String dataAtividade;
+    private Date dataInicio;
+    private Date dataTermino;
     
-    private PlanoTrabalho planoTrabalho;
-    
+      
     //Construtores
 
-    public CronogramaAtividade(int idCronogramaAtividade, String descricao, int numeroAtividade, int status, String dataAtividade, PlanoTrabalho planoTrabalho) {
+    public CronogramaAtividade(int idCronogramaAtividade, String descricao, int numeroAtividade, int status, Date dataInicio, Date dataTermino) {
         this.idCronogramaAtividade = idCronogramaAtividade;
         this.descricao = descricao;
         this.numeroAtividade = numeroAtividade;
         this.status = status;
-        this.dataAtividade = dataAtividade;
-        this.planoTrabalho = planoTrabalho;
+        this.dataInicio = dataInicio;
+        this.dataTermino = dataTermino;
     }
+
+   
     
     public CronogramaAtividade() {
         this.idCronogramaAtividade = 0;
         this.descricao = "vazio";
         this.numeroAtividade = 0;
         this.status = 1;
-        this.dataAtividade = "vazio";
-        this.planoTrabalho = new PlanoTrabalho();
+        this.dataInicio = new Date();
+        this.dataTermino = new Date();
+      
     }
     
     //Metodos
@@ -73,22 +77,22 @@ public class CronogramaAtividade {
         this.status = status;
     }
 
-    public String getDataAtividade() {
-        return dataAtividade;
+      public Date getDataInicio() {
+        return dataInicio;
     }
 
-    public void setDataAtividade(String dataAtividade) {
-        this.dataAtividade = dataAtividade;
+    public void setDataInicio(Date dataInicio) {
+        this.dataInicio = dataInicio;
     }
 
-    public PlanoTrabalho getPlanoTrabalho() {
-        return planoTrabalho;
+    public Date getDataTermino() {
+        return dataTermino;
     }
 
-    public void setPlanoTrabalho(PlanoTrabalho planoTrabalho) {
-        this.planoTrabalho = planoTrabalho;
+    public void setDataTermino(Date dataTermino) {
+        this.dataTermino = dataTermino;
     }
-    
+
     
     //HashCodes
 
@@ -99,8 +103,6 @@ public class CronogramaAtividade {
         hash = 29 * hash + Objects.hashCode(this.descricao);
         hash = 29 * hash + this.numeroAtividade;
         hash = 29 * hash + this.status;
-        hash = 29 * hash + Objects.hashCode(this.dataAtividade);
-        hash = 29 * hash + Objects.hashCode(this.planoTrabalho);
         return hash;
     }
 
@@ -125,12 +127,7 @@ public class CronogramaAtividade {
         if (this.status != other.status) {
             return false;
         }
-        if (!Objects.equals(this.dataAtividade, other.dataAtividade)) {
-            return false;
-        }
-        if (!Objects.equals(this.planoTrabalho, other.planoTrabalho)) {
-            return false;
-        }
+     
         return true;
     }
     
@@ -138,7 +135,13 @@ public class CronogramaAtividade {
 
     @Override
     public String toString() {
-        return "CronogramaAtividade{" + "idCronogramaAtividade=" + idCronogramaAtividade + ", descricao=" + descricao + ", numeroAtividade=" + numeroAtividade + ", status=" + status + ", dataAtividade=" + dataAtividade + ", planoTrabalho=" + planoTrabalho + '}';
+        return "CronogramaAtividade{" + "idCronogramaAtividade=" + idCronogramaAtividade 
+                + ", descricao=" + descricao + ", numeroAtividade=" + numeroAtividade + ", "
+                + "status=" + status + ", dataInicio=" + dataInicio + ", dataTermino=" +
+                dataTermino + '}';
     }
-       
+
+  
+
 }
+

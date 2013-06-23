@@ -32,6 +32,35 @@ public class TelefoneDAO {
                 comando.setInt(2, obj.getNumero());
                 comando.setInt(3, idPessoa);
                 comando.execute();
+                comando.close();
+            }else{
+                CallableStatement comando1 = conexao.getConexao().prepareCall(""
+                        + "CALL sp_TelefoneAtualiza(?,?,?)");
+                comando1.setInt(1, obj.getDdd());
+                comando1.setInt(2, obj.getNumero());
+                comando1.setInt(3, obj.getIdTelefone());
+                comando1.executeUpdate();
+           }
+            return true;
+            
+        }catch(SQLException ex){
+            ex.printStackTrace();
+            return false;
+        }finally{
+            conexao.getConexao().close();
+        }
+    
+    }
+    
+    
+    public boolean Salvar(Telefone obj ) throws SQLException{
+        try{
+            if(obj.getIdTelefone()== 0){
+                CallableStatement comando = conexao.getConexao().prepareCall("CALL sp_Telefone(?,?,?)");
+                comando.setInt(1, obj.getDdd());
+                comando.setInt(2, obj.getNumero());
+                comando.setInt(3, 0);
+                comando.execute();
             }else{
                 CallableStatement comando1 = conexao.getConexao().prepareCall(""
                         + "CALL sp_TelefoneAtualiza(?,?,?)");
@@ -49,6 +78,7 @@ public class TelefoneDAO {
         }
     
     }
+    
     
     
     public Telefone Abrir(int idTelefone) throws SQLException{
@@ -87,8 +117,10 @@ public class TelefoneDAO {
                 novo.setDdd(consulta.getInt("ddd"));
                 novo.setNumero(consulta.getInt("numero"));
                 novo.setIdTelefone(consulta.getInt("idTelefone"));
+                
                 lista.add(novo);
             }
+            
             return lista;
          }catch(SQLException ex){
                ex.printStackTrace();

@@ -333,14 +333,14 @@ DELIMITER //
 DELIMITER //			
 	CREATE PROCEDURE sp_ProjetoPesquisa(_titulo varchar(100),_dataInicio date,_dataTermino date,_grupoPesquisa varchar(100),_idAreaConhecimentoCNPq int,_idCampus int,
 	_resumo text,_idOrientador int,_financiamento tinyint,_bolsa tinyint, _convenio tinyint,_valorFinanciamento float,_dataFinanciamento date,_numeroBolsas int,
-	_agenciaFinanciadora varchar(100),_nomeConvenio varchar(100),_projetoMulticampi tinyint,_status int) 
+	_agenciaFinanciadora varchar(100),_nomeConvenio varchar(100),_projetoMulticampi tinyint) 
 		BEGIN
 			DECLARE exit HANDLER FOR SQLEXCEPTION ROLLBACK;
 			START TRANSACTION;
 			INSERT INTO ProjetoPesquisa(titulo,dataInicio,dataTermino,grupoPesquisa,idAreaConhecimentoCNPq,idCampus,resumo,idOrientador,financiamento,bolsa,convenio,
 			valorFinanciamento,dataFinanciamento,numeroBolsas,agenciaFinanciadora,convenio,nomeConvenio,projetoMulticampi,status) 
 			VALUES(_titulo,_dataInicio,_dataTermino,_grupoPesquisa,_idAreaConhecimentoCNPq,_idCampus,_resumo,_idOrientador,_financiamento,_bolsa,_convenio,
-			_valorFinanciamento,_dataFinanciamento,_numeroBolsas,_agenciaFinanciadora,_nomeConvenio,_projetoMulticampi,_status);
+			_valorFinanciamento,_dataFinanciamento,_numeroBolsas,_agenciaFinanciadora,_nomeConvenio,_projetoMulticampi,1);
 	        COMMIT;
 	    END;
 //

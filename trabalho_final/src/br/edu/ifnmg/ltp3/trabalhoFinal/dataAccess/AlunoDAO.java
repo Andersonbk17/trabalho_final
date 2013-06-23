@@ -33,7 +33,7 @@ public class AlunoDAO {
                 comando.setInt(2, obj.getCpf());
                 comando.setString(3, obj.getRg());
                 comando.setString(4, obj.getTituloEleitoral());
-                //comando.setString(5, obj.getDataNascimento());
+                //comando.setDate(5, obj.getDataNascimento());
                 comando.setString(6, obj.getOrgaoExpeditor());
                 //comando.setString(7, obj.getDataExpedicao());
                 comando.setInt(8, obj.getCampus().getIdCampus());
@@ -56,7 +56,7 @@ public class AlunoDAO {
                
                 comando.execute();
                 
-                //comando = conexao.getConexao().prepareCall("CALL sp_");
+                
               
                 
             }else{

@@ -83,6 +83,35 @@ public class ParticipanteProjetoDAO {
         }
      }
     
+    public List<ParticipanteProjeto> ListarTodosQueJaParticipu() throws SQLException{
+        try{
+            PreparedStatement comando = conexao.getConexao().prepareStatement(""
+                    + "SELECT * FROM vw_ParticipanteProjeto");
+            
+            ResultSet consulta = comando.executeQuery();
+            List<ParticipanteProjeto> lista = new LinkedList<>();
+            while(consulta.next()){
+                ParticipanteProjeto novo = new ParticipanteProjeto();
+                CampusDAO novoCampus = new CampusDAO();
+                novo.setCampus(novoCampus.Abrir(consulta.getInt("idCampus")));
+                novo.setIdParticipanteProjeto(consulta.getInt("idParticipanteProjeto"));
+                novo.setNome(consulta.getString("nome"));
+                novo.setObservacao(consulta.getString("observacao"));
+                novo.setTitulacao(consulta.getString("titulacao"));
+                
+                lista.add(novo);
+            }
+            return lista;
+         }catch(SQLException ex){
+               ex.printStackTrace();
+               return null;
+        }finally{
+            conexao.getConexao().close();
+        }
+     }
+    
+    
+    
     public boolean Apagar(int idParticpanteProjeto ) throws SQLException{
         try{
             PreparedStatement comando = conexao.getConexao().prepareStatement(""

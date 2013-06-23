@@ -26,13 +26,9 @@ public class frmBody extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jrnBodyCapa = new javax.swing.JPanel();
-        btnBodyAluno = new javax.swing.JButton();
-        btnBodyOrientador = new javax.swing.JButton();
-        btnBodyProjeto = new javax.swing.JButton();
-        btnBodyRelatorio = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmBodyCadastrar = new javax.swing.JMenu();
+        jmiAluno = new javax.swing.JMenuItem();
         jmBodyListar = new javax.swing.JMenu();
         jmBodyProjetos = new javax.swing.JMenu();
         jmBodyRelarotio = new javax.swing.JMenu();
@@ -40,52 +36,23 @@ public class frmBody extends javax.swing.JFrame {
         jmBodySobre = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
-
-        jrnBodyCapa.setBackground(new java.awt.Color(255, 255, 255));
-
-        btnBodyAluno.setText("Aluno");
-
-        btnBodyOrientador.setText("Orientador");
-
-        btnBodyProjeto.setText("Projeto");
-
-        btnBodyRelatorio.setText("Relatorios");
-
-        javax.swing.GroupLayout jrnBodyCapaLayout = new javax.swing.GroupLayout(jrnBodyCapa);
-        jrnBodyCapa.setLayout(jrnBodyCapaLayout);
-        jrnBodyCapaLayout.setHorizontalGroup(
-            jrnBodyCapaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jrnBodyCapaLayout.createSequentialGroup()
-                .addContainerGap(129, Short.MAX_VALUE)
-                .addGroup(jrnBodyCapaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnBodyOrientador, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBodyProjeto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
-                .addGroup(jrnBodyCapaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnBodyAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBodyRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(143, 143, 143))
-        );
-        jrnBodyCapaLayout.setVerticalGroup(
-            jrnBodyCapaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jrnBodyCapaLayout.createSequentialGroup()
-                .addGap(143, 143, 143)
-                .addGroup(jrnBodyCapaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBodyAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBodyOrientador, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jrnBodyCapaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBodyRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBodyProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(139, Short.MAX_VALUE))
-        );
 
         jMenuBar1.setBackground(new java.awt.Color(102, 204, 0));
         jMenuBar1.setForeground(new java.awt.Color(255, 255, 255));
 
         jmBodyCadastrar.setForeground(new java.awt.Color(255, 255, 255));
         jmBodyCadastrar.setText("Cadastrar");
+
+        jmiAluno.setText("Aluno");
+        jmiAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiAlunoActionPerformed(evt);
+            }
+        });
+        jmBodyCadastrar.add(jmiAluno);
+
         jMenuBar1.add(jmBodyCadastrar);
 
         jmBodyListar.setForeground(new java.awt.Color(255, 255, 255));
@@ -114,15 +81,22 @@ public class frmBody extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jrnBodyCapa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 800, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jrnBodyCapa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 435, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jmiAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAlunoActionPerformed
+        // TODO add your handling code here:
+        ifrmAlunoCad janela = new ifrmAlunoCad();
+        add(janela);
+        janela.setVisible(true);
+    }//GEN-LAST:event_jmiAlunoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,10 +133,6 @@ public class frmBody extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBodyAluno;
-    private javax.swing.JButton btnBodyOrientador;
-    private javax.swing.JButton btnBodyProjeto;
-    private javax.swing.JButton btnBodyRelatorio;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jmBodyCadastrar;
     private javax.swing.JMenu jmBodyListar;
@@ -170,6 +140,6 @@ public class frmBody extends javax.swing.JFrame {
     private javax.swing.JMenu jmBodyRelarotio;
     private javax.swing.JMenu jmBodySobre;
     private javax.swing.JMenu jmBodyUsuario;
-    private javax.swing.JPanel jrnBodyCapa;
+    private javax.swing.JMenuItem jmiAluno;
     // End of variables declaration//GEN-END:variables
 }

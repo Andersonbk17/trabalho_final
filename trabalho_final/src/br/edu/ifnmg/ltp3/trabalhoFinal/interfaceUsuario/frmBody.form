@@ -19,6 +19,16 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Cadastrar"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jmiAluno">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Aluno"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiAlunoActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jmBodyListar">
           <Properties>
@@ -65,6 +75,9 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+    </Property>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
@@ -86,81 +99,13 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jrnBodyCapa" alignment="0" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="800" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jrnBodyCapa" alignment="0" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="435" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
-  <SubComponents>
-    <Container class="javax.swing.JPanel" name="jrnBodyCapa">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
-      </Properties>
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace pref="129" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="btnBodyOrientador" alignment="1" min="-2" pref="140" max="-2" attributes="0"/>
-                      <Component id="btnBodyProjeto" alignment="1" min="-2" pref="140" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="btnBodyAluno" min="-2" pref="140" max="-2" attributes="0"/>
-                      <Component id="btnBodyRelatorio" min="-2" pref="140" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnBodyAluno" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
-                      <Component id="btnBodyOrientador" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnBodyRelatorio" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="btnBodyProjeto" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="139" max="32767" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-      <SubComponents>
-        <Component class="javax.swing.JButton" name="btnBodyAluno">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Aluno"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnBodyOrientador">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Orientador"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnBodyProjeto">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Projeto"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnBodyRelatorio">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Relatorios"/>
-          </Properties>
-        </Component>
-      </SubComponents>
-    </Container>
-  </SubComponents>
 </Form>

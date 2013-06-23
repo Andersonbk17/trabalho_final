@@ -4,15 +4,74 @@
  */
 package br.edu.ifnmg.ltp3.trabalhoFinal.interfaceUsuario;
 
+import br.edu.ifnmg.ltp3.trabalhoFinal.dataAccess.AlunoDAO;
+import br.edu.ifnmg.ltp3.trabalhoFinal.domainModel.Aluno;
+import br.edu.ifnmg.ltp3.trabalhoFinal.domainModel.Email;
+import br.edu.ifnmg.ltp3.trabalhoFinal.domainModel.Endereco;
+import br.edu.ifnmg.ltp3.trabalhoFinal.domainModel.Telefone;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
- * @author emerson
+ * @author 
  */
 public class ifrmAlunoCad extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form ifrmCampusCad
      */
+    Aluno aluno = new Aluno();
+  
+    AlunoDAO alunoDao = new AlunoDAO();
+    
+    private void addTelefone(){
+        DefaultTableModel model= new DefaultTableModel();
+        model.addColumn("DDD");
+        model.addColumn("Telefone");
+        
+        for(Telefone te : aluno.getTelefone()){
+            Vector v = new Vector();
+            v.add(0, te.getDdd());
+            v.add(1, te.getNumero());
+            model.addRow(v);
+        }
+        jtbListaTeleAluno.setModel(model);
+    }
+    
+     private void addEmail(){
+        DefaultTableModel model= new DefaultTableModel();
+        model.addColumn("Endereço de E-mail");
+ 
+        for(Email em : aluno.getEmail()){
+            Vector v = new Vector();
+            v.add(em.getEnderecoEmail());
+            model.addRow(v);
+        }
+        jtbListaEmailAluno.setModel(model);
+    }
+     
+     private void addEndereco(){
+        DefaultTableModel model= new DefaultTableModel();
+        model.addColumn("Rua");
+        model.addColumn("Num");
+        model.addColumn("Bairro");
+        model.addColumn("Cep");
+        model.addColumn("Complemento");
+ 
+        for(Endereco en : aluno.getEndereco()){
+            Vector v = new Vector();
+            v.add(0,en.getRua());
+            v.add(1,en.getNumero());
+            v.add(2,en.getBairro());
+            v.add(3,en.getCep());
+            v.add(4,en.getComplemento());
+            model.addRow(v);
+        }
+        jtbListaEndAluno.setModel(model);
+    }
+     
     public ifrmAlunoCad() {
         initComponents();
     }
@@ -49,6 +108,8 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
         jcbAlunoCurso = new javax.swing.JComboBox();
         jLabel11 = new javax.swing.JLabel();
         jcbAlunoEstado = new javax.swing.JComboBox();
+        jLabel35 = new javax.swing.JLabel();
+        txtAlunoDataNasc = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel29 = new javax.swing.JLabel();
         txtAlunoSessao = new javax.swing.JTextField();
@@ -66,11 +127,11 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
         jLabel21 = new javax.swing.JLabel();
         txtResponsavelNomePai = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
-        txtReponsavelRgPai = new javax.swing.JTextField();
+        txtResponsavelRgPai = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
-        txtReponsavelOrgaoExpPai = new javax.swing.JTextField();
+        txtResponsavelOrgaoExpPai = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
-        txtReponsavelCpf = new javax.swing.JTextField();
+        txtResponsavelCpfPai = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
         txtResponsavelNomeMae = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
@@ -159,6 +220,8 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
 
         jcbAlunoEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jLabel35.setText("Data Nasc.");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -187,10 +250,14 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtAlunoRg, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel35))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtAlunoDataExp)))
-                        .addGap(104, 104, 104))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtAlunoDataExp)
+                                    .addComponent(txtAlunoDataNasc))))
+                        .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -201,7 +268,7 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jcbAlunoCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -209,7 +276,7 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jcbAlunoEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jcbAlunoCampus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(142, Short.MAX_VALUE))))
+                        .addContainerGap(134, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,7 +296,9 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtAlunoCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel35)
+                    .addComponent(txtAlunoDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
@@ -264,40 +333,35 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel34)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel31)
+                            .addComponent(jLabel30))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtAlunoMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(59, 59, 59))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtAlunoSessao, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                            .addComponent(txtAlunoZona)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(jLabel29)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtAlunoTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel31)
-                                    .addComponent(jLabel30))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtAlunoSessao, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                                    .addComponent(txtAlunoZona))))
-                        .addGap(60, 60, 60)))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel33)
+                            .addComponent(jLabel29, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel34, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtAlunoMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtAlunoTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(60, 60, 60)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(123, 123, 123)
-                        .addComponent(txtAlunoCertidaoMilitar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel33)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtAlunoCertidaoMilitar))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel32)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtAlunoSituaçãoMilitar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -307,8 +371,7 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel34)
-                            .addComponent(txtAlunoMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtAlunoCertidaoMilitar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtAlunoMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -317,7 +380,9 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(txtAlunoSituaçãoMilitar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel32))))
-                    .addComponent(jLabel33))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel33)
+                        .addComponent(txtAlunoCertidaoMilitar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel30)
@@ -363,7 +428,7 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtResponsavelNomePai)
-                    .addComponent(txtReponsavelCpf)
+                    .addComponent(txtResponsavelCpfPai)
                     .addComponent(txtResponsavelNomeMae)
                     .addComponent(txtResponsavelCpfMae, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -372,14 +437,14 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
                     .addComponent(jLabel26))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtReponsavelRgPai)
+                    .addComponent(txtResponsavelRgPai)
                     .addComponent(txtResponsavelRgMae, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel23)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtReponsavelOrgaoExpPai, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE))
+                        .addComponent(txtResponsavelOrgaoExpPai, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel27)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -394,13 +459,13 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
                     .addComponent(jLabel21)
                     .addComponent(txtResponsavelNomePai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel22)
-                    .addComponent(txtReponsavelRgPai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtResponsavelRgPai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel23)
-                    .addComponent(txtReponsavelOrgaoExpPai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtResponsavelOrgaoExpPai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel24)
-                    .addComponent(txtReponsavelCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtResponsavelCpfPai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel25)
@@ -426,6 +491,7 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
 
             }
         ));
+        jtbListaTeleAluno.setEnabled(false);
         jScrollPane3.setViewportView(jtbListaTeleAluno);
 
         jLabel19.setText("DDD");
@@ -433,6 +499,11 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
         jLabel20.setText("Telefone");
 
         btnaddTelefoneAluno.setText("Adicionar");
+        btnaddTelefoneAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnaddTelefoneAlunoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -441,7 +512,7 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel19)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -483,6 +554,7 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
 
             }
         ));
+        jtbListaEndAluno.setEnabled(false);
         jScrollPane2.setViewportView(jtbListaEndAluno);
 
         jLabel13.setText("Rua");
@@ -506,6 +578,11 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
         jcbCidadeAluno.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnaddEnderecoAluno.setText("Adicionar");
+        btnaddEnderecoAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnaddEnderecoAlunoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -516,7 +593,7 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel5Layout.createSequentialGroup()
@@ -593,11 +670,17 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
 
             }
         ));
+        jtbListaEmailAluno.setEnabled(false);
         jScrollPane1.setViewportView(jtbListaEmailAluno);
 
         jLabel12.setText("Email");
 
         btnAddEmailAluno.setText("Adicionar");
+        btnAddEmailAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddEmailAlunoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -606,7 +689,7 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -635,8 +718,18 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
         jTabbedPane1.addTab("Email", jPanel6);
 
         btnSalvarAluno.setText("Salvar");
+        btnSalvarAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarAlunoActionPerformed(evt);
+            }
+        });
 
         btnCancelarAluno.setText("Cancelar");
+        btnCancelarAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarAlunoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -650,10 +743,11 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
                         .addComponent(jLabel3)
                         .addGap(130, 130, 130)
                         .addComponent(jLabel2)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(315, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                        .addGap(8, 8, 8)
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnCancelarAluno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnSalvarAluno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -686,6 +780,123 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
     private void txtAlunoComplementoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAlunoComplementoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAlunoComplementoActionPerformed
+
+    private void btnAddEmailAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddEmailAlunoActionPerformed
+        // TODO add your handling code here:
+      
+        if(JOptionPane.showConfirmDialog(rootPane,"Deseja realmente adicionar esse email?")==0){
+            Email email = new Email();
+            email.setEnderecoEmail(txtAlunoEmail.getText());
+
+            aluno.addEmail(email);
+            JOptionPane.showMessageDialog(rootPane, "Email adicionado");
+            addEmail();
+            
+            txtAlunoEmail.setText(null);
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Ação cancelada");
+        }
+    }//GEN-LAST:event_btnAddEmailAlunoActionPerformed
+
+    private void btnaddTelefoneAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddTelefoneAlunoActionPerformed
+        // TODO add your handling code here:
+         if(JOptionPane.showConfirmDialog(rootPane,"Deseja realmente adicionar esse telefone?")==0){
+            Telefone telefone = new Telefone();
+            telefone.setDdd(Integer.parseInt(txtAlunoddd.getText()));
+            telefone.setNumero(Integer.parseInt(txtAlunoTelefone.getText()));
+
+            aluno.addTelefone(telefone);
+            JOptionPane.showMessageDialog(rootPane, "Telefone adicionado");
+            addTelefone();
+            
+            txtAlunoddd.setText(null);
+            txtAlunoTelefone.setText(null);
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Ação cancelada");
+        }
+    }//GEN-LAST:event_btnaddTelefoneAlunoActionPerformed
+
+    private void btnaddEnderecoAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddEnderecoAlunoActionPerformed
+        // TODO add your handling code here:
+         if(JOptionPane.showConfirmDialog(rootPane,"Deseja realmente adicionar esse endereco?")==0){
+            Endereco endereco = new Endereco();
+            endereco.setRua(txtAlunoRua.getText());
+            endereco.setNumero(Integer.parseInt(txtAlunoNumero.getText()));
+            endereco.setBairro(txtAlunoBairro.getText());
+            endereco.setCep(Integer.parseInt(txtAlunoCep.getText()));
+            endereco.setComplemento(txtAlunoComplemento.getText());
+          
+            aluno.addEndereco(endereco);
+            JOptionPane.showMessageDialog(rootPane, "Endereco adicionado");
+            addEndereco();
+            
+            txtAlunoRua.setText(null);
+            txtAlunoNumero.setText(null);
+            txtAlunoBairro.setText(null);
+            txtAlunoCep.setText(null);
+            txtAlunoComplemento.setText(null);
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Ação cancelada");
+        }
+    }//GEN-LAST:event_btnaddEnderecoAlunoActionPerformed
+
+    private void btnCancelarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarAlunoActionPerformed
+        // TODO add your handling code here:
+        if(JOptionPane.showConfirmDialog(rootPane, "Deseja cancelar a operação?")==0){
+            JOptionPane.showMessageDialog(rootPane, "Operação cancelada");
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Continuar de onde parou.");
+        }
+    }//GEN-LAST:event_btnCancelarAlunoActionPerformed
+
+    private void btnSalvarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarAlunoActionPerformed
+        // TODO add your handling code here:
+        if(JOptionPane.showConfirmDialog(rootPane, "Deseja realmente salvar esses dados?")==0){
+            
+            
+            aluno.setNome(title);
+            aluno.setCpf(WIDTH);
+            aluno.setRg(title);
+            aluno.setOrgaoExpeditor(title);
+            aluno.setDataExpedicao(null);
+            aluno.setDataNascimento(null);
+            aluno.setTituloEleitoral(title);
+            aluno.setZonaEleitoral(title);
+            aluno.setSecaoEleitoral(title);
+            aluno.setCampus(null);
+            aluno.setEstado(null);
+            aluno.setCursoArea(null);
+            aluno.setNacionalidade(null);
+            aluno.setNaturalidade(title);
+            
+            
+            
+            JOptionPane.showMessageDialog(rootPane, "Dados foram salvos com sucesso.");
+            txtAlunoNome.setText(null);
+            txtAlunoRg.setText(null);
+            txtAlunoOrgaoEx.setText(null);
+            txtAlunoDataExp.setText(null);
+            txtAlunoCpf.setText(null);
+            txtAlunoMatricula.setText(null);
+            txtAlunoCertidaoMilitar.setText(null);
+            txtAlunoSituaçãoMilitar.setText(null);
+            txtAlunoTitulo.setText(null);
+            txtAlunoSessao.setText(null);
+            txtAlunoZona.setText(null);
+            txtResponsavelNomePai.setText(null);
+            txtResponsavelNomeMae.setText(null);
+            txtResponsavelCpfMae.setText(null);
+            txtResponsavelCpfPai.setText(null);
+            txtResponsavelRgMae.setText(null);
+            txtResponsavelOrgaoExpMae.setText(null);
+            txtResponsavelRgPai.setText(null);
+            txtResponsavelOrgaoExpPai.setText(null);
+           
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Ocorreu um erro ao salvar os dados, consulte o administrador do sistema.");
+        }
+    }//GEN-LAST:event_btnSalvarAlunoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddEmailAluno;
@@ -721,6 +932,7 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -752,6 +964,7 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtAlunoComplemento;
     private javax.swing.JTextField txtAlunoCpf;
     private javax.swing.JTextField txtAlunoDataExp;
+    private javax.swing.JTextField txtAlunoDataNasc;
     private javax.swing.JTextField txtAlunoEmail;
     private javax.swing.JTextField txtAlunoMatricula;
     private javax.swing.JTextField txtAlunoNome;
@@ -765,13 +978,13 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtAlunoTitulo;
     private javax.swing.JTextField txtAlunoZona;
     private javax.swing.JTextField txtAlunoddd;
-    private javax.swing.JTextField txtReponsavelCpf;
-    private javax.swing.JTextField txtReponsavelOrgaoExpPai;
-    private javax.swing.JTextField txtReponsavelRgPai;
     private javax.swing.JTextField txtResponsavelCpfMae;
+    private javax.swing.JTextField txtResponsavelCpfPai;
     private javax.swing.JTextField txtResponsavelNomeMae;
     private javax.swing.JTextField txtResponsavelNomePai;
     private javax.swing.JTextField txtResponsavelOrgaoExpMae;
+    private javax.swing.JTextField txtResponsavelOrgaoExpPai;
     private javax.swing.JTextField txtResponsavelRgMae;
+    private javax.swing.JTextField txtResponsavelRgPai;
     // End of variables declaration//GEN-END:variables
 }

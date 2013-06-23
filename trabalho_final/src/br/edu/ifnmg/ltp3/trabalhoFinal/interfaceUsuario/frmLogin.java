@@ -68,6 +68,11 @@ public class frmLogin extends javax.swing.JFrame {
         lblLoginCadeado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cadeado.png"))); // NOI18N
 
         btnLoginEntrar.setText("Entrar");
+        btnLoginEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginEntrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -138,6 +143,11 @@ public class frmLogin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnLoginEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginEntrarActionPerformed
+        new frmBody().setVisible(true);  
+        this.dispose();
+    }//GEN-LAST:event_btnLoginEntrarActionPerformed
 
     /**
      * @param args the command line arguments

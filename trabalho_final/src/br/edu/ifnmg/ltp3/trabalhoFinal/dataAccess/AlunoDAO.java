@@ -5,6 +5,9 @@
 package br.edu.ifnmg.ltp3.trabalhoFinal.dataAccess;
 
 import br.edu.ifnmg.ltp3.trabalhoFinal.domainModel.Aluno;
+import br.edu.ifnmg.ltp3.trabalhoFinal.domainModel.Email;
+import br.edu.ifnmg.ltp3.trabalhoFinal.domainModel.Endereco;
+import br.edu.ifnmg.ltp3.trabalhoFinal.domainModel.Telefone;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,14 +29,14 @@ public class AlunoDAO {
     
     public boolean Salvar(Aluno obj) throws SQLException{
         try{
-            if(obj.getIdAluno() == 0){
+           if(obj.getIdAluno() == 0){
                 CallableStatement comando = conexao.getConexao().prepareCall("CALL sp_Aluno(?,?,?,?,?,?,?,"
                         + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                 comando.setString(1, obj.getNome());
                 comando.setInt(2, obj.getCpf());
                 comando.setString(3, obj.getRg());
                 comando.setString(4, obj.getTituloEleitoral());
-                //comando.setString(5, obj.getDataNascimento());
+                //comando.setDate(5, obj.getDataNascimento());
                 comando.setString(6, obj.getOrgaoExpeditor());
                 //comando.setString(7, obj.getDataExpedicao());
                 comando.setInt(8, obj.getCampus().getIdCampus());
@@ -56,12 +59,32 @@ public class AlunoDAO {
                
                 comando.execute();
                 
-                //comando = conexao.getConexao().prepareCall("CALL sp_");
+                
+                PreparedStatement comando1 = conexao.getConexao().prepareStatement("SELECT MAX(idPessoa)  FROM vw_Aluno ");
+                ResultSet rs = comando1.executeQuery();
+                
+                EmailDAO emailDAO = new EmailDAO();
+                for(Email e :obj.getEmail()){
+                    emailDAO.Salvar(e, rs.getInt("MAX(idPessoa)"));
+               }
+                
+                TelefoneDAO telefoneDAO = new TelefoneDAO();
+                for(Telefone t :obj.getTelefone()){
+                    telefoneDAO.Salvar(t, rs.getInt("MAX(idPessoa)"));
+               }
+                
+                EnderecoDAO enderecoDAO = new EnderecoDAO();
+                for(Endereco t :obj.getEndereco()){
+                    enderecoDAO.Salvar(t, rs.getInt(("MAX(idPessoa)")));
+               }
+                
+                
+                
               
                 
             }else{
                 CallableStatement comando1 = conexao.getConexao().prepareCall(""
-                        + "CALL sp_AlunoAtualiza(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                        + "CALL sp_AlunoAtualiza(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                 comando1.setString(1, obj.getNome());
                 comando1.setInt(2, obj.getCpf());
                 comando1.setString(3, obj.getRg());
@@ -85,8 +108,26 @@ public class AlunoDAO {
                 comando1.setString(21, obj.getResponsavel().getRgMae());
                 comando1.setString(22, obj.getResponsavel().getOrgaoExpedidorMae());
                 comando1.setInt(23, obj.getResponsavel().getCpfMae());
-                comando1.setInt(24, obj.getIdAluno());
-                comando1.setInt(25, obj.getMatricula());
+                comando1.setInt(24, obj.getIdPessoa());
+                comando1.setInt(25, obj.getIdAluno());
+                comando1.setInt(26, obj.getMatricula());
+                comando1.execute();
+                
+                EmailDAO emailDAO = new EmailDAO();
+                for(Email e :obj.getEmail()){
+                    emailDAO.Salvar(e, obj.getIdPessoa());
+               }
+                
+                TelefoneDAO telefoneDAO = new TelefoneDAO();
+                for(Telefone t :obj.getTelefone()){
+                    telefoneDAO.Salvar(t, obj.getIdPessoa());
+               }
+                
+                EnderecoDAO enderecoDAO = new EnderecoDAO();
+                for(Endereco t :obj.getEndereco()){
+                    enderecoDAO.Salvar(t, obj.getIdPessoa());
+               }
+                
            }
             return true;
         }catch(SQLException ex){
@@ -101,7 +142,7 @@ public class AlunoDAO {
     public Aluno Abrir(int idAluno) throws SQLException{
         try{
             PreparedStatement comando = conexao.getConexao().prepareStatement("SELECT * "
-                    + "FROM Aluno WHERE idAluno = ?"); //criar a view com inner join de pessoa com aluno
+                    + "FROM Aluno WHERE idAluno = ?"); 
             comando.setInt(1, idAluno);
             ResultSet consulta = comando.executeQuery();
             
@@ -112,23 +153,35 @@ public class AlunoDAO {
                 CampusDAO campus = new CampusDAO();
                 CursoAreaDAO cursoArea = new CursoAreaDAO();
                 NacionalidadeDAO nacionalidade = new NacionalidadeDAO();
+                ResponsavelDAO responsavel = new ResponsavelDAO();
+                EstadoDAO estado = new EstadoDAO();
+                PlanoTrabalhoDAO planoTrabalhoDAO = new PlanoTrabalhoDAO();
                 Aluno novo = new Aluno();
                 
                 novo.setIdAluno(consulta.getInt("idAluno"));
                 novo.setIdPessoa(consulta.getInt("idPessoa"));
                 novo.setCertidaoMilitar(consulta.getString("certidaoMilitar"));
                 novo.setCpf(consulta.getInt("cpf"));
+                novo.setRg(consulta.getString("rg"));
+                novo.setSecaoEleitoral(consulta.getString("secaoEleitoral"));
+                novo.setMatricula(consulta.getInt("numeroMatrucula"));
+                novo.setTituloEleitoral(consulta.getString("tituloEleitoral"));
+                novo.setZonaEleitoral(consulta.getString("zonaEleitoral"));
+                novo.setPlanoTrabalho(null);//sfsdfs
                 //novo.setDataExpedicao(null);
                 novo.setCursoArea(cursoArea.Abrir(consulta.getInt("idCursoArea")));
                 //novo.setDataNascimento(null);
                 novo.setMatricula(consulta.getInt("matricula"));
                 novo.setNacionalidade(nacionalidade.Abrir(consulta.getInt("idNacionalidade")));
-                //novo.setNaturalidade(null);
                 
                 novo.setEmail(emails.ListarTodos(novo.getIdPessoa()));
                 novo.setEndereco(enderecos.ListarTodos(novo.getIdPessoa()));
                 novo.setTelefone(telefones.ListarTodos(novo.getIdPessoa()));
                 novo.setCampus(campus.Abrir(consulta.getInt("idCampus")));
+                novo.setEstado(estado.Abrir(consulta.getInt("idEstado")));
+                novo.setResponsavel(responsavel.Abrir(consulta.getInt("idResponsavel")));
+                //novo.setPlanoTrabalho(planoTrabalhoDAO.Abrir(idAluno));
+                
                 
                 
                 /* -------------- CONTINUAR --------------------------*/
@@ -179,11 +232,11 @@ public class AlunoDAO {
         }
      }
     
-    public boolean Apagar(int idEmail ) throws SQLException{
+    public boolean Apagar(int idPessoa, int idAluno ) throws SQLException{
         try{
-            PreparedStatement comando = conexao.getConexao().prepareStatement(""
-                    + "UPDATE Email SET status = 0 WHERE idEmail = ?");
-            comando.setInt(1, idEmail);
+            PreparedStatement comando = conexao.getConexao().prepareStatement("CALL sp_AlunoApagar(?,?)");
+            comando.setInt(1, idPessoa);
+            comando.setInt(1, idAluno);
             comando.executeUpdate();
             return true;
         }catch(SQLException ex){

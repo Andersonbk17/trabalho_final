@@ -1135,8 +1135,15 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
             resp.setOrgaoExpedidorMae(txtResponsavelOrgaoExpMae.getText());
             
             aluno.setResponsavel(resp);
-            
-            JOptionPane.showMessageDialog(rootPane, "Dados foram salvos com sucesso.");
+            try {
+                if(alunoDao.Salvar(aluno)){
+                    JOptionPane.showMessageDialog(rootPane, "Dados foram salvos com sucesso.");
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, "Ocorreu um erro ao salvar os dados.");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(ifrmAlunoCad.class.getName()).log(Level.SEVERE, null, ex);
+            }
             txtAlunoNome.setText(null);
             txtAlunoRg.setText(null);
             txtAlunoOrgaoEx.setText(null);

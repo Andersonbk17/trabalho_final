@@ -90,9 +90,11 @@ public class CronogramaAtividadeDAO {
     
     }
     
-    public List<CronogramaAtividade> ListarTodos() throws SQLException{
+    public List<CronogramaAtividade> ListarTodos(int idPlanoTrabalho) throws SQLException{
         try{
-            PreparedStatement comando = conexao.getConexao().prepareStatement("SELECT * FROM vw_CronogramaAtividade ");
+            PreparedStatement comando = conexao.getConexao().prepareStatement("SELECT * FROM vw_CronogramaAtividade "
+                    + "WHERE idPlanoDeTrabalho = ?");
+            comando.setInt(1, idPlanoTrabalho);
             ResultSet consuta = comando.executeQuery();
             List<CronogramaAtividade> lista = new LinkedList<>();
             while(consuta.next()){
@@ -102,7 +104,6 @@ public class CronogramaAtividadeDAO {
                 //novo.setDataTermino(null);
                 novo.setDescricao(consuta.getString("descricao"));
                 novo.setNumeroAtividade(consuta.getInt("numeroAtividade"));
-                
                 
                 lista.add(novo);
             }

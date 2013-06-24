@@ -872,8 +872,15 @@ public class ifrmOrientadorCad extends javax.swing.JInternalFrame {
             orientador.setNacionalidade(na);
             orientador.setEstado(es);
             
-          
-            JOptionPane.showMessageDialog(rootPane, "Dados foram salvos com sucesso.");
+            try {
+                if(orientadorDao.Salvar(orientador)){
+                    JOptionPane.showMessageDialog(rootPane, "Dados foram salvos com sucesso.");
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, "Ocorreu um erro ao salvar os dados."); 
+                } 
+            } catch (SQLException ex) {
+                Logger.getLogger(ifrmOrientadorCad.class.getName()).log(Level.SEVERE, null, ex);
+            }
             txtOrientadorNome.setText(null);
             txtOrientadorRg.setText(null);
             txtOrientadorOrgaoEx.setText(null);

@@ -4,6 +4,8 @@
  */
 package br.edu.ifnmg.ltp3.trabalhoFinal.domainModel;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -23,14 +25,14 @@ public class PlanoTrabalho {
     private String dataFinal;
     
    private ProjetoPesquisa projetoPesquisa;
-   private CronogramaAtividade cronogramaAtividade;
+   private List<CronogramaAtividade> cronogramaAtividade;
     
     //Construtores
 
     public PlanoTrabalho(int idPlanoTrabalho, String introducao, String justificativa, 
             String objetivo, String metodologia, String resultadoEsperado, String 
                     referenciaBibliografica, boolean status, String dataInicial, String 
-           dataFinal, ProjetoPesquisa projetoPesquisa, CronogramaAtividade cronogramaAtividade) {
+           dataFinal, ProjetoPesquisa projetoPesquisa, List<CronogramaAtividade> cronogramaAtividade) {
         this.idPlanoTrabalho = idPlanoTrabalho;
         this.introducao = introducao;
         this.justificativa = justificativa;
@@ -57,7 +59,7 @@ public class PlanoTrabalho {
         this.dataInicial = "vazio";
         this.dataFinal = "vazio";
         this.projetoPesquisa = new ProjetoPesquisa();
-        this.cronogramaAtividade = new CronogramaAtividade();
+        this.cronogramaAtividade = new LinkedList<>();
     }
     
     //Metodos
@@ -150,12 +152,26 @@ public class PlanoTrabalho {
         this.projetoPesquisa = projetoPesquisa;
     }
 
-    public CronogramaAtividade getCronogramaAtividade() {
+    public List<CronogramaAtividade> getCronogramaAtividade() {
         return cronogramaAtividade;
     }
 
-    public void setCronogramaAtividade(CronogramaAtividade cronogramaAtividade) {
+    public void setCronogramaAtividade(List<CronogramaAtividade> cronogramaAtividade) {
         this.cronogramaAtividade = cronogramaAtividade;
+    }
+
+    public void addCronogramaAtividade(CronogramaAtividade c){
+        if(!this.cronogramaAtividade.contains(c)){
+            this.cronogramaAtividade.add(c);
+        
+        }
+    }
+    
+    public void removeCronogramaAtividade(CronogramaAtividade c){
+        if(this.cronogramaAtividade.contains(c)){
+            this.cronogramaAtividade.remove(c);
+        
+        }
     }
     
     
@@ -228,10 +244,12 @@ public class PlanoTrabalho {
 
     @Override
     public String toString() {
-        return "PlanoTrabalho{" + "introducao=" + introducao + ", justificativa=" +
-                justificativa + ", objetivo=" + objetivo + ", metodologia=" + metodologia +
-                ", resultadoEsperado=" + resultadoEsperado + ", referenciaBibliografica=" +
-                referenciaBibliografica + ", dataInicial=" + dataInicial + ", dataFinal=" + dataFinal + '}';
+        return "PlanoTrabalho{" + "idPlanoTrabalho=" + idPlanoTrabalho + ", introducao=" 
+                + introducao + ", justificativa=" + justificativa + ", objetivo=" + objetivo + 
+                ", metodologia=" + metodologia + ", resultadoEsperado=" + resultadoEsperado + 
+                ", referenciaBibliografica=" + referenciaBibliografica + ", dataInicial=" +
+                dataInicial + ", dataFinal=" + dataFinal + '}';
     }
+
 
 }

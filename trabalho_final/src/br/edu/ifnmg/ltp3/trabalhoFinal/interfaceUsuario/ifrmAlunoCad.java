@@ -117,7 +117,7 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
         for(LocalTrabalho lt : aluno.getListaLocalTrabalho()){
             Vector v = new Vector();
             v.add(0,lt.getNome());
-            v.add(1,lt.getTelefone());
+            v.add(1,lt.getFone());
             model.addRow(v);
         }
         jtbListaLocTrabalhoAluno.setModel(model);
@@ -235,11 +235,11 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         jLabel36 = new javax.swing.JLabel();
-        jLabel37 = new javax.swing.JLabel();
+        lblAlunoLocalTrab = new javax.swing.JLabel();
         txtAlunoLocalTrabalho = new javax.swing.JTextField();
         txtAlunoTelefoneTrabalho = new javax.swing.JTextField();
-        jLabel39 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        lblAlunoFoneTrab = new javax.swing.JLabel();
+        btnAlunoAddLocalTrab = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jtbListaLocTrabalhoAluno = new javax.swing.JTable();
         jPanel7 = new javax.swing.JPanel();
@@ -545,7 +545,7 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
 
         jLabel36.setText("Está Trabalhando?");
 
-        jLabel37.setText("Local");
+        lblAlunoLocalTrab.setText("Local");
 
         txtAlunoLocalTrabalho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -559,12 +559,12 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel39.setText("Fone");
+        lblAlunoFoneTrab.setText("Fone");
 
-        jButton1.setText("Adicionar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAlunoAddLocalTrab.setText("Adicionar");
+        btnAlunoAddLocalTrab.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAlunoAddLocalTrabActionPerformed(evt);
             }
         });
 
@@ -600,15 +600,15 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel36))
                             .addGroup(jPanel8Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jLabel37)
+                                .addComponent(lblAlunoLocalTrab)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtAlunoLocalTrabalho, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(33, 33, 33)
-                                .addComponent(jLabel39)
+                                .addComponent(lblAlunoFoneTrab)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtAlunoTelefoneTrabalho, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton1)))
+                                .addComponent(btnAlunoAddLocalTrab)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -623,11 +623,11 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
                 .addComponent(jRadioButton2)
                 .addGap(23, 23, 23)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel37)
+                    .addComponent(lblAlunoLocalTrab)
                     .addComponent(txtAlunoLocalTrabalho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtAlunoTelefoneTrabalho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel39)
-                    .addComponent(jButton1))
+                    .addComponent(lblAlunoFoneTrab)
+                    .addComponent(btnAlunoAddLocalTrab))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -1179,6 +1179,9 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
         aluno.setTrabalhoStatus(1);
         txtAlunoLocalTrabalho.setVisible(true);
         txtAlunoTelefoneTrabalho.setVisible(true);
+        btnAlunoAddLocalTrab.setVisible(true);
+        lblAlunoLocalTrab.setVisible(true);
+        lblAlunoFoneTrab.setVisible(true);
         //Limpar os campos
         txtAlunoLocalTrabalho.setText(null);
         txtAlunoTelefoneTrabalho.setText(null);
@@ -1191,22 +1194,22 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
         //Bloquear os campos
         txtAlunoLocalTrabalho.setVisible(false);
         txtAlunoTelefoneTrabalho.setVisible(false);
+        lblAlunoLocalTrab.setVisible(false);
+        lblAlunoFoneTrab.setVisible(false);
+        btnAlunoAddLocalTrab.setVisible(false);
          //limpar os  campos
         txtAlunoLocalTrabalho.setText(null);
         txtAlunoTelefoneTrabalho.setText(null);
        
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAlunoAddLocalTrabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlunoAddLocalTrabActionPerformed
         // TODO add your handling code here:
          if(JOptionPane.showConfirmDialog(rootPane,"Deseja realmente adicionar esse Local de Trabalho?")==0){
             LocalTrabalho localtrab = new LocalTrabalho();
-            Telefone fone = new Telefone();
             localtrab.setNome(txtAlunoLocalTrabalho.getText());
+            localtrab.setFone(Integer.parseInt(txtAlunoTelefoneTrabalho.getText()));
             
-            fone.setNumero(Integer.parseInt(txtAlunoTelefoneTrabalho.getText()));
-            localtrab.setTelefone(fone);
-
             aluno.addLocalTrabalho(localtrab);
             JOptionPane.showMessageDialog(rootPane, "Local de Trabalho adicionado");
             addLocalTrabalho();
@@ -1215,16 +1218,16 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
         }else{
             JOptionPane.showMessageDialog(rootPane, "Ação cancelada");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnAlunoAddLocalTrabActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddEmailAluno;
+    private javax.swing.JButton btnAlunoAddLocalTrab;
     private javax.swing.JButton btnCancelarAluno;
     private javax.swing.JButton btnSalvarAluno;
     private javax.swing.JButton btnaddEnderecoAluno;
     private javax.swing.JButton btnaddTelefoneAluno;
     private javax.swing.ButtonGroup gjrtrabalho;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1255,8 +1258,6 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1287,6 +1288,8 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
     private javax.swing.JTable jtbListaEndAluno;
     private javax.swing.JTable jtbListaLocTrabalhoAluno;
     private javax.swing.JTable jtbListaTeleAluno;
+    private javax.swing.JLabel lblAlunoFoneTrab;
+    private javax.swing.JLabel lblAlunoLocalTrab;
     private javax.swing.JTextField txtAlunoBairro;
     private javax.swing.JTextField txtAlunoCep;
     private javax.swing.JTextField txtAlunoCertidaoMilitar;

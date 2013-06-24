@@ -551,15 +551,15 @@
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jLabel37" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblAlunoLocalTrab" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="txtAlunoLocalTrabalho" min="-2" pref="230" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                                      <Component id="jLabel39" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblAlunoFoneTrab" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="txtAlunoTelefoneTrabalho" min="-2" pref="100" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnAlunoAddLocalTrab" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -580,11 +580,11 @@
                       <Component id="jRadioButton2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel37" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAlunoLocalTrab" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtAlunoLocalTrabalho" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtAlunoTelefoneTrabalho" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel39" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAlunoFoneTrab" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnAlunoAddLocalTrab" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="18" max="32767" attributes="0"/>
                       <Component id="jScrollPane4" min="-2" pref="127" max="-2" attributes="0"/>
@@ -621,7 +621,7 @@
                 <Property name="text" type="java.lang.String" value="Est&#xe1; Trabalhando?"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel37">
+            <Component class="javax.swing.JLabel" name="lblAlunoLocalTrab">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Local"/>
               </Properties>
@@ -636,17 +636,17 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtAlunoTelefoneTrabalhoActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel39">
+            <Component class="javax.swing.JLabel" name="lblAlunoFoneTrab">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Fone"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="btnAlunoAddLocalTrab">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Adicionar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAlunoAddLocalTrabActionPerformed"/>
               </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane4">

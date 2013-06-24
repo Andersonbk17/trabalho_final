@@ -117,7 +117,7 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
         for(LocalTrabalho lt : aluno.getListaLocalTrabalho()){
             Vector v = new Vector();
             v.add(0,lt.getNome());
-            v.add(1,lt.getFone());
+            v.add(1,lt.getTelefone().getNumero());
             model.addRow(v);
         }
         jtbListaLocTrabalhoAluno.setModel(model);
@@ -1207,14 +1207,19 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
          if(JOptionPane.showConfirmDialog(rootPane,"Deseja realmente adicionar esse Local de Trabalho?")==0){
             LocalTrabalho localtrab = new LocalTrabalho();
+            Telefone fone = new Telefone();
+            
             localtrab.setNome(txtAlunoLocalTrabalho.getText());
-            localtrab.setFone(Integer.parseInt(txtAlunoTelefoneTrabalho.getText()));
+            fone.setNumero(Integer.parseInt(txtAlunoTelefoneTrabalho.getText()));
+            localtrab.setTelefone(fone);
             
             aluno.addLocalTrabalho(localtrab);
+            
             JOptionPane.showMessageDialog(rootPane, "Local de Trabalho adicionado");
             addLocalTrabalho();
             
-            txtAlunoEmail.setText(null);
+            txtAlunoLocalTrabalho.setText(null);
+            txtAlunoTelefoneTrabalho.setText(null);
         }else{
             JOptionPane.showMessageDialog(rootPane, "Ação cancelada");
         }

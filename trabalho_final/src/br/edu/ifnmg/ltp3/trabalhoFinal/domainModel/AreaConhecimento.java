@@ -13,6 +13,7 @@ import java.util.Objects;
 public class AreaConhecimento {
     private int idAreaConhecimento;
     private String nome;
+    private String codigo;
    
     
     //Construtores
@@ -26,6 +27,7 @@ public class AreaConhecimento {
     public AreaConhecimento() {
         this.idAreaConhecimento = 0;
         this.nome = "vazio";
+        this.codigo = "vazio";
     }
 
     //Metodos
@@ -45,6 +47,16 @@ public class AreaConhecimento {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+    
+    
 
     //HashCodes
 
@@ -79,8 +91,10 @@ public class AreaConhecimento {
 
     @Override
     public String toString() {
-        return "AreaConhecimento{" + "idAreaConhecimento=" + idAreaConhecimento + ", nome=" + nome + '}';
+        return this.codigo + " - " + this.nome;
     }
+
+    
 
     
     

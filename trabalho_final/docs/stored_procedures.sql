@@ -82,7 +82,8 @@ DELIMITER //
 		END;
 //
 DELIMITER //
-	CREATE PROCEDURE sp_Endereco (_rua varchar(50),_bairro varchar(50),_cep int,_numero int,_complemento varchar(50),_idPessoa int, _idCidade int)
+	CREATE PROCEDURE sp_Endereco (_rua varchar(50),_bairro varchar(50),_cep int,_numero int,_complemento varchar(50),_idPessoa int,
+	_idCidade int)
 		BEGIN
 			DECLARE exit HANDLER FOR SQLEXCEPTION ROLLBACK;
 			START TRANSACTION;	
@@ -478,12 +479,42 @@ DELIMITER //
 
 
 DELIMITER //
-	CREATE PROCEDURE sp_PlanoDeTrabalho(_idAluno int,_idProjetoPesquisa int,introducao text,justificativa text,objetivos text)
+	CREATE PROCEDURE sp_PlanoDeTrabalho(_idAluno int,_idProjetoPesquisa int,_introducao text,_justificativa text,_objetivos text,
+	_metodologia text,_resultadosEsperados text,_referenciasBibliograficas text )
 		BEGIN
 			DECLARE exit HANDLER FOR SQLEXCEPTION ROLLBACK;
 			START TRANSACTION;
-			INSERT INTO CronogramaAtividade(descricao,numeroAtividade,idPlanoDeTrabalho,status,dataInicio,dataTermino) VALUES(_descricao,_numeroAtividade,
-			_data,_idPlanoDeTrabalho,1,_dataInicio,_dataTermino);
+			INSERT INTO PlanoDeTrabalho(idAluno,idProjetoPesquisa,introducao,justificativa,objetivos,metodoslogia
+			,resultadosEsperados,referenciasBibliograficas,status) VALUES (_idAluno,_idProjetoPesquisa,_introducao,_justificativa,_objetivos,
+			_metodologia,_resultadosEsperados,_referenciasBibliograficas,1);
+			
+			
+			COMMIT;
+		END;
+//
+
+DELIMITER //
+	CREATE PROCEDURE sp_PlanoDeTrabalhoAtualiza(_idAluno int,_idProjetoPesquisa int,_introducao text,_justificativa text,_objetivos text,
+	_metodologia text,_resultadosEsperados text,_referenciasBibliograficas text,_idPlanoDeTrabalho int)
+		BEGIN
+			DECLARE exit HANDLER FOR SQLEXCEPTION ROLLBACK;
+			START TRANSACTION;
+			UPDATE PlanoDeTrabalho SET idAluno = _idAluno ,idProjetoPesquisa = _idProjetoPesquisa ,introducao = _introducao ,
+			justificativa = _justificativa ,objetivos = _objetivos ,metodoslogia = _metodologia	, resultadosEsperados = _resultadosEsperados,
+			referenciasBibliograficas = _referenciasBibliograficas WHERE idPlanoDeTrabalho = _idPlanoDeTrabalho;
+			
+			
+			COMMIT;
+		END;
+//
+
+DELIMITER //
+	CREATE PROCEDURE sp_PlanoDeTrabalhoApaga(_idPlanoDeTrabalho int)
+		BEGIN
+			DECLARE exit HANDLER FOR SQLEXCEPTION ROLLBACK;
+			START TRANSACTION;
+			UPDATE PlanoDeTrabalho SET status = 0 WHERE idPlanoDeTrabalho = _idPlanoDeTrabalho;
+			
 			
 			COMMIT;
 		END;

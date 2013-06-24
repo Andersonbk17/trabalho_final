@@ -40,7 +40,10 @@ public class Pessoa {
 
   
 
-    public Pessoa(int idPessoa, String nome, String rg, int cpf, String naturalidade, Date dataNascimento, String orgaoExpeditor, Date dataExpedicao, boolean status, List<Endereco> endereco, List<Telefone> telefone, List<Email> email, Estado estado, Campus campus, Nacionalidade nacionalidade, CursoArea cursoArea) {
+    public Pessoa(int idPessoa, String nome, String rg, int cpf, String naturalidade, Date dataNascimento,
+            String orgaoExpeditor, Date dataExpedicao, boolean status, List<Endereco> endereco, 
+            List<Telefone> telefone, List<Email> email, Estado estado, Campus campus, Nacionalidade
+                    nacionalidade, CursoArea cursoArea) {
         this.idPessoa = idPessoa;
         this.nome = nome;
         this.rg = rg;

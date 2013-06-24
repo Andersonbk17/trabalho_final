@@ -281,7 +281,7 @@ DELIMITER //
 		END;
 //
 DELIMITER //
-	CREATE PROCEDURE sp_AlunoApaga(_idPessoa int)
+	CREATE PROCEDURE sp_AlunoApaga(_idPessoa int,_idAluno)
 		BEGIN
 			DECLARE exit HANDLER FOR SQLEXCEPTION ROLLBACK;
 			START TRANSACTION;
@@ -297,9 +297,9 @@ DELIMITER //
 		END;
 //
 DELIMITER //
-	CREATE PROCEDURE sp_Orientador(_nome varchar(100), _cpf int, _rg varchar(20),_dataNascimento date,_orgaoExpeditor varchar(5),_dataExpedicao date,
-	_idCampus int,_idCursoArea int,_idNacionalidade int, _idEstado int,_matriculaSiape int,_localPermanencia varchar(100),_formacaoUniversitaria varchar(100),
-	_tituloAcademico varchar(100))
+	CREATE PROCEDURE sp_Orientador(_nome varchar(100), _cpf int, _rg varchar(20),_dataNascimento date,_orgaoExpeditor varchar(5),
+	_dataExpedicao date,_idCampus int,_idCursoArea int,_idNacionalidade int, _idEstado int,_matriculaSiape int,
+	_localPermanencia varchar(100),_formacaoUniversitaria varchar(100),	_tituloAcademico varchar(100))
 		BEGIN
 			DECLARE _idPessoaAtual int;
 			DECLARE exit HANDLER FOR SQLEXCEPTION ROLLBACK;
@@ -331,6 +331,28 @@ DELIMITER //
 			COMMIT;
 		END;
 //
+
+
+DELIMITER //
+	CREATE PROCEDURE sp_OrientadorApaga(_idPessoa int,_idOrientador int)
+		BEGIN
+			DECLARE exit HANDLER FOR SQLEXCEPTION ROLLBACK;
+			START TRANSACTION;
+			
+			CALL sp_EmailApaga(_idPessoa);
+			CALL sp_EnderecoApaga(_idPessoa);
+			CALL sp_TelefoneApaga(_idPessoa);
+			
+			UPDATE Pessoa SET  status = 0 WHERE idPessoa =_idPessoa;
+			UPDATE Orientador SET  status = 0 WHERE idOrientador = _idOrientador;
+			
+			COMMIT;
+		END;
+//
+
+
+
+
 DELIMITER //			
 	CREATE PROCEDURE sp_ProjetoPesquisa(_titulo varchar(100),_dataInicio date,_dataTermino date,_grupoPesquisa varchar(100),_idAreaConhecimentoCNPq int,_idCampus int,
 	_resumo text,_idOrientador int,_financiamento tinyint,_bolsa tinyint, _convenio tinyint,_valorFinanciamento float,_dataFinanciamento date,_numeroBolsas int,

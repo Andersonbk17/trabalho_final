@@ -4,6 +4,10 @@
  */
 package br.edu.ifnmg.ltp3.trabalhoFinal.interfaceUsuario;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  *
@@ -29,6 +33,7 @@ public class frmBody extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jmBodyCadastrar = new javax.swing.JMenu();
         jmiAluno = new javax.swing.JMenuItem();
+        jmiPPesquisa = new javax.swing.JMenuItem();
         jmBodyListar = new javax.swing.JMenu();
         jmBodyProjetos = new javax.swing.JMenu();
         jmBodyRelarotio = new javax.swing.JMenu();
@@ -52,6 +57,14 @@ public class frmBody extends javax.swing.JFrame {
             }
         });
         jmBodyCadastrar.add(jmiAluno);
+
+        jmiPPesquisa.setText("Projeto Pesquisa");
+        jmiPPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiPPesquisaActionPerformed(evt);
+            }
+        });
+        jmBodyCadastrar.add(jmiPPesquisa);
 
         jMenuBar1.add(jmBodyCadastrar);
 
@@ -93,10 +106,22 @@ public class frmBody extends javax.swing.JFrame {
 
     private void jmiAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAlunoActionPerformed
         // TODO add your handling code here:
-        ifrmAlunoCad janela = new ifrmAlunoCad();
+        ifrmAlunoCad janela = null;
+        try {
+            janela = new ifrmAlunoCad();
+        } catch (SQLException ex) {
+            Logger.getLogger(frmBody.class.getName()).log(Level.SEVERE, null, ex);
+        }
         add(janela);
         janela.setVisible(true);
     }//GEN-LAST:event_jmiAlunoActionPerformed
+
+    private void jmiPPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiPPesquisaActionPerformed
+        // TODO add your handling code here:
+        ifrmProjetoPesquisaCad janela = new ifrmProjetoPesquisaCad();
+        add(janela);
+        janela.setVisible(true);
+    }//GEN-LAST:event_jmiPPesquisaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,5 +166,6 @@ public class frmBody extends javax.swing.JFrame {
     private javax.swing.JMenu jmBodySobre;
     private javax.swing.JMenu jmBodyUsuario;
     private javax.swing.JMenuItem jmiAluno;
+    private javax.swing.JMenuItem jmiPPesquisa;
     // End of variables declaration//GEN-END:variables
 }

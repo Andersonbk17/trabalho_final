@@ -20,6 +20,7 @@ public class Aluno extends Pessoa {
     private String zonaEleitoral;
     private String situacaoMilitar;
     private String certidaoMilitar;
+    private int trabalhoStatus;
    
     
     private Responsavel responsavel;
@@ -29,7 +30,7 @@ public class Aluno extends Pessoa {
     //Construtores
 
     public Aluno(int idAluno, int matricula, String tituloEleitoral, String secaoEleitoral, 
-            String situacaoMilitar, String certidaoMilitar, Responsavel responsavel, 
+            String situacaoMilitar, String certidaoMilitar,int trabalhoStatus, Responsavel responsavel, 
             List<LocalTrabalho> listaLocalTrabalho, PlanoTrabalho planoTrabalho) {
         this.idAluno = idAluno;
         this.matricula = matricula;
@@ -37,6 +38,7 @@ public class Aluno extends Pessoa {
         this.secaoEleitoral = secaoEleitoral;
         this.situacaoMilitar = situacaoMilitar;
         this.certidaoMilitar = certidaoMilitar;
+        this.trabalhoStatus = trabalhoStatus;
         this.responsavel = responsavel;
         this.listaLocalTrabalho = listaLocalTrabalho;
         this.planoTrabalho = planoTrabalho;
@@ -50,6 +52,7 @@ public class Aluno extends Pessoa {
         this.secaoEleitoral = "vazio";
         this.situacaoMilitar = "vazio";
         this.certidaoMilitar = "vazio";
+        this.trabalhoStatus = 1;
         this.responsavel = new Responsavel();
         this.listaLocalTrabalho = new LinkedList<>();
         this.planoTrabalho = new PlanoTrabalho();
@@ -111,6 +114,14 @@ public class Aluno extends Pessoa {
 
     public void setCertidaoMilitar(String certidaoMilitar) {
         this.certidaoMilitar = certidaoMilitar;
+    }
+
+    public int getTrabalhoStatus() {
+        return trabalhoStatus;
+    }
+
+    public void setTrabalhoStatus(int trabalhoStatus) {
+        this.trabalhoStatus = trabalhoStatus;
     }
 
     public Responsavel getResponsavel() {

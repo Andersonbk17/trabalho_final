@@ -83,7 +83,7 @@ public class Nacionalidade {
 
     @Override
     public String toString() {
-        return "Nacionalidade{" + "nome=" + nome + '}';
+        return nome;
     }
     
     

@@ -80,7 +80,7 @@ public class Campus {
 
     @Override
     public String toString() {
-        return "Campus{" + "idCampus=" + idCampus + ", nome=" + nome + '}';
+        return nome;
     }
 
     

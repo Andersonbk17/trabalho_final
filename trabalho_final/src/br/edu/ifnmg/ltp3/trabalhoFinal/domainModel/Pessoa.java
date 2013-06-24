@@ -18,7 +18,6 @@ public class Pessoa {
    private String nome;
    private String rg;
    private int cpf;
-   private String naturalidade;
    private Date dataNascimento;
    private String orgaoExpeditor;
    private Date dataExpedicao;
@@ -40,12 +39,11 @@ public class Pessoa {
 
   
 
-    public Pessoa(int idPessoa, String nome, String rg, int cpf, String naturalidade, Date dataNascimento, String orgaoExpeditor, Date dataExpedicao, boolean status, List<Endereco> endereco, List<Telefone> telefone, List<Email> email, Estado estado, Campus campus, Nacionalidade nacionalidade, CursoArea cursoArea) {
+    public Pessoa(int idPessoa, String nome, String rg, int cpf, Date dataNascimento, String orgaoExpeditor, Date dataExpedicao, boolean status, List<Endereco> endereco, List<Telefone> telefone, List<Email> email, Estado estado, Campus campus, Nacionalidade nacionalidade, CursoArea cursoArea) {
         this.idPessoa = idPessoa;
         this.nome = nome;
         this.rg = rg;
         this.cpf = cpf;
-        this.naturalidade = naturalidade;
         this.dataNascimento = dataNascimento;
         this.orgaoExpeditor = orgaoExpeditor;
         this.dataExpedicao = dataExpedicao;
@@ -66,7 +64,6 @@ public class Pessoa {
         this.nome = "vazio";
         this.rg = "vazio";
         this.cpf = 0;
-        this.naturalidade = "vazio";
         this.dataNascimento = new Date();
         this.endereco = new LinkedList<Endereco>();
         this.telefone = new LinkedList<Telefone>();
@@ -112,14 +109,6 @@ public class Pessoa {
 
     public void setCpf(int cpf) {
         this.cpf = cpf;
-    }
-
-    public String getNaturalidade() {
-        return naturalidade;
-    }
-
-    public void setNaturalidade(String naturalidade) {
-        this.naturalidade = naturalidade;
     }
 
     public Date getDataNascimento() {
@@ -260,7 +249,6 @@ public class Pessoa {
         hash = 79 * hash + Objects.hashCode(this.nome);
         hash = 79 * hash + Objects.hashCode(this.rg);
         hash = 79 * hash + this.cpf;
-        hash = 79 * hash + Objects.hashCode(this.naturalidade);
         hash = 79 * hash + Objects.hashCode(this.dataNascimento);
         hash = 79 * hash + (this.status ? 1 : 0);
         hash = 79 * hash + Objects.hashCode(this.nacionalidade);
@@ -285,9 +273,8 @@ public class Pessoa {
         if (this.cpf != other.cpf) {
             return false;
         }
-        if (!Objects.equals(this.naturalidade, other.naturalidade)) {
-            return false;
-        }
+      
+ 
         if (!Objects.equals(this.dataNascimento, other.dataNascimento)) {
             return false;
         }
@@ -301,11 +288,12 @@ public class Pessoa {
     }
 
     //toString
+
     @Override
     public String toString() {
-        return "Pessoa{" + "nome=" + nome + ", rg=" + rg + ", cpf=" + cpf + ", naturalidade=" + naturalidade + ", dataNascimento=" + dataNascimento + ", orgaoExpeditor=" + orgaoExpeditor + ", dataExpedicao=" + dataExpedicao + ", status=" + status + ", campus=" + campus + '}';
+        return "Pessoa{" + "idPessoa=" + idPessoa + ", nome=" + nome + ", rg=" + rg + ", cpf=" + cpf + ", dataNascimento=" + dataNascimento + ", orgaoExpeditor=" + orgaoExpeditor + ", dataExpedicao=" + dataExpedicao + ", status=" + status + ", endereco=" + endereco + ", telefone=" + telefone + ", email=" + email + ", estado=" + estado + ", campus=" + campus + ", nacionalidade=" + nacionalidade + ", cursoArea=" + cursoArea + '}';
     }
-
+   
     
     
 }

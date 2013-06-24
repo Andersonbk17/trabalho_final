@@ -13,6 +13,7 @@ import java.util.Objects;
 public class LocalTrabalho {
     private int idlocalTrabalho;
     private String nome;
+    private int fone;
     private boolean status;
     
 
@@ -66,6 +67,14 @@ public class LocalTrabalho {
 
     public void setTelefone(Telefone telefone) {
         this.telefone = telefone;
+    }
+
+    public int getFone() {
+        return fone;
+    }
+
+    public void setFone(int fone) {
+        this.fone = fone;
     }
     
     //HashCodes

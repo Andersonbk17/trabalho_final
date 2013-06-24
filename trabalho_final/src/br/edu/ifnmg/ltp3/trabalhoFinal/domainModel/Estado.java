@@ -104,7 +104,7 @@ public class Estado {
 
     @Override
     public String toString() {
-        return "Estado{" + "nome=" + nome + ", uf=" + uf + '}';
+        return nome;
     }
 
     

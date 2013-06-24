@@ -107,7 +107,7 @@ public class CursoArea {
 
     @Override
     public String toString() {
-        return "CursoArea{" + "idCursoArea=" + idCursoArea + ", nome=" + nome + ", sigla=" + sigla + ", status=" + status + '}';
+        return nome;
     }
     
 }

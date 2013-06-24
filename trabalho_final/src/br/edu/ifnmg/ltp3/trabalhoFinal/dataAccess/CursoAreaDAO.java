@@ -54,7 +54,7 @@ public class CursoAreaDAO {
             List<CursoArea> lista = new LinkedList<>();
             while(consuta.next()){
                 CursoArea novo = new CursoArea();
-                novo.setIdCursoArea(consuta.getInt("idCursoArea"));
+                novo.setIdCursoArea(consuta.getInt("idCurso"));
                 novo.setNome(consuta.getString("nome"));
                 novo.setSigla(consuta.getString("sigla"));
                 lista.add(novo);

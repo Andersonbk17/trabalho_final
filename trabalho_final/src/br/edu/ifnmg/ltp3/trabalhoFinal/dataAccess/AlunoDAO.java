@@ -123,7 +123,7 @@ public class AlunoDAO {
                 //novo.setDataNascimento(null);
                 novo.setMatricula(consulta.getInt("matricula"));
                 novo.setNacionalidade(nacionalidade.Abrir(consulta.getInt("idNacionalidade")));
-                novo.setNaturalidade(null);
+                //novo.setNaturalidade(null);
                 
                 novo.setEmail(emails.ListarTodos(novo.getIdPessoa()));
                 novo.setEndereco(enderecos.ListarTodos(novo.getIdPessoa()));

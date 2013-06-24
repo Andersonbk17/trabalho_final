@@ -19,7 +19,7 @@ public class ConexaoBanco {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             conexao = DriverManager
-               .getConnection("jdbc:mysql://localhost:3306/banco_pesquisa","root","epo123");
+              .getConnection("jdbc:mysql://localhost:3306/trabalhoFinal","root","epo123");
             //.getConnection("jdbc:mysql://localhost:3306/trabalhoFinal","root","170737");
             
             //conexao.setAutoCommit(false);

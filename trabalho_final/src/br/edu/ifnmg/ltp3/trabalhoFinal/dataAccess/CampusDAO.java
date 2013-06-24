@@ -78,11 +78,10 @@ public class CampusDAO {
     }
     
     
-    public List<Campus> ListarTodos(int idCampos) throws SQLException{
+    public List<Campus> ListarTodos() throws SQLException{
         try{
             PreparedStatement comando = conexao.getConexao().prepareStatement(""
-                    + "SELECT * FROM vw_Campus WHERE idPessoa = ? AND status = 1 ");
-            comando.setInt(1, idCampos);
+                    + "SELECT * FROM vw_Campus ");
             ResultSet consulta = comando.executeQuery();
             List<Campus> lista = new LinkedList<>();
             while(consulta.next()){

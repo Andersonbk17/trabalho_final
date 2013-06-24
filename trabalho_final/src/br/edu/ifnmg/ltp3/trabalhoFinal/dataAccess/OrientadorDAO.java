@@ -4,7 +4,6 @@
  */
 package br.edu.ifnmg.ltp3.trabalhoFinal.dataAccess;
 
-import br.edu.ifnmg.ltp3.trabalhoFinal.domainModel.Aluno;
 import br.edu.ifnmg.ltp3.trabalhoFinal.domainModel.Email;
 import br.edu.ifnmg.ltp3.trabalhoFinal.domainModel.Endereco;
 import br.edu.ifnmg.ltp3.trabalhoFinal.domainModel.Orientador;
@@ -13,10 +12,8 @@ import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 /**
  *
@@ -170,6 +167,7 @@ public class OrientadorDAO {
                     
         
         }
+    }
  
     
     

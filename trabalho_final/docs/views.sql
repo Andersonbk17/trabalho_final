@@ -2,7 +2,10 @@
 		SELECT * FROM ProjetoPesquisa WHERE status = 1;	
 	
 	CREATE VIEW vw_Orientador 	AS
-		SELECT * FROM Orientador WHERE status = 1;
+		SELECT  o.idOrientador,o.matriculaSiape,o.localPermanencia,o.formacaoUniversitaria,o.tituloAcademico,o.idpessoa, p.nome,p.cpf,p.rg,p.dataNascimento,
+		p.orgaoExpeditor,p.dataExpedicao,p.idCampus,p.idCursoArea,p.idNacionalidade,p.idEstado FROM Orientador o
+		INNER JOIN Pessoa p on p.idPessoa = o.idPessoa
+		WHERE o.status = 1;
 
 	CREATE VIEW vw_Aluno AS
 		SELECT a.idAluno,a.tituloEleitor,a.secaoEleitoral,a.zonaEleitoral,a.situacaoMilitar,a.certidaoMilitar,a.idPessoa,a.idResponsavel,p.nome,p.cpf,p.rg,p.dataNascimento,

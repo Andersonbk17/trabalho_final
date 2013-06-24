@@ -233,11 +233,11 @@ public class AlunoDAO {
         }
      }
     
-    public boolean Apagar(int idEmail ) throws SQLException{
+    public boolean Apagar(int idPessoa, int idAluno ) throws SQLException{
         try{
-            PreparedStatement comando = conexao.getConexao().prepareStatement(""
-                    + "UPDATE Email SET status = 0 WHERE idEmail = ?");
-            comando.setInt(1, idEmail);
+            PreparedStatement comando = conexao.getConexao().prepareStatement("CALL sp_AlunoApagar(?,?)");
+            comando.setInt(1, idPessoa);
+            comando.setInt(1, idAluno);
             comando.executeUpdate();
             return true;
         }catch(SQLException ex){

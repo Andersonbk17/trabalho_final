@@ -1,0 +1,3 @@
+ 
+CREATE INDEX IX_AreaConhecimento_CNPqNome on AreaConhecimento_CNPq(nome)
+CREATE INDEX IX_AreaConhecimento_CNPqCodigo on AreaConhecimento_CNPq(codigo)

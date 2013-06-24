@@ -30,8 +30,13 @@ public class ProjetoPesquisaDAO {
             if(obj.getIdProjetoPesquisa() == 0){
                 CallableStatement comando = conexao.getConexao().prepareCall("CALL sp_ProjetoPesquisa(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?");
                 comando.setString(1, obj.getTitulo());
-                //comando.setDate(2, null);
-                //comando.setDate(3, null);
+
+                java.sql.Date dataBd = new java.sql.Date(obj.getDataInicio().getTime());
+                comando.setDate(2, dataBd);
+            
+                java.sql.Date dataBd2 = new java.sql.Date(obj.getDataTermino().getTime());
+                comando.setDate(3, dataBd2);
+                
                 comando.setString(4, obj.getGrupoPesquisa());
                 comando.setInt(5, obj.getAreConhecimento().getIdAreaConhecimento());
                 comando.setInt(6, obj.getCampus().getIdCampus());
@@ -41,7 +46,10 @@ public class ProjetoPesquisaDAO {
                 comando.setInt(10, obj.getBolsa());
                 comando.setInt(11, obj.getConvenio());
                 comando.setDouble(12,obj.getValorFinanciamento());
-                //comando.setDate(13, obj.getDataFinanciamento());
+                
+                //java.sql.Date dataBd2 = new java.sql.Date(obj.getDataFinanciamento().getTime());
+                //comando.setDate(13, dataBd2);
+                
                 comando.setInt(14, obj.getNumeroBolsa());
                 comando.setString(15, obj.getAgenciaFinanciadora());
                 comando.setString(16, obj.getNomeConvenio());
@@ -54,8 +62,13 @@ public class ProjetoPesquisaDAO {
                 CallableStatement comando = conexao.getConexao().prepareCall("CALL "
                         + "sp_ProjetoPesquisaAtualiza(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?");
                 comando.setString(1, obj.getTitulo());
-                //comando.setDate(2, null);
-                //comando.setDate(3, null);
+                
+                java.sql.Date dataBd = new java.sql.Date(obj.getDataInicio().getTime());
+                comando.setDate(2, dataBd);
+            
+                java.sql.Date dataBd2 = new java.sql.Date(obj.getDataTermino().getTime());
+                comando.setDate(3, dataBd2);
+
                 comando.setString(4, obj.getGrupoPesquisa());
                 comando.setInt(5, obj.getAreConhecimento().getIdAreaConhecimento());
                 comando.setInt(6, obj.getCampus().getIdCampus());
@@ -65,7 +78,11 @@ public class ProjetoPesquisaDAO {
                 comando.setInt(10, obj.getBolsa());
                 comando.setInt(11, obj.getConvenio());
                 comando.setDouble(12,obj.getValorFinanciamento());
-                //comando.setDate(13, obj.getDataFinanciamento());
+                
+                //java.sql.Date dataBd2 = new java.sql.Date(obj.getDataFinanciamento().getTime());
+                //comando.setDate(13, dataBd2);
+
+                
                 comando.setInt(14, obj.getNumeroBolsa());
                 comando.setString(15, obj.getAgenciaFinanciadora());
                 comando.setString(16, obj.getNomeConvenio());

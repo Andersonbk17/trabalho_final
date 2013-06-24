@@ -47,7 +47,7 @@ public class TelefoneDAO {
             ex.printStackTrace();
             return false;
         }finally{
-            conexao.getConexao().close();
+            //conexao.getConexao().close();
         }
     
     }
@@ -74,7 +74,7 @@ public class TelefoneDAO {
             ex.printStackTrace();
             return false;
         }finally{
-            conexao.getConexao().close();
+            //conexao.getConexao().close();
         }
     
     }
@@ -99,7 +99,7 @@ public class TelefoneDAO {
             return null;
         
         }finally{
-            conexao.getConexao().close();
+            //conexao.getConexao().close();
         }
     
     
@@ -126,7 +126,7 @@ public class TelefoneDAO {
                ex.printStackTrace();
                return null;
         }finally{
-            conexao.getConexao().close();
+            //conexao.getConexao().close();
         }
      }
     
@@ -140,7 +140,7 @@ public class TelefoneDAO {
            ex.printStackTrace();
            return false;
         }finally{
-            conexao.getConexao().close();
+            //conexao.getConexao().close();
         }
     
     

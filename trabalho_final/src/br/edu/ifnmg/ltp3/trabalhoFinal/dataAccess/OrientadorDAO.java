@@ -12,6 +12,7 @@ import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -34,9 +35,15 @@ public class OrientadorDAO {
                 comando.setString(1, obj.getNome());
                 comando.setInt(2, obj.getCpf());
                 comando.setString(3, obj.getRg());
-                //comando.setDate(4, obj.getDataNascimento());
+                
+                java.sql.Date dataBd = new java.sql.Date(obj.getDataNascimento().getTime());
+                comando.setDate(4, dataBd);
+                
                 comando.setString(5, obj.getOrgaoExpeditor());
-                //comando.setString(6, obj.getDataExpedicao());
+                
+                java.sql.Date dataBd2 = new java.sql.Date(obj.getDataExpedicao().getTime());
+                comando.setDate(6, dataBd2);
+                
                 comando.setInt(7, obj.getCampus().getIdCampus());
                 comando.setInt(8, obj.getCursoArea().getIdCursoArea());
                 comando.setInt(9, obj.getNacionalidade().getIdNacionalida());
@@ -49,9 +56,14 @@ public class OrientadorDAO {
                 comando.execute();
                 
                 
-                PreparedStatement comando1 = conexao.getConexao().prepareStatement("SELECT MAX(idOrientador)  FROM vw_Orientador ");
-                ResultSet rs = comando1.executeQuery();
+                 PreparedStatement Consulta = conexao.getConexao().prepareStatement("SELECT MAX(idOrientador) FROM vw_Orientador ");
+                 ResultSet rs = Consulta.executeQuery();
+                 rs.first();
                 
+                /*Statement stm = conexao.getConexao().createStatement(); 
+               
+                ResultSet rs = stm.executeQuery("SELECT MAX(idOrientador) FROM vw_Orientador ");
+                */
                 EmailDAO emailDAO = new EmailDAO();
                 for(Email e :obj.getEmail()){
                     emailDAO.Salvar(e, rs.getInt("MAX(idOrientador)"));
@@ -73,9 +85,15 @@ public class OrientadorDAO {
                 comando.setString(1, obj.getNome());
                 comando.setInt(2, obj.getCpf());
                 comando.setString(3, obj.getRg());
-                //comando.setDate(4, obj.getDataNascimento());
+                
+                java.sql.Date dataBd = new java.sql.Date(obj.getDataNascimento().getTime());
+                comando.setDate(4, dataBd);
+                
                 comando.setString(5, obj.getOrgaoExpeditor());
-                //comando.setString(6, obj.getDataExpedicao());
+                
+                java.sql.Date dataBd2 = new java.sql.Date(obj.getDataExpedicao().getTime());
+                comando.setDate(6, dataBd2);
+                
                 comando.setInt(7, obj.getCampus().getIdCampus());
                 comando.setInt(8, obj.getCursoArea().getIdCursoArea());
                 comando.setInt(9, obj.getNacionalidade().getIdNacionalida());
@@ -110,7 +128,7 @@ public class OrientadorDAO {
             ex.printStackTrace();
             return false;
         }finally{
-            conexao.getConexao().close();
+            //conexao.getConexao().close();
         }
     
     }
@@ -163,7 +181,7 @@ public class OrientadorDAO {
         
         }finally{
         
-            conexao.getConexao().close();
+            //conexao.getConexao().close();
                     
         
         }
@@ -219,7 +237,7 @@ public class OrientadorDAO {
                ex.printStackTrace();
                return null;
         }finally{
-            conexao.getConexao().close();
+            //conexao.getConexao().close();
         }
      }
     
@@ -234,7 +252,7 @@ public class OrientadorDAO {
            ex.printStackTrace();
            return false;
         }finally{
-            conexao.getConexao().close();
+           // conexao.getConexao().close();
         }
     
     

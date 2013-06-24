@@ -44,7 +44,7 @@ public class EmailDAO {
             ex.printStackTrace();
             return false;
         }finally{
-            conexao.getConexao().close();
+            //conexao.getConexao().close();
         }
     
     }
@@ -68,7 +68,7 @@ public class EmailDAO {
                ex.printStackTrace();
                return null;
         }finally{
-            conexao.getConexao().close();
+            //conexao.getConexao().close();
         }
      }
     
@@ -82,7 +82,7 @@ public class EmailDAO {
            ex.printStackTrace();
            return false;
         }finally{
-            conexao.getConexao().close();
+            //conexao.getConexao().close();
         }
     
     

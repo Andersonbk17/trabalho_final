@@ -82,7 +82,8 @@ DELIMITER //
 		END;
 //
 DELIMITER //
-	CREATE PROCEDURE sp_Endereco (_rua varchar(50),_bairro varchar(50),_cep int,_numero int,_complemento varchar(50),_idPessoa int, _idCidade int)
+	CREATE PROCEDURE sp_Endereco (_rua varchar(50),_bairro varchar(50),_cep int,_numero int,_complemento varchar(50),_idPessoa int,
+	_idCidade int)
 		BEGIN
 			DECLARE exit HANDLER FOR SQLEXCEPTION ROLLBACK;
 			START TRANSACTION;	
@@ -280,7 +281,7 @@ DELIMITER //
 		END;
 //
 DELIMITER //
-	CREATE PROCEDURE sp_AlunoApaga(_idPessoa int)
+	CREATE PROCEDURE sp_AlunoApaga(_idPessoa int,_idAluno)
 		BEGIN
 			DECLARE exit HANDLER FOR SQLEXCEPTION ROLLBACK;
 			START TRANSACTION;
@@ -296,9 +297,9 @@ DELIMITER //
 		END;
 //
 DELIMITER //
-	CREATE PROCEDURE sp_Orientador(_nome varchar(100), _cpf int, _rg varchar(20),_dataNascimento date,_orgaoExpeditor varchar(5),_dataExpedicao date,
-	_idCampus int,_idCursoArea int,_idNacionalidade int, _idEstado int,_matriculaSiape int,_localPermanencia varchar(100),_formacaoUniversitaria varchar(100),
-	_tituloAcademico varchar(100))
+	CREATE PROCEDURE sp_Orientador(_nome varchar(100), _cpf int, _rg varchar(20),_dataNascimento date,_orgaoExpeditor varchar(5),
+	_dataExpedicao date,_idCampus int,_idCursoArea int,_idNacionalidade int, _idEstado int,_matriculaSiape int,
+	_localPermanencia varchar(100),_formacaoUniversitaria varchar(100),	_tituloAcademico varchar(100))
 		BEGIN
 			DECLARE _idPessoaAtual int;
 			DECLARE exit HANDLER FOR SQLEXCEPTION ROLLBACK;
@@ -330,17 +331,39 @@ DELIMITER //
 			COMMIT;
 		END;
 //
+
+
+DELIMITER //
+	CREATE PROCEDURE sp_OrientadorApaga(_idPessoa int,_idOrientador int)
+		BEGIN
+			DECLARE exit HANDLER FOR SQLEXCEPTION ROLLBACK;
+			START TRANSACTION;
+			
+			CALL sp_EmailApaga(_idPessoa);
+			CALL sp_EnderecoApaga(_idPessoa);
+			CALL sp_TelefoneApaga(_idPessoa);
+			
+			UPDATE Pessoa SET  status = 0 WHERE idPessoa =_idPessoa;
+			UPDATE Orientador SET  status = 0 WHERE idOrientador = _idOrientador;
+			
+			COMMIT;
+		END;
+//
+
+
+
+
 DELIMITER //			
 	CREATE PROCEDURE sp_ProjetoPesquisa(_titulo varchar(100),_dataInicio date,_dataTermino date,_grupoPesquisa varchar(100),_idAreaConhecimentoCNPq int,_idCampus int,
 	_resumo text,_idOrientador int,_financiamento tinyint,_bolsa tinyint, _convenio tinyint,_valorFinanciamento float,_dataFinanciamento date,_numeroBolsas int,
-	_agenciaFinanciadora varchar(100),_nomeConvenio varchar(100),_projetoMulticampi tinyint,_status int) 
+	_agenciaFinanciadora varchar(100),_nomeConvenio varchar(100),_projetoMulticampi tinyint) 
 		BEGIN
 			DECLARE exit HANDLER FOR SQLEXCEPTION ROLLBACK;
 			START TRANSACTION;
 			INSERT INTO ProjetoPesquisa(titulo,dataInicio,dataTermino,grupoPesquisa,idAreaConhecimentoCNPq,idCampus,resumo,idOrientador,financiamento,bolsa,convenio,
 			valorFinanciamento,dataFinanciamento,numeroBolsas,agenciaFinanciadora,convenio,nomeConvenio,projetoMulticampi,status) 
 			VALUES(_titulo,_dataInicio,_dataTermino,_grupoPesquisa,_idAreaConhecimentoCNPq,_idCampus,_resumo,_idOrientador,_financiamento,_bolsa,_convenio,
-			_valorFinanciamento,_dataFinanciamento,_numeroBolsas,_agenciaFinanciadora,_nomeConvenio,_projetoMulticampi,_status);
+			_valorFinanciamento,_dataFinanciamento,_numeroBolsas,_agenciaFinanciadora,_nomeConvenio,_projetoMulticampi,1);
 	        COMMIT;
 	    END;
 //
@@ -471,6 +494,49 @@ DELIMITER //
 			DECLARE exit HANDLER FOR SQLEXCEPTION ROLLBACK;
 			START TRANSACTION;
 			UPDATE CronogramaAtividade SET status = 0 WHERE idCronogramaAtividade = _idCronogramaAtividade;
+			
+			COMMIT;
+		END;
+//
+
+
+DELIMITER //
+	CREATE PROCEDURE sp_PlanoDeTrabalho(_idAluno int,_idProjetoPesquisa int,_introducao text,_justificativa text,_objetivos text,
+	_metodologia text,_resultadosEsperados text,_referenciasBibliograficas text )
+		BEGIN
+			DECLARE exit HANDLER FOR SQLEXCEPTION ROLLBACK;
+			START TRANSACTION;
+			INSERT INTO PlanoDeTrabalho(idAluno,idProjetoPesquisa,introducao,justificativa,objetivos,metodoslogia
+			,resultadosEsperados,referenciasBibliograficas,status) VALUES (_idAluno,_idProjetoPesquisa,_introducao,_justificativa,_objetivos,
+			_metodologia,_resultadosEsperados,_referenciasBibliograficas,1);
+			
+			
+			COMMIT;
+		END;
+//
+
+DELIMITER //
+	CREATE PROCEDURE sp_PlanoDeTrabalhoAtualiza(_idAluno int,_idProjetoPesquisa int,_introducao text,_justificativa text,_objetivos text,
+	_metodologia text,_resultadosEsperados text,_referenciasBibliograficas text,_idPlanoDeTrabalho int)
+		BEGIN
+			DECLARE exit HANDLER FOR SQLEXCEPTION ROLLBACK;
+			START TRANSACTION;
+			UPDATE PlanoDeTrabalho SET idAluno = _idAluno ,idProjetoPesquisa = _idProjetoPesquisa ,introducao = _introducao ,
+			justificativa = _justificativa ,objetivos = _objetivos ,metodoslogia = _metodologia	, resultadosEsperados = _resultadosEsperados,
+			referenciasBibliograficas = _referenciasBibliograficas WHERE idPlanoDeTrabalho = _idPlanoDeTrabalho;
+			
+			
+			COMMIT;
+		END;
+//
+
+DELIMITER //
+	CREATE PROCEDURE sp_PlanoDeTrabalhoApaga(_idPlanoDeTrabalho int)
+		BEGIN
+			DECLARE exit HANDLER FOR SQLEXCEPTION ROLLBACK;
+			START TRANSACTION;
+			UPDATE PlanoDeTrabalho SET status = 0 WHERE idPlanoDeTrabalho = _idPlanoDeTrabalho;
+			
 			
 			COMMIT;
 		END;

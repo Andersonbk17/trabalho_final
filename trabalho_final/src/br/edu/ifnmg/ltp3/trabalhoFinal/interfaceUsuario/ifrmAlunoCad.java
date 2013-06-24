@@ -1141,6 +1141,7 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
             txtAlunoRg.setText(null);
             txtAlunoOrgaoEx.setText(null);
             txtAlunoDataExp.setText(null);
+            txtAlunoDataNasc.setText(null);
             txtAlunoCpf.setText(null);
             txtAlunoMatricula.setText(null);
             txtAlunoCertidaoMilitar.setText(null);

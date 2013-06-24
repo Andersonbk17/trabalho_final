@@ -33,11 +33,15 @@ public class frmBody extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jmBodyCadastrar = new javax.swing.JMenu();
         jmiAluno = new javax.swing.JMenuItem();
+        jmiOrientador = new javax.swing.JMenuItem();
         jmiPPesquisa = new javax.swing.JMenuItem();
+        jmiCampus = new javax.swing.JMenuItem();
+        jmiCurso = new javax.swing.JMenuItem();
+        jmiAreaConhecimento = new javax.swing.JMenuItem();
         jmBodyListar = new javax.swing.JMenu();
+        jmBodyUsuario = new javax.swing.JMenu();
         jmBodyProjetos = new javax.swing.JMenu();
         jmBodyRelarotio = new javax.swing.JMenu();
-        jmBodyUsuario = new javax.swing.JMenu();
         jmBodySobre = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -47,7 +51,7 @@ public class frmBody extends javax.swing.JFrame {
         jMenuBar1.setBackground(new java.awt.Color(102, 204, 0));
         jMenuBar1.setForeground(new java.awt.Color(255, 255, 255));
 
-        jmBodyCadastrar.setForeground(new java.awt.Color(255, 255, 255));
+        jmBodyCadastrar.setForeground(new java.awt.Color(0, 0, 0));
         jmBodyCadastrar.setText("Cadastrar");
 
         jmiAluno.setText("Aluno");
@@ -58,6 +62,14 @@ public class frmBody extends javax.swing.JFrame {
         });
         jmBodyCadastrar.add(jmiAluno);
 
+        jmiOrientador.setText("Orientador");
+        jmiOrientador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiOrientadorActionPerformed(evt);
+            }
+        });
+        jmBodyCadastrar.add(jmiOrientador);
+
         jmiPPesquisa.setText("Projeto Pesquisa");
         jmiPPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,25 +78,50 @@ public class frmBody extends javax.swing.JFrame {
         });
         jmBodyCadastrar.add(jmiPPesquisa);
 
+        jmiCampus.setText("Campus");
+        jmiCampus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiCampusActionPerformed(evt);
+            }
+        });
+        jmBodyCadastrar.add(jmiCampus);
+
+        jmiCurso.setText("Curso");
+        jmiCurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiCursoActionPerformed(evt);
+            }
+        });
+        jmBodyCadastrar.add(jmiCurso);
+
+        jmiAreaConhecimento.setText("Area Conhecimento");
+        jmiAreaConhecimento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiAreaConhecimentoActionPerformed(evt);
+            }
+        });
+        jmBodyCadastrar.add(jmiAreaConhecimento);
+
         jMenuBar1.add(jmBodyCadastrar);
 
-        jmBodyListar.setForeground(new java.awt.Color(255, 255, 255));
+        jmBodyListar.setForeground(new java.awt.Color(0, 0, 0));
         jmBodyListar.setText("Listar");
+
+        jmBodyUsuario.setForeground(new java.awt.Color(0, 0, 0));
+        jmBodyUsuario.setText("Usuario");
+        jmBodyListar.add(jmBodyUsuario);
+
         jMenuBar1.add(jmBodyListar);
 
-        jmBodyProjetos.setForeground(new java.awt.Color(255, 255, 255));
+        jmBodyProjetos.setForeground(new java.awt.Color(0, 0, 0));
         jmBodyProjetos.setText("Projetos");
         jMenuBar1.add(jmBodyProjetos);
 
-        jmBodyRelarotio.setForeground(new java.awt.Color(255, 255, 255));
+        jmBodyRelarotio.setForeground(new java.awt.Color(0, 0, 0));
         jmBodyRelarotio.setText("Relatorios");
         jMenuBar1.add(jmBodyRelarotio);
 
-        jmBodyUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        jmBodyUsuario.setText("Usuario");
-        jMenuBar1.add(jmBodyUsuario);
-
-        jmBodySobre.setForeground(new java.awt.Color(255, 255, 255));
+        jmBodySobre.setForeground(new java.awt.Color(0, 0, 0));
         jmBodySobre.setText("Sobre");
         jMenuBar1.add(jmBodySobre);
 
@@ -122,6 +159,33 @@ public class frmBody extends javax.swing.JFrame {
         add(janela);
         janela.setVisible(true);
     }//GEN-LAST:event_jmiPPesquisaActionPerformed
+
+    private void jmiOrientadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiOrientadorActionPerformed
+        // TODO add your handling code here:
+        ifrmOrientadorCad janela = null;
+        try {
+            janela = new ifrmOrientadorCad();
+        } catch (SQLException ex) {
+            Logger.getLogger(frmBody.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        add(janela);
+        janela.setVisible(true);
+    }//GEN-LAST:event_jmiOrientadorActionPerformed
+
+    private void jmiCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCursoActionPerformed
+        // TODO add your handling code here:
+     
+    }//GEN-LAST:event_jmiCursoActionPerformed
+
+    private void jmiCampusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCampusActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jmiCampusActionPerformed
+
+    private void jmiAreaConhecimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAreaConhecimentoActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jmiAreaConhecimentoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,6 +230,10 @@ public class frmBody extends javax.swing.JFrame {
     private javax.swing.JMenu jmBodySobre;
     private javax.swing.JMenu jmBodyUsuario;
     private javax.swing.JMenuItem jmiAluno;
+    private javax.swing.JMenuItem jmiAreaConhecimento;
+    private javax.swing.JMenuItem jmiCampus;
+    private javax.swing.JMenuItem jmiCurso;
+    private javax.swing.JMenuItem jmiOrientador;
     private javax.swing.JMenuItem jmiPPesquisa;
     // End of variables declaration//GEN-END:variables
 }

@@ -160,8 +160,6 @@ public class Aluno extends Pessoa {
         this.planoTrabalho = planoTrabalho;
     }
     
-    
-     
     //Hashcodes
 
     @Override

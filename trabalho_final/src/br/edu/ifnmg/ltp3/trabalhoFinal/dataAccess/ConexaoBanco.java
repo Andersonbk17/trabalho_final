@@ -7,6 +7,8 @@ package br.edu.ifnmg.ltp3.trabalhoFinal.dataAccess;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,9 +21,9 @@ public class ConexaoBanco {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             conexao = DriverManager
-              .getConnection("jdbc:mysql://localhost:3306/trabalhoFinal","root","epo123");
+              .getConnection("jdbc:mysql://localhost:3306/trabalhoFinal","root","");
             //.getConnection("jdbc:mysql://localhost:3306/trabalhoFinal","root","170737");
-            
+            //.getConnection("jdbc:mysql://localhost:3306/trabalhoFinal","root","170737");
             //conexao.setAutoCommit(false);
         
         }catch(ClassNotFoundException | SQLException ex){
@@ -31,10 +33,34 @@ public class ConexaoBanco {
       }
 
     public Connection getConexao() {
+        try {
+            if(conexao.isClosed()){
+                conectar();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConexaoBanco.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return conexao;
     }
 
     public void setConexao(Connection conexao) {
         this.conexao = conexao;
+    }
+    
+    public void conectar(){
+        try {
+            conexao = DriverManager
+                  .getConnection("jdbc:mysql://localhost:3306/trabalhoFinal","root","");
+        } catch (SQLException ex) {
+            Logger.getLogger(ConexaoBanco.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void fechar(){
+        try {
+            conexao.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ConexaoBanco.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

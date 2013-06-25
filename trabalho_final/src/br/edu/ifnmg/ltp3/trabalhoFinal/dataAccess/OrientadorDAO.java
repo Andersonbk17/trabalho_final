@@ -35,9 +35,16 @@ public class OrientadorDAO {
                 comando.setString(1, obj.getNome());
                 comando.setInt(2, obj.getCpf());
                 comando.setString(3, obj.getRg());
-                //comando.setDate(4, obj.getDataNascimento());
+                
+                java.sql.Date dataBd = new java.sql.Date(obj.getDataNascimento().getTime());
+                comando.setDate(4,dataBd);
+                
                 comando.setString(5, obj.getOrgaoExpeditor());
-                //comando.setString(6, obj.getDataExpedicao());
+                
+                java.sql.Date dataBd2 = new java.sql.Date(obj.getDataExpedicao().getTime());
+                comando.setDate(6,dataBd2);
+              
+           
                 comando.setInt(7, obj.getCampus().getIdCampus());
                 comando.setInt(8, obj.getCursoArea().getIdCursoArea());
                 comando.setInt(9, obj.getNacionalidade().getIdNacionalida());
@@ -52,6 +59,7 @@ public class OrientadorDAO {
                 
                 PreparedStatement comando1 = conexao.getConexao().prepareStatement("SELECT MAX(idOrientador)  FROM vw_Orientador ");
                 ResultSet rs = comando1.executeQuery();
+                rs.first();
                 
                 EmailDAO emailDAO = new EmailDAO();
                 for(Email e :obj.getEmail()){
@@ -74,9 +82,15 @@ public class OrientadorDAO {
                 comando.setString(1, obj.getNome());
                 comando.setInt(2, obj.getCpf());
                 comando.setString(3, obj.getRg());
-                //comando.setDate(4, obj.getDataNascimento());
+               
+                java.sql.Date dataBd = new java.sql.Date(obj.getDataNascimento().getTime());
+                comando.setDate(4,dataBd);
+                
                 comando.setString(5, obj.getOrgaoExpeditor());
-                //comando.setString(6, obj.getDataExpedicao());
+                
+                java.sql.Date dataBd2 = new java.sql.Date(obj.getDataExpedicao().getTime());
+                comando.setDate(6,dataBd2);
+                
                 comando.setInt(7, obj.getCampus().getIdCampus());
                 comando.setInt(8, obj.getCursoArea().getIdCursoArea());
                 comando.setInt(9, obj.getNacionalidade().getIdNacionalida());

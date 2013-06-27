@@ -206,18 +206,7 @@ DELIMITER //
 			COMMIT;
 		END;
 //
-DELIMITER //
 
-	CREATE PROCEDURE sp_Pessoa(_nome varchar(100), _cpf int, _rg varchar(20),_dataNascimento date,	_orgaoExpeditor varchar(5),
-	_dataExpedicao date,_idCampus int,_idCursoArea int,_idNacionalidade int, _idEstado int)
-		BEGIN
-			DECLARE exit HANDLER FOR SQLEXCEPTION ROLLBACK;
-			START TRANSACTION;
-			INSERT INTO Pessoa(nome,cpf,rg,orgaoExpeditor,dataNascimento,dataExpedicao,status,idCampus,idCursoArea,idNacionalidade,idEstado) 
-			VALUES (_nome,_cpf,_rg,_orgaoExpeditor,_dataNascimento,_dataExpedicao,1,_idCampus,_idCursoArea,_idNacionalidade,_idEstado);
-			COMMIT;
-		END;
-//
 DELIMITER //		
 	CREATE PROCEDURE sp_PessoaAtualiza(_nome varchar(100), _cpf int, _rg varchar(20),_dataNascimento date,	_orgaoExpeditor varchar(5),
 	_dataExpedicao date,_idCampus int,_idCursoArea int,_idNacionalidade int, _idEstado int, _idPessoa int)
@@ -239,6 +228,19 @@ DELIMITER //
 			COMMIT;
 		END;
 //
+
+DELIMITER //
+
+	CREATE PROCEDURE sp_Pessoa(_nome varchar(100), _cpf int, _rg varchar(20),_dataNascimento date,	_orgaoExpeditor varchar(5),
+	_dataExpedicao date,_idCampus int,_idCursoArea int,_idNacionalidade int, _idEstado int)
+		BEGIN
+			DECLARE exit HANDLER FOR SQLEXCEPTION ROLLBACK;
+			START TRANSACTION;
+			INSERT INTO Pessoa(nome,cpf,rg,orgaoExpeditor,dataNascimento,dataExpedicao,status,idCampus,idCursoArea,idNacionalidade,idEstado) 
+			VALUES (_nome,_cpf,_rg,_orgaoExpeditor,_dataNascimento,_dataExpedicao,1,_idCampus,_idCursoArea,_idNacionalidade,_idEstado);
+			COMMIT;
+		END;
+//
 DELIMITER //	
 	CREATE PROCEDURE sp_Aluno(_nome varchar(100), _cpf int, _rg varchar(20),_tituloEleitoral varchar(20),_dataNascimento date,_orgaoExpeditor varchar(5),
 	_dataExpedicao date,_idCampus int,_idCursoArea int,_idNacionalidade int, _idEstado int,_secaoEleitoral varchar(20),_zonaEleitoral varchar(20),
@@ -246,18 +248,19 @@ DELIMITER //
 	_cpfResponsavel int,_nomeMae varchar(100),_rgMae varchar(20),_orgaoExpeditorMae varchar(5),_cpfMae int,_matricula int)
 		BEGIN
 			DECLARE _idPessoaAtual int;
-			DECLARE _idResponsavelAtual int;
 			DECLARE exit HANDLER FOR SQLEXCEPTION ROLLBACK;
 			START TRANSACTION;
 			
 			CALL sp_Pessoa(_nome , _cpf , _rg ,_dataNascimento ,_orgaoExpeditor, _dataExpedicao , _idCampus,_idCursoArea ,_idNacionalidade, _idEstado);
-			CALL sp_Responsavel(_nomeResponsavel,_rgResponsavel,_orgaoExpeditorResponsavel,_cpfResponsavel,_nomeMae,_rgMae,_orgaoExpeditorMae,_cpfMae);
+		
 			
 			SET _idPessoaAtual = (SELECT MAX(idPessoa) FROM Pessoa);
-			SET _idResponsavelAtual = (SELECT MAX(idResponsavel) FROM Responsavel);
-			
-			INSERT INTO Aluno(tituloEleitor,secaoEleitoral,zonaEleitoral,situacaoMilitar,certidaoMilitar,idPessoa,idResponsavel,status,matricula) 
-			VALUES (_tituloEleitoral,_secaoEleitoral,_zonaEleitoral,_situacaoMilitar,_certidaoMilitar,_idPessoaAtual,_idResponsavelAtual,1,_matricula);
+		
+				
+			INSERT INTO Aluno(tituloEleitor,secaoEleitoral,zonaEleitoral,situacaoMilitar,certidaoMilitar,idPessoa,status,numeroMatricula,
+			nomeResponsavel,rgResponsavel,orgaoExpeditorResponsavel,cpfResponsavel,nomeMae,rgMae,orgaoExpeditorMae,cpfMae) 
+			VALUES (_tituloEleitoral,_secaoEleitoral,_zonaEleitoral,_situacaoMilitar,_certidaoMilitar,_idPessoaAtual,1,_matricula,
+			_nomeResponsavel,_rgResponsavel,_orgaoExpeditorResponsavel,_cpfResponsavel,_nomeMae,_rgMae,_orgaoExpeditorMae,_cpfMae);
 			COMMIT;
 		END;
 //
@@ -275,7 +278,9 @@ DELIMITER //
 			_idEstado,_idPessoa );
 			
 			UPDATE Aluno SET  tituloEleitor = _tituloEleitoral,secaoEleitoral = _secaoEleitoral ,zonaEleitoral = _zonaEleitoral ,situacaoMilitar = _situacaoMilitar,
-			certidaoMilitar = _certidaoMilitar, matricula = _matricula
+			certidaoMilitar = _certidaoMilitar, matricula = _matricula , nomeResponsavel = _nomeResponsavel,rgResponsavel = _rgResponsavel ,
+			orgaoExpeditorResponsavel = _orgaoExpeditorResponsavel,cpfResponsavel = _cpfResponsavel,nomeMae = _nomeMae,rgMae = _rgMae,
+			orgaoExpeditorMae  = _orgaoExpeditorMae,cpfMae = _cpfMae) 
 			WHERE idAluno = _idAluno;
 			COMMIT;
 		END;

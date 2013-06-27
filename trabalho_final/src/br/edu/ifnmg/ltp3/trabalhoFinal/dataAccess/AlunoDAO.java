@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -27,11 +28,12 @@ public class AlunoDAO {
     }
     
     
+    
+    
     public boolean Salvar(Aluno obj) throws SQLException{
         try{
            if(obj.getIdAluno() == 0){
-                CallableStatement comando = conexao.getConexao().prepareCall("CALL sp_Aluno(?,?,?,?,?,?,?,"
-                        + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                CallableStatement comando = conexao.getConexao().prepareCall("CALL sp_Aluno(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                 comando.setString(1, obj.getNome());
                 comando.setInt(2, obj.getCpf());
                 comando.setString(3, obj.getRg());
@@ -44,7 +46,7 @@ public class AlunoDAO {
                
                 java.sql.Date dataBd2 = new java.sql.Date(obj.getDataExpedicao().getTime());
                 comando.setDate(7, dataBd2);
-                
+               
                 comando.setInt(8, obj.getCampus().getIdCampus());
                 comando.setInt(9, obj.getCursoArea().getIdCursoArea());
                 comando.setInt(10, obj.getNacionalidade().getIdNacionalida());
@@ -53,14 +55,14 @@ public class AlunoDAO {
                 comando.setString(13, obj.getZonaEleitoral());
                 comando.setString(14, obj.getSituacaoMilitar());
                 comando.setString(15, obj.getCertidaoMilitar());
-                comando.setString(16, obj.getResponsavel().getNomePai());
-                comando.setString(17, obj.getResponsavel().getRgPai());
-                comando.setString(18, obj.getResponsavel().getOrgaoExpedidorPai());
-                comando.setInt(19, obj.getResponsavel().getCpfPai());
-                comando.setString(20, obj.getResponsavel().getNomeMae());
-                comando.setString(21, obj.getResponsavel().getRgMae());
-                comando.setString(22, obj.getResponsavel().getOrgaoExpedidorMae());
-                comando.setInt(23, obj.getResponsavel().getCpfMae());
+                comando.setString(16, obj.getNomePai());
+                comando.setString(17, obj.getRgPai());
+                comando.setString(18, obj.getOrgaoExpedidorPai());
+                comando.setInt(19, obj.getCpfPai());
+                comando.setString(20, obj.getNomeMae());
+                comando.setString(21, obj.getRgMae());
+                comando.setString(22, obj.getOrgaoExpedidorMae());
+                comando.setInt(23, obj.getCpfMae());
                 comando.setInt(24, obj.getMatricula());
                
                 comando.execute();
@@ -113,16 +115,16 @@ public class AlunoDAO {
                 comando1.setString(13, obj.getZonaEleitoral());
                 comando1.setString(14, obj.getSituacaoMilitar());
                 comando1.setString(15, obj.getCertidaoMilitar());
-                comando1.setString(16, obj.getResponsavel().getNomePai());
-                comando1.setString(17, obj.getResponsavel().getRgPai());
-                comando1.setString(18, obj.getResponsavel().getOrgaoExpedidorPai());
-                comando1.setInt(19, obj.getResponsavel().getCpfPai());
-                comando1.setString(20, obj.getResponsavel().getNomeMae());
-                comando1.setString(21, obj.getResponsavel().getRgMae());
-                comando1.setString(22, obj.getResponsavel().getOrgaoExpedidorMae());
-                comando1.setInt(23, obj.getResponsavel().getCpfMae());
-                comando1.setInt(24, obj.getIdPessoa());
-                comando1.setInt(25, obj.getIdAluno());
+                comando1.setString(16, obj.getNomePai());
+                comando1.setString(17, obj.getRgPai());
+                comando1.setString(18, obj.getOrgaoExpedidorPai());
+                comando1.setInt(19, obj.getCpfPai());
+                comando1.setString(20, obj.getNomeMae());
+                comando1.setString(21, obj.getRgMae());
+                comando1.setString(22, obj.getOrgaoExpedidorMae());
+                comando1.setInt(23, obj.getCpfMae());
+                comando1.setInt(2, obj.getIdAluno());
+                comando1.setInt(25, obj.getIdPessoa());
                 comando1.setInt(26, obj.getMatricula());
                 comando1.execute();
                 
@@ -158,7 +160,7 @@ public class AlunoDAO {
                     + "FROM Aluno WHERE idAluno = ?"); 
             comando.setInt(1, idAluno);
             ResultSet consulta = comando.executeQuery();
-            
+            Aluno novoAluno = null;
             if(consulta.first()){
                 EmailDAO emails = new EmailDAO();
                 TelefoneDAO telefones = new TelefoneDAO();
@@ -166,46 +168,47 @@ public class AlunoDAO {
                 CampusDAO campus = new CampusDAO();
                 CursoAreaDAO cursoArea = new CursoAreaDAO();
                 NacionalidadeDAO nacionalidade = new NacionalidadeDAO();
-                ResponsavelDAO responsavel = new ResponsavelDAO();
                 EstadoDAO estado = new EstadoDAO();
                 PlanoTrabalhoDAO planoTrabalhoDAO = new PlanoTrabalhoDAO();
-                Aluno novo = new Aluno();
+                LocalTrabalhoDAO localTrabalho = new LocalTrabalhoDAO();
+                novoAluno = new Aluno();
                 
-                novo.setIdAluno(consulta.getInt("idAluno"));
-                novo.setIdPessoa(consulta.getInt("idPessoa"));
-                novo.setCertidaoMilitar(consulta.getString("certidaoMilitar"));
-                novo.setCpf(consulta.getInt("cpf"));
-                novo.setRg(consulta.getString("rg"));
-                novo.setSecaoEleitoral(consulta.getString("secaoEleitoral"));
-                novo.setMatricula(consulta.getInt("numeroMatrucula"));
-                novo.setTituloEleitoral(consulta.getString("tituloEleitoral"));
-                novo.setZonaEleitoral(consulta.getString("zonaEleitoral"));
-                novo.setPlanoTrabalho(null);//sfsdfs
-                //novo.setDataExpedicao(null);
-                novo.setCursoArea(cursoArea.Abrir(consulta.getInt("idCursoArea")));
-                //novo.setDataNascimento(null);
-                novo.setMatricula(consulta.getInt("matricula"));
-                novo.setNacionalidade(nacionalidade.Abrir(consulta.getInt("idNacionalidade")));
+                novoAluno.setCampus(campus.Abrir(consulta.getInt("idCampus")));
+                novoAluno.setCertidaoMilitar(consulta.getString("certidaoMilitar"));
+                novoAluno.setCpf(consulta.getInt("cpf"));
+                novoAluno.setCpfMae(consulta.getInt("cpfMae"));
+                novoAluno.setCpfPai(consulta.getInt("cpfResponsavel"));
+                novoAluno.setCursoArea(cursoArea.Abrir(consulta.getInt("idCursoArea")));
+                //novoAluno.setDataExpedicao(null);
+                //novoAluno.setDataNascimento(null);
+                novoAluno.setEmail(emails.ListarTodos(consulta.getInt("idPessoa")));
+                novoAluno.setEndereco(enderecos.ListarTodos(consulta.getInt("idPessoa")));
+                novoAluno.setEstado(estado.Abrir(consulta.getInt("idPessoa")));
+                novoAluno.setIdAluno(idAluno);
+                novoAluno.setIdPessoa(consulta.getInt("idPessoa"));
+                novoAluno.setListaLocalTrabalho(localTrabalho.ListarTodos(idAluno));
+                novoAluno.setMatricula(consulta.getInt("numeroMatricula"));
+                novoAluno.setNacionalidade(nacionalidade.Abrir(consulta.getInt("idNacionalidade")));
+                novoAluno.setNome(consulta.getString("nome"));
+                novoAluno.setNomeMae(consulta.getString("nomeMae"));
+                novoAluno.setNomePai(consulta.getString("nomeResponsavel"));
+                novoAluno.setOrgaoExpedidorMae(consulta.getString("orgaoExpeditorMae"));
+                novoAluno.setOrgaoExpedidorPai(consulta.getString("orgaoExpeditorResponsavel"));
+                novoAluno.setOrgaoExpeditor(consulta.getString("orgaoExpeditor"));
+                novoAluno.setPlanoTrabalho(planoTrabalhoDAO.Abrir(idAluno));
+                novoAluno.setRg(consulta.getString("rg"));
+                novoAluno.setRgMae(consulta.getString("rgMae"));
+                novoAluno.setRgPai(consulta.getString("rgResponsavel"));
+                novoAluno.setSecaoEleitoral(consulta.getString("secaoEleitoral"));
+                novoAluno.setSituacaoMilitar(consulta.getString("situacaoMilitar"));
+                novoAluno.setTelefone(telefones.ListarTodos(consulta.getInt("idPessoa")));
+                novoAluno.setTituloEleitoral(consulta.getString("tituloEleitoral"));
+                novoAluno.setZonaEleitoral(consulta.getString("zonaEleitoral"));
                 
-                novo.setEmail(emails.ListarTodos(novo.getIdPessoa()));
-                novo.setEndereco(enderecos.ListarTodos(novo.getIdPessoa()));
-                novo.setTelefone(telefones.ListarTodos(novo.getIdPessoa()));
-                novo.setCampus(campus.Abrir(consulta.getInt("idCampus")));
-                novo.setEstado(estado.Abrir(consulta.getInt("idEstado")));
-                novo.setResponsavel(responsavel.Abrir(consulta.getInt("idResponsavel")));
-                //novo.setPlanoTrabalho(planoTrabalhoDAO.Abrir(idAluno));
                 
-                
-                
-                /* -------------- CONTINUAR --------------------------*/
-                
-                
-            
-            
-            
             }
         
-        
+        return novoAluno;
         }catch(SQLException ex){
             ex.printStackTrace();
             return null;
@@ -216,25 +219,64 @@ public class AlunoDAO {
                     
         
         }
-        return null;
-    
-    
-    
-    
     }
     
     
     
-    public List<String> ListarTodos() throws SQLException{
+    public List<Aluno> ListarTodos() throws SQLException{
         try{
             PreparedStatement comando = conexao.getConexao().prepareStatement(""
                     + "SELECT * FROM vw_Aluno");
            
             ResultSet consulta = comando.executeQuery();
-            List<String> lista = new ArrayList<>();
+            List<Aluno> lista = new LinkedList<>();
             while(consulta.next()){
-                                
-                lista.add(consulta.getString("nome"));
+                
+                EmailDAO emails = new EmailDAO();
+                TelefoneDAO telefones = new TelefoneDAO();
+                EnderecoDAO enderecos = new EnderecoDAO();
+                CampusDAO campus = new CampusDAO();
+                CursoAreaDAO cursoArea = new CursoAreaDAO();
+                NacionalidadeDAO nacionalidade = new NacionalidadeDAO();
+                EstadoDAO estado = new EstadoDAO();
+                PlanoTrabalhoDAO planoTrabalhoDAO = new PlanoTrabalhoDAO();
+                LocalTrabalhoDAO localTrabalho = new LocalTrabalhoDAO();
+                Aluno novoAluno = new Aluno();
+                
+                novoAluno.setCampus(campus.Abrir(consulta.getInt("idCampus")));
+                novoAluno.setCertidaoMilitar(consulta.getString("certidaoMilitar"));
+                novoAluno.setCpf(consulta.getInt("cpf"));
+                novoAluno.setCpfMae(consulta.getInt("cpfMae"));
+                novoAluno.setCpfPai(consulta.getInt("cpfResponsavel"));
+                novoAluno.setCursoArea(cursoArea.Abrir(consulta.getInt("idCursoArea")));
+                //novoAluno.setDataExpedicao(null);
+                //novoAluno.setDataNascimento(null);
+                novoAluno.setEmail(emails.ListarTodos(consulta.getInt("idPessoa")));
+                novoAluno.setEndereco(enderecos.ListarTodos(consulta.getInt("idPessoa")));
+                novoAluno.setEstado(estado.Abrir(consulta.getInt("idPessoa")));
+                novoAluno.setIdAluno(consulta.getInt("idAluno"));
+                novoAluno.setIdPessoa(consulta.getInt("idPessoa"));
+                novoAluno.setListaLocalTrabalho(localTrabalho.ListarTodos(consulta.getInt("idAluno")));
+                novoAluno.setMatricula(consulta.getInt("numeroMatricula"));
+                novoAluno.setNacionalidade(nacionalidade.Abrir(consulta.getInt("idNacionalidade")));
+                novoAluno.setNome(consulta.getString("nome"));
+                novoAluno.setNomeMae(consulta.getString("nomeMae"));
+                novoAluno.setNomePai(consulta.getString("nomeResponsavel"));
+                novoAluno.setOrgaoExpedidorMae(consulta.getString("orgaoExpeditorMae"));
+                novoAluno.setOrgaoExpedidorPai(consulta.getString("orgaoExpeditorResponsavel"));
+                novoAluno.setOrgaoExpeditor(consulta.getString("orgaoExpeditor"));
+                novoAluno.setPlanoTrabalho(planoTrabalhoDAO.Abrir(consulta.getInt("idAluno")));
+                novoAluno.setRg(consulta.getString("rg"));
+                novoAluno.setRgMae(consulta.getString("rgMae"));
+                novoAluno.setRgPai(consulta.getString("rgResponsavel"));
+                novoAluno.setSecaoEleitoral(consulta.getString("secaoEleitoral"));
+                novoAluno.setSituacaoMilitar(consulta.getString("situacaoMilitar"));
+                novoAluno.setTelefone(telefones.ListarTodos(consulta.getInt("idPessoa")));
+                novoAluno.setTituloEleitoral(consulta.getString("tituloEleitoral"));
+                novoAluno.setZonaEleitoral(consulta.getString("zonaEleitoral"));
+                
+                
+                lista.add(novoAluno);
             }
             return lista;
          }catch(SQLException ex){

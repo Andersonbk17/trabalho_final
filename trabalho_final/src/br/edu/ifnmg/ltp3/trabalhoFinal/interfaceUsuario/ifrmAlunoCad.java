@@ -19,7 +19,6 @@ import br.edu.ifnmg.ltp3.trabalhoFinal.domainModel.Endereco;
 import br.edu.ifnmg.ltp3.trabalhoFinal.domainModel.Estado;
 import br.edu.ifnmg.ltp3.trabalhoFinal.domainModel.LocalTrabalho;
 import br.edu.ifnmg.ltp3.trabalhoFinal.domainModel.Nacionalidade;
-import br.edu.ifnmg.ltp3.trabalhoFinal.domainModel.Responsavel;
 import br.edu.ifnmg.ltp3.trabalhoFinal.domainModel.Telefone;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -1123,18 +1122,17 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
             aluno.setNacionalidade(na);
             aluno.setEstado(es);
             
-            Responsavel resp = new Responsavel();
-            
-            resp.setNomePai(txtResponsavelNomePai.getText());
-            resp.setCpfPai(Integer.parseInt(txtResponsavelCpfPai.getText()));
-            resp.setRgPai(txtResponsavelRgPai.getText());
-            resp.setOrgaoExpedidorPai(txtResponsavelOrgaoExpPai.getText());
-            resp.setNomeMae(txtResponsavelNomeMae.getText());
-            resp.setCpfMae(Integer.parseInt(txtResponsavelCpfMae.getText()));
-            resp.setRgMae(txtResponsavelRgMae.getText());
-            resp.setOrgaoExpedidorMae(txtResponsavelOrgaoExpMae.getText());
-            
-            aluno.setResponsavel(resp);
+            //Dados dos responsaveis legais pelo aluno
+            aluno.setNomePai(txtResponsavelNomePai.getText());
+            aluno.setCpfPai(Integer.parseInt(txtResponsavelCpfPai.getText()));
+            aluno.setRgPai(txtResponsavelRgPai.getText());
+            aluno.setOrgaoExpedidorPai(txtResponsavelOrgaoExpPai.getText());
+            aluno.setNomeMae(txtResponsavelNomeMae.getText());
+            aluno.setCpfMae(Integer.parseInt(txtResponsavelCpfMae.getText()));
+            aluno.setRgMae(txtResponsavelRgMae.getText());
+            aluno.setOrgaoExpedidorMae(txtResponsavelOrgaoExpMae.getText());
+            //----
+           
             try {
                 if(alunoDao.Salvar(aluno)){
                     JOptionPane.showMessageDialog(rootPane, "Dados foram salvos com sucesso.");
@@ -1144,6 +1142,7 @@ public class ifrmAlunoCad extends javax.swing.JInternalFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(ifrmAlunoCad.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
             txtAlunoNome.setText(null);
             txtAlunoRg.setText(null);
             txtAlunoOrgaoEx.setText(null);
